@@ -6,7 +6,12 @@
 //  Copyright © 2017 Kai Takac. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#if TARGET_IOS
+    #import <UIKit/UIKit.h>
+#else if TARGET_OSX
+    #import <Cocoa/Cocoa.h>
+#endif
+
 
 //! Project version number for OBankingConnector.
 FOUNDATION_EXPORT double OBankingConnectorVersionNumber;

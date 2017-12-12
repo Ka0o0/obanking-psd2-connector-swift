@@ -32,12 +32,13 @@ class OAuth2BankServiceProviderAuthenticationRequestTests: XCTestCase {
             clientId: "johns_app",
             clientSecret: "secret",
             tokenEndpointURL: tokenEndpointURL,
-            redirectURI: "redirectme"
+            redirectURI: "redirectme",
+            scope: "create+delete"
         )
 
         XCTAssertEqual(sut.clientSecret, "secret")
         XCTAssertEqual(sut.tokenEndpointURL, tokenEndpointURL)
         XCTAssertEqual(sut.redirectURI, "redirectme")
-
+        XCTAssertEqual(sut.scope, "create+delete")
     }
 }
