@@ -33,6 +33,8 @@
 		2A58F0D21FE0101B0024D33E /* DeepLinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0D11FE0101B0024D33E /* DeepLinkService.swift */; };
 		2A58F0D41FE012950024D33E /* DeepLinkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0D31FE012950024D33E /* DeepLinkProvider.swift */; };
 		2A58F0D81FE012D10024D33E /* DefaultDeepLinkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0D71FE012D10024D33E /* DefaultDeepLinkServiceTests.swift */; };
+		2A58F0DC1FE0173D0024D33E /* OAuth2BankServiceProviderAuthenticationRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0DB1FE0173D0024D33E /* OAuth2BankServiceProviderAuthenticationRequestTests.swift */; };
+		2A58F0DE1FE018670024D33E /* OAuth2BankServiceProviderAuthenticationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0DD1FE018670024D33E /* OAuth2BankServiceProviderAuthenticationRequest.swift */; };
 		2AECE54E1FDDCF0000FEEC14 /* OBankingConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AECE5441FDDCF0000FEEC14 /* OBankingConnector.framework */; };
 		2AECE5551FDDCF0000FEEC14 /* OBankingConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AECE5471FDDCF0000FEEC14 /* OBankingConnector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2AECE5621FDDD04500FEEC14 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AECE5611FDDD04500FEEC14 /* Bank.swift */; };
@@ -98,6 +100,8 @@
 		2A58F0D11FE0101B0024D33E /* DeepLinkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkService.swift; sourceTree = "<group>"; };
 		2A58F0D31FE012950024D33E /* DeepLinkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkProvider.swift; sourceTree = "<group>"; };
 		2A58F0D71FE012D10024D33E /* DefaultDeepLinkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDeepLinkServiceTests.swift; sourceTree = "<group>"; };
+		2A58F0DB1FE0173D0024D33E /* OAuth2BankServiceProviderAuthenticationRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2BankServiceProviderAuthenticationRequestTests.swift; sourceTree = "<group>"; };
+		2A58F0DD1FE018670024D33E /* OAuth2BankServiceProviderAuthenticationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2BankServiceProviderAuthenticationRequest.swift; sourceTree = "<group>"; };
 		2AECE5441FDDCF0000FEEC14 /* OBankingConnector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OBankingConnector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AECE5471FDDCF0000FEEC14 /* OBankingConnector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBankingConnector.h; sourceTree = "<group>"; };
 		2AECE5481FDDCF0000FEEC14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -245,6 +249,7 @@
 		2A58F0CF1FE00FCC0024D33E /* OAuth2 */ = {
 			isa = PBXGroup;
 			children = (
+				2A58F0DD1FE018670024D33E /* OAuth2BankServiceProviderAuthenticationRequest.swift */,
 			);
 			path = OAuth2;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 		2A58F0D51FE012C10024D33E /* Platform */ = {
 			isa = PBXGroup;
 			children = (
+				2A58F0D91FE017130024D33E /* Authentication */,
 				2A58F0D61FE012C60024D33E /* DeepLinkHandling */,
 			);
 			path = Platform;
@@ -272,6 +278,22 @@
 				2A58F0D71FE012D10024D33E /* DefaultDeepLinkServiceTests.swift */,
 			);
 			path = DeepLinkHandling;
+			sourceTree = "<group>";
+		};
+		2A58F0D91FE017130024D33E /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				2A58F0DA1FE0171C0024D33E /* OAuth2 */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		2A58F0DA1FE0171C0024D33E /* OAuth2 */ = {
+			isa = PBXGroup;
+			children = (
+				2A58F0DB1FE0173D0024D33E /* OAuth2BankServiceProviderAuthenticationRequestTests.swift */,
+			);
+			path = OAuth2;
 			sourceTree = "<group>";
 		};
 		2AECE53A1FDDCF0000FEEC14 = {
@@ -718,6 +740,7 @@
 				2A58F0CD1FE00BF30024D33E /* OBankingConnector+Configuration.swift in Sources */,
 				2A58F0A21FDFDF020024D33E /* ConnectedBankServiceProvider.swift in Sources */,
 				2AECE5971FDDE0DE00FEEC14 /* Amount.swift in Sources */,
+				2A58F0DE1FE018670024D33E /* OAuth2BankServiceProviderAuthenticationRequest.swift in Sources */,
 				2AECE5871FDDDDFA00FEEC14 /* BankAccount.swift in Sources */,
 				2AECE5621FDDD04500FEEC14 /* Bank.swift in Sources */,
 				2AECE58F1FDDDF2300FEEC14 /* AccountNumber.swift in Sources */,
@@ -749,6 +772,7 @@
 				2A58F0B41FE003650024D33E /* ConnectedBankServiceProviderTests.swift in Sources */,
 				2A58F0B71FE003B10024D33E /* SupportedBankServicesProviderTests.swift in Sources */,
 				2A58F0B91FE003F50024D33E /* AccountNumberTests.swift in Sources */,
+				2A58F0DC1FE0173D0024D33E /* OAuth2BankServiceProviderAuthenticationRequestTests.swift in Sources */,
 				2AECE58B1FDDDE8B00FEEC14 /* BankAccountTests.swift in Sources */,
 				2A58F0BB1FE004430024D33E /* BankAccountTypeTests.swift in Sources */,
 				2A58F0B21FE002F90024D33E /* BankServiceProviderAuthenticationProviderTests.swift in Sources */,
