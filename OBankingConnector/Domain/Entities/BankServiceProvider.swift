@@ -13,3 +13,13 @@ public struct BankServiceProvider {
     let id: String
     let name: String
 }
+
+extension BankServiceProvider: Hashable {
+    public var hashValue: Int {
+        return id.hashValue
+    }
+
+    public static func == (lhs: BankServiceProvider, rhs: BankServiceProvider) -> Bool {
+        return lhs.id == rhs.id
+    }
+}

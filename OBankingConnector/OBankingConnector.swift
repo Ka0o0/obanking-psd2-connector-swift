@@ -21,7 +21,10 @@ public final class OBankingConnector {
     }
 
     func makeBankServiceProviderAuthenticationProvider() -> BankServiceProviderAuthenticationProvider {
-        fatalError("Not implemented yet")
+        return DefaultBankServiceProviderAuthenticationProvider(
+            supportedBankServiceProviderMap: [:],
+            bankServiceProviderRequestProcessors: []
+        )
     }
 
     func makeBankServiceProviderConnector() -> BankServiceProviderConnector {
@@ -29,6 +32,6 @@ public final class OBankingConnector {
     }
 
     func makeDeepLinkHandler() -> DeepLinkHandler {
-        return deepLinkService
+        return self.deepLinkService
     }
 }
