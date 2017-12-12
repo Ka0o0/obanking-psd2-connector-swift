@@ -6,13 +6,9 @@ SWIFT_LINT=/usr/local/bin/swiftlint
 #if $SWIFT_LINT >/dev/null 2>&1; then
 if [[ -e "${SWIFT_LINT}" ]]; then
     count=0
-    for file_path in $(git ls-files -m --exclude-from=.gitignore | grep ".swift$"); do
-        export SCRIPT_INPUT_FILE_$count=$file_path
-        count=$((count + 1))
-    done
 
 ##### Check for modified files in unstaged/Staged area #####
-    for file_path in $(git diff --name-only --cached | grep ".swift$"); do
+    for file_path in $(git diff --name-only --cached --diff-filter=ACMTUXBR | grep ".swift$"); do
         export SCRIPT_INPUT_FILE_$count=$file_path
         count=$((count + 1))
     done
