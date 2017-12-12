@@ -14,6 +14,5 @@ protocol DeepLinkHandler {
     ///
     /// - parameter deepLink The URL provided by the AppDelegate
     ///
-    /// - returns true if the url was successfully handled
-    func handle(deepLink url: URL) -> Bool
+    func handle(deepLink url: URL)
 }

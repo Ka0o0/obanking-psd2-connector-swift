@@ -13,8 +13,7 @@ class DeepLinkHandlerTests: XCTestCase {
 
     private class DeepLinkHandlerMock: DeepLinkHandler {
 
-        func handle(deepLink url: URL) -> Bool {
-            return true
+        func handle(deepLink url: URL) {
         }
     }
 }
