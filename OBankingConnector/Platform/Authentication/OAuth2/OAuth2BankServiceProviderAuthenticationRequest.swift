@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct OAuth2BankServiceProviderAuthenticationRequest {
+struct OAuth2BankServiceProviderAuthenticationRequest: BankServiceProviderAuthenticationRequest {
 
     let authorizationEndpointURL: URL
     let clientId: String
