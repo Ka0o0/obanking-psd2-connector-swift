@@ -1,6 +1,6 @@
 //
-//  DefaultDeepLinkHandlerTests.swift
-//  OBankingConnectorTests
+//  DefaultDeepLinkServiceTests.swift
+//  DefaultDeepLinkServiceTests
 //
 //  Created by Kai Takac on 12.12.17.
 //  Copyright © 2017 Kai Takac. All rights reserved.
@@ -11,7 +11,7 @@ import RxSwift
 import RxBlocking
 @testable import OBankingConnector
 
-class DefaultDeepLinkHandlerTests: XCTestCase {
+class DefaultDeepLinkServiceTests: XCTestCase {
 
     func test_handle_PublishesURL() {
         guard let url = URL(string: "https://duckduckgo.com") else {
@@ -19,7 +19,7 @@ class DefaultDeepLinkHandlerTests: XCTestCase {
             return
         }
 
-        let sut = DefaultDeepLinkHandler()
+        let sut = DefaultDeepLinkService()
         let disposeBag = DisposeBag()
 
         let publishExpectation = expectation(description: "Deep link should be published")

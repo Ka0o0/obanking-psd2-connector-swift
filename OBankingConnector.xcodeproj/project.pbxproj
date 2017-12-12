@@ -30,9 +30,9 @@
 		2A58F0C91FE00B5D0024D33E /* BankServiceProviderConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0C81FE00B5D0024D33E /* BankServiceProviderConnector.swift */; };
 		2A58F0CB1FE00BD80024D33E /* OBankingConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0CA1FE00BD80024D33E /* OBankingConnector.swift */; };
 		2A58F0CD1FE00BF30024D33E /* OBankingConnector+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0CC1FE00BF30024D33E /* OBankingConnector+Configuration.swift */; };
-		2A58F0D21FE0101B0024D33E /* DefaultDeepLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0D11FE0101B0024D33E /* DefaultDeepLinkHandler.swift */; };
+		2A58F0D21FE0101B0024D33E /* DeepLinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0D11FE0101B0024D33E /* DeepLinkService.swift */; };
 		2A58F0D41FE012950024D33E /* DeepLinkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0D31FE012950024D33E /* DeepLinkProvider.swift */; };
-		2A58F0D81FE012D10024D33E /* DefaultDeepLinkHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0D71FE012D10024D33E /* DefaultDeepLinkHandlerTests.swift */; };
+		2A58F0D81FE012D10024D33E /* DefaultDeepLinkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0D71FE012D10024D33E /* DefaultDeepLinkServiceTests.swift */; };
 		2AECE54E1FDDCF0000FEEC14 /* OBankingConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AECE5441FDDCF0000FEEC14 /* OBankingConnector.framework */; };
 		2AECE5551FDDCF0000FEEC14 /* OBankingConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AECE5471FDDCF0000FEEC14 /* OBankingConnector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2AECE5621FDDD04500FEEC14 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AECE5611FDDD04500FEEC14 /* Bank.swift */; };
@@ -95,9 +95,9 @@
 		2A58F0C81FE00B5D0024D33E /* BankServiceProviderConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankServiceProviderConnector.swift; sourceTree = "<group>"; };
 		2A58F0CA1FE00BD80024D33E /* OBankingConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBankingConnector.swift; sourceTree = "<group>"; };
 		2A58F0CC1FE00BF30024D33E /* OBankingConnector+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OBankingConnector+Configuration.swift"; sourceTree = "<group>"; };
-		2A58F0D11FE0101B0024D33E /* DefaultDeepLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDeepLinkHandler.swift; sourceTree = "<group>"; };
+		2A58F0D11FE0101B0024D33E /* DeepLinkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkService.swift; sourceTree = "<group>"; };
 		2A58F0D31FE012950024D33E /* DeepLinkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkProvider.swift; sourceTree = "<group>"; };
-		2A58F0D71FE012D10024D33E /* DefaultDeepLinkHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDeepLinkHandlerTests.swift; sourceTree = "<group>"; };
+		2A58F0D71FE012D10024D33E /* DefaultDeepLinkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDeepLinkServiceTests.swift; sourceTree = "<group>"; };
 		2AECE5441FDDCF0000FEEC14 /* OBankingConnector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OBankingConnector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AECE5471FDDCF0000FEEC14 /* OBankingConnector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBankingConnector.h; sourceTree = "<group>"; };
 		2AECE5481FDDCF0000FEEC14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -252,8 +252,8 @@
 		2A58F0D01FE010030024D33E /* DeepLinkHandling */ = {
 			isa = PBXGroup;
 			children = (
-				2A58F0D11FE0101B0024D33E /* DefaultDeepLinkHandler.swift */,
 				2A58F0D31FE012950024D33E /* DeepLinkProvider.swift */,
+				2A58F0D11FE0101B0024D33E /* DeepLinkService.swift */,
 			);
 			path = DeepLinkHandling;
 			sourceTree = "<group>";
@@ -269,7 +269,7 @@
 		2A58F0D61FE012C60024D33E /* DeepLinkHandling */ = {
 			isa = PBXGroup;
 			children = (
-				2A58F0D71FE012D10024D33E /* DefaultDeepLinkHandlerTests.swift */,
+				2A58F0D71FE012D10024D33E /* DefaultDeepLinkServiceTests.swift */,
 			);
 			path = DeepLinkHandling;
 			sourceTree = "<group>";
@@ -721,7 +721,7 @@
 				2AECE5871FDDDDFA00FEEC14 /* BankAccount.swift in Sources */,
 				2AECE5621FDDD04500FEEC14 /* Bank.swift in Sources */,
 				2AECE58F1FDDDF2300FEEC14 /* AccountNumber.swift in Sources */,
-				2A58F0D21FE0101B0024D33E /* DefaultDeepLinkHandler.swift in Sources */,
+				2A58F0D21FE0101B0024D33E /* DeepLinkService.swift in Sources */,
 				2AECE5991FDDE19300FEEC14 /* BankAccountType.swift in Sources */,
 				2AECE5A51FDDE9B500FEEC14 /* Transaction.swift in Sources */,
 				2A58F0D41FE012950024D33E /* DeepLinkProvider.swift in Sources */,
@@ -743,7 +743,7 @@
 				2AECE59F1FDDE6E400FEEC14 /* ExchangeRateInformationTests.swift in Sources */,
 				2A58F0C21FE007E70024D33E /* AccountNumberMock.swift in Sources */,
 				2A58F0931FDFD1040024D33E /* BankServiceProviderTests.swift in Sources */,
-				2A58F0D81FE012D10024D33E /* DefaultDeepLinkHandlerTests.swift in Sources */,
+				2A58F0D81FE012D10024D33E /* DefaultDeepLinkServiceTests.swift in Sources */,
 				2AECE5A31FDDE90B00FEEC14 /* TransactionTests.swift in Sources */,
 				2A58F0BD1FE004A70024D33E /* CurrencyTests.swift in Sources */,
 				2A58F0B41FE003650024D33E /* ConnectedBankServiceProviderTests.swift in Sources */,

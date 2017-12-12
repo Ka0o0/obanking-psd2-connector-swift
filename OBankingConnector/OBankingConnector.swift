@@ -11,9 +11,13 @@ import Foundation
 public final class OBankingConnector {
 
     private let configuration: Configuration
+    private let deepLinkService: DeepLinkService
 
     init(configuration: Configuration) {
         self.configuration = configuration
+
+        // Initialize Dependencies
+        self.deepLinkService = DefaultDeepLinkService()
     }
 
     func makeBankServiceProviderAuthenticationProvider() -> BankServiceProviderAuthenticationProvider {
@@ -22,5 +26,9 @@ public final class OBankingConnector {
 
     func makeBankServiceProviderConnector() -> BankServiceProviderConnector {
         fatalError("Not implemented yet")
+    }
+
+    func makeDeepLinkHandler() -> DeepLinkHandler {
+        return deepLinkService
     }
 }

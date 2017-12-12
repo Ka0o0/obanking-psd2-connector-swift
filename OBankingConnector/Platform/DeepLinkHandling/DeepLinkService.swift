@@ -1,6 +1,6 @@
 //
-//  DefaultDeepLinkHandler.swift
-//  OBankingConnector
+//  DeepLinkService.swift
+//  DeepLinkService
 //
 //  Created by Kai Takac on 12.12.17.
 //  Copyright © 2017 Kai Takac. All rights reserved.
@@ -9,7 +9,10 @@
 import Foundation
 import RxSwift
 
-final class DefaultDeepLinkHandler: DeepLinkHandler, DeepLinkProvider {
+protocol DeepLinkService: DeepLinkHandler, DeepLinkProvider {
+}
+
+final class DefaultDeepLinkService: DeepLinkService {
 
     var deepLinkTriggered: Observable<URL> {
         return deepLinkPublisher.asObserver()
