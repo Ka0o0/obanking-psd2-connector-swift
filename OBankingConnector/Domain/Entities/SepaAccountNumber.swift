@@ -13,7 +13,12 @@ public struct SepaAccountNumber: AccountNumber {
     public let iban: String
     public let bic: String
 
-    public init(iban: String, bic: String) {
+    public init?(iban: String, bic: String) {
+        let validator = IBANValidator()
+        guard validator.validate(iban: iban) else {
+            return nil
+        }
+
         self.iban = iban
         self.bic = bic
     }

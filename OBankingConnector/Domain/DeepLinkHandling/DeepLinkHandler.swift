@@ -1,5 +1,5 @@
 //
-//  DeepLinkHandlingUseCase.swift
+//  DeepLinkHandler.swift
 //  OBankingConnector
 //
 //  Created by Kai Takac on 10.12.17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol DeepLinkHandlingUseCase {
+protocol DeepLinkHandler {
 
     /// This method has to be called inside the AppDelegate's `application(_:open:options:)` method
     ///

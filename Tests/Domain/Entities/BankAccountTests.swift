@@ -12,7 +12,7 @@ import XCTest
 class BankAccountTests: XCTestCase {
 
     func test_Init_TakesRequired() {
-        let mockedAccountNumber = SepaAccountNumber(iban: "", bic: "")
+        let mockedAccountNumber = AccountNumberMock(identifier: "Test")
         let mockedBalance = Amount(value: 1000, precision: 2, currency: .EUR)
         let accountType = BankAccountType.current
         let sut = BankAccount(

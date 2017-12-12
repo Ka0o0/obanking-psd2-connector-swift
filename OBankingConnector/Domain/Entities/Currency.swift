@@ -13,7 +13,7 @@ public enum Currency: String {
     case EUR
     case GBP
 
-    var name: String {
+    public var name: String {
         switch self {
         case .EUR:
             return "Euro"

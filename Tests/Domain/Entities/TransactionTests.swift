@@ -12,7 +12,7 @@ import XCTest
 class TransactionTests: XCTestCase {
 
     func test_Init_TakesRequired() {
-        let mockedPartyAccountNumber = SepaAccountNumber(iban: "AT1111", bic: "xxxxx")
+        let mockedPartyAccountNumber = AccountNumberMock(identifier: "partyAccountNumber")
         let mockedAmount = Amount(value: 123, precision: 1, currency: .EUR)
         let mockedBookingDate = Date()
 
@@ -39,7 +39,8 @@ class TransactionTests: XCTestCase {
             XCTFail("Could not create Decimal")
             return
         }
-        let mockedPartyAccountNumber = SepaAccountNumber(iban: "AT1111", bic: "xxxxx")
+
+        let mockedPartyAccountNumber = AccountNumberMock(identifier: "partyAccountNumber")
         let mockedAmount = Amount(value: 123, precision: 1, currency: .EUR)
         let mockedBookingDate = Date()
         let mockedProcessingDate = Date()
