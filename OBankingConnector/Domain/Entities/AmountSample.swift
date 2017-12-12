@@ -20,7 +20,7 @@ public struct AmountSample {
 }
 
 extension AmountSample: Equatable {
-    public static func ==(lhs: AmountSample, rhs: AmountSample) -> Bool {
+    public static func == (lhs: AmountSample, rhs: AmountSample) -> Bool {
         return lhs.amount == rhs.amount &&
             lhs.date == rhs.date
     }

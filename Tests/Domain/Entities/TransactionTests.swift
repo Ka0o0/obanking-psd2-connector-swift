@@ -24,7 +24,7 @@ class TransactionTests: XCTestCase {
             text: "Hello World!",
             bookingDate: mockedBookingDate
         )
-        
+
         XCTAssertEqual(sut.id, "example_transaction")
         XCTAssertEqual(sut.bankAccountNumberId, "example_bank_account")
         XCTAssertTrue(sut.partyAccount.equals(other: mockedPartyAccountNumber))
@@ -35,11 +35,20 @@ class TransactionTests: XCTestCase {
     }
 
     func test_Init_TakesOptionals() {
+        guard let rate = Decimal(string: "10.2") else {
+            XCTFail("Could not create Decimal")
+            return
+        }
         let mockedPartyAccountNumber = SepaAccountNumber(iban: "AT1111", bic: "xxxxx")
         let mockedAmount = Amount(value: 123, precision: 1, currency: .EUR)
         let mockedBookingDate = Date()
         let mockedProcessingDate = Date()
-        let mockedExchangeRateInformation = ExchangeRateInformation(source: .EUR, target: .GBP, rate: Decimal(string: "10.2")!, date: Date())
+        let mockedExchangeRateInformation = ExchangeRateInformation(
+            source: .EUR,
+            target: .GBP,
+            rate: rate,
+            date: Date()
+        )
 
         let sut = Transaction(
             id: "example_transaction",

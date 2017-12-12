@@ -9,7 +9,7 @@
 import Foundation
 
 public struct BankAccount {
-    
+
     public let id: String
     public let accountNumber: AccountNumber
     public let balance: Amount
@@ -17,4 +17,3 @@ public struct BankAccount {
     public let disposeableBalance: Amount?
     public let alias: String?
 }
-

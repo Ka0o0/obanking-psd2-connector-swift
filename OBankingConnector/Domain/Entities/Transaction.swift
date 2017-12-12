@@ -9,7 +9,7 @@
 import Foundation
 
 public struct Transaction {
-    
+
     public let id: String
     public let bankAccountNumberId: String
     public let partyAccount: AccountNumber
@@ -20,7 +20,7 @@ public struct Transaction {
     public let textType: TransactionTextType
     public let notes: String?
     public let exchangeRateInformation: ExchangeRateInformation?
-    
+
     init(id: String,
          bankAccountNumberId: String,
          partyAccount: AccountNumber,

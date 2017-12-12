@@ -10,6 +10,6 @@ import Foundation
 import RxSwift
 
 public protocol FetchBankAccountDetailsUseCase {
-    
+
     // func fetchBankAccount(with id: String) -> Single<BankAccount?>
 }

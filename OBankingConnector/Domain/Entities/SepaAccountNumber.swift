@@ -9,7 +9,7 @@
 import Foundation
 
 public struct SepaAccountNumber: AccountNumber {
-    
+
     public let iban: String
     public let bic: String
 
@@ -17,18 +17,18 @@ public struct SepaAccountNumber: AccountNumber {
         self.iban = iban
         self.bic = bic
     }
-    
+
     public func equals(other: AccountNumber) -> Bool {
         guard let otherSepaAccountNumber = other as? SepaAccountNumber else {
             return false
         }
-        
+
         return otherSepaAccountNumber == self
     }
 }
 
 extension SepaAccountNumber: Equatable {
-    public static func ==(lhs: SepaAccountNumber, rhs: SepaAccountNumber) -> Bool {
+    public static func == (lhs: SepaAccountNumber, rhs: SepaAccountNumber) -> Bool {
         return lhs.iban == rhs.iban && lhs.bic == rhs.bic
     }
 }

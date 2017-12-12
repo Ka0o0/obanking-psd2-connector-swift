@@ -9,6 +9,6 @@
 import Foundation
 
 public protocol AccountNumber {
-    
+
     func equals(other: AccountNumber) -> Bool
 }

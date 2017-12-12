@@ -16,7 +16,7 @@ public struct Bank {
 }
 
 extension Bank: Equatable {
-    public static func ==(lhs: Bank, rhs: Bank) -> Bool {
+    public static func == (lhs: Bank, rhs: Bank) -> Bool {
         return lhs.id == rhs.id
     }
 }

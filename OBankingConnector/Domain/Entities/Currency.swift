@@ -9,10 +9,10 @@
 import Foundation
 
 public enum Currency: String {
-    
+
     case EUR
     case GBP
-    
+
     var name: String {
         switch self {
         case .EUR:

@@ -9,7 +9,7 @@
 import Foundation
 
 public struct BankServiceProvider {
-    
+
     let id: String
     let name: String
 }

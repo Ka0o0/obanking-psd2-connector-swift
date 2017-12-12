@@ -22,7 +22,7 @@ public struct Amount {
 }
 
 extension Amount: Equatable {
-    public static func ==(lhs: Amount, rhs: Amount) -> Bool {
+    public static func == (lhs: Amount, rhs: Amount) -> Bool {
         return lhs.value == rhs.value &&
             lhs.precision == rhs.precision &&
             lhs.currency == rhs.currency
