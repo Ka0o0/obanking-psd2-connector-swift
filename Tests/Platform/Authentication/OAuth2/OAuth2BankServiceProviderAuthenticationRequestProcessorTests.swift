@@ -13,9 +13,12 @@ import RxSwift
 class OAuth2BankServiceProviderAuthenticationRequestProcessorTests: XCTestCase {
 
     private var sut: OAuth2BankServiceProviderAuthenticationRequestProcessor!
-    private var webClient: WebClientMock!
     private var browserLauncher: ExternalWebBrowserLauncherMock!
     private var oauth2Request: OAuth2BankServiceProviderAuthenticationRequest!
+    private var deepLinkProvider: DeepLinkProviderMock!
+    private var tokenExtractorMock: OAuth2AuthorizationTokenExtractorMock!
+    private var accessTokenRequestorMock: OAuth2AccessTokenRequestorMock!
+    private let authorizationRequestURLBuilder = OAuth2AuthorizationRequestURLBuilderMock()
 
     override func setUp() {
         super.setUp()
@@ -25,20 +28,31 @@ class OAuth2BankServiceProviderAuthenticationRequestProcessorTests: XCTestCase {
             return
         }
 
+        guard let tokenURL = URL(string: "https://authorization-server.com/token") else {
+            XCTFail("Should not happen")
+            return
+        }
+
         oauth2Request = OAuth2BankServiceProviderAuthenticationRequest(
             authorizationEndpointURL: baseURL,
             clientId: "example",
             clientSecret: "secret",
+            tokenEndpointURL: tokenURL,
             redirectURI: "myapp://handleme",
             scope: "create+delete"
         )
 
         browserLauncher = ExternalWebBrowserLauncherMock()
-        webClient = WebClientMock()
+        deepLinkProvider = DeepLinkProviderMock()
+        tokenExtractorMock = OAuth2AuthorizationTokenExtractorMock()
+        accessTokenRequestorMock = OAuth2AccessTokenRequestorMock()
 
         sut = OAuth2BankServiceProviderAuthenticationRequestProcessor(
-            webClient: webClient,
-            externalWebBrowserLauncher: browserLauncher
+            externalWebBrowserLauncher: browserLauncher,
+            deepLinkProvider: deepLinkProvider,
+            authorizationRequestURLBuilder: authorizationRequestURLBuilder,
+            authorizationTokenExtractor: tokenExtractorMock,
+            accessTokenRequestor: accessTokenRequestorMock
         )
     }
 
@@ -74,10 +88,32 @@ class OAuth2BankServiceProviderAuthenticationRequestProcessorTests: XCTestCase {
 
     func test_Authenticate_SuccessfulFlow() {
         do {
-            _ = try sut.authenticate(using: oauth2Request).toBlocking().single()
 
+            let authorizationRequestResponseString = "myapp://handleme?token=thisoneauthtoken"
+            guard let authorizationRequestResponseURL = URL(string: authorizationRequestResponseString) else {
+                XCTFail("Shouldn't happen")
+                return
+            }
+
+            deepLinkProvider.nextRequestResponse = authorizationRequestResponseURL
+            tokenExtractorMock.nextToken = "mockedAuthToken"
+            accessTokenRequestorMock.nextConnectionInformation =
+                OAuth2BankServiceConnectionInformation(accessToken: "mockedAccessToken", tokenType: "bearer")
+
+            guard let result = try sut.authenticate(using: oauth2Request).toBlocking().single() else {
+                XCTFail("Result must not be nil")
+                return
+            }
+
+            assertProvidesProperRequestAndState()
             assertCorrectAuthorizationURLWasOpened()
-            assertCorrectAccessTokenRequestWasSent()
+
+            guard let oAuthResult = result as? OAuth2BankServiceConnectionInformation else {
+                XCTFail("Should not happen")
+                return
+            }
+
+            XCTAssertEqual(oAuthResult.accessToken, "mockedAccessToken")
         } catch let error {
             XCTFail(String(describing: error))
         }
@@ -99,28 +135,12 @@ private extension OAuth2BankServiceProviderAuthenticationRequestProcessorTests {
         }
     }
 
-    func assertCorrectAuthorizationURLWasOpened() {
-        var expectedURLString = "https://authorization-server.com/auth"
-        expectedURLString += "?response_type=code"
-        expectedURLString += "&client_id=example"
-        expectedURLString += "&client_secret=secret"
-        expectedURLString += "&redirect_uri=myapp://handleme"
-        expectedURLString += "&scope=create+delete"
-
-        guard let expectedURL = URL(string: expectedURLString) else {
-            XCTFail("Should not happen")
-            return
-        }
-
-        XCTAssertEqual(browserLauncher.requestedURL, expectedURL)
+    func assertProvidesProperRequestAndState() {
+        XCTAssertNotNil(authorizationRequestURLBuilder.lastState)
+        XCTAssertNotNil(authorizationRequestURLBuilder.lastRequest)
     }
 
-    func assertCorrectAccessTokenRequestWasSent() {
-        guard let lastRequest = webClient.lastRequest else {
-            XCTFail("Processor must send access token request")
-            return
-        }
-
-        XCTAssertEqual(lastRequest.method, .post)
+    func assertCorrectAuthorizationURLWasOpened() {
+        XCTAssertEqual(browserLauncher.requestedURL, authorizationRequestURLBuilder.requestURL)
     }
 }

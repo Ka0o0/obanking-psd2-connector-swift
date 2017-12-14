@@ -8,5 +8,5 @@
 
 import Foundation
 
-public protocol BankServiceConnectionInformation: Encodable {
+public protocol BankServiceConnectionInformation: Codable {
 }

@@ -41,7 +41,7 @@ class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
                 fatalError("We should never come here")
             }
 
-            return Single.just(.success(bankServiceConnectionInformation: BankServiceConnectionInformationMock()))
+            return Single.just(BankServiceConnectionInformationMock())
         }
     }
     // swiftlint:enable colon
@@ -119,12 +119,8 @@ class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
                 XCTFail("Should not be nil")
                 return
             }
-            switch result {
-            case .failure:
-                XCTFail("We shouldn't be here")
-            case .success(let bankServiceConnectionInformation):
-                XCTAssertTrue(bankServiceConnectionInformation is BankServiceConnectionInformationMock)
-            }
+
+            XCTAssertTrue(result is BankServiceConnectionInformationMock)
         } catch let error {
             XCTFail(String(describing: error))
         }

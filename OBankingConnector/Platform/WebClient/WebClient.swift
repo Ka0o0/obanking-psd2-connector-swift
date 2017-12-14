@@ -8,13 +8,19 @@
 
 import Foundation
 import RxSwift
-import Alamofire
 
 protocol WebClient {
-    func request(_ method: Alamofire.HTTPMethod,
-                 _ url: URLConvertible,
+
+    typealias DataResponse = (HTTPURLResponse, Data)
+
+    func request(_ method: HTTPMethod,
+                 _ url: URL,
                  parameters: [String: Any]?,
                  encoding: ParameterEncoding,
                  headers: [String: String]?)
-        -> Observable<DataRequest>
+        -> Observable<DataResponse>
+}
+
+enum WebClientError: Error {
+    case invalidStatusCode
 }

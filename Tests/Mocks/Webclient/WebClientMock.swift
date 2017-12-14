@@ -8,14 +8,13 @@
 
 import Foundation
 import RxSwift
-import Alamofire
 @testable import OBankingConnector
 
 final class WebClientMock: WebClient {
 
     struct Request {
         let method: HTTPMethod
-        let url: URLConvertible
+        let url: URL
         let parameters: [String: Any]?
         let encoding: ParameterEncoding
         let headers: [String: String]?
@@ -23,19 +22,21 @@ final class WebClientMock: WebClient {
 
     var lastRequest: Request?
     var shouldSucceed: Bool = true
-    var responseDataRequest: DataRequest?
+    var responseData: Data?
 
-    func request(_ method: Alamofire.HTTPMethod,
-                 _ url: URLConvertible,
+    func request(_ method: HTTPMethod,
+                 _ url: URL,
                  parameters: [String: Any]?,
                  encoding: ParameterEncoding,
                  headers: [String: String]?)
-        -> Observable<DataRequest> {
+        -> Observable<DataResponse> {
         lastRequest = Request(method: method, url: url, parameters: parameters, encoding: encoding, headers: headers)
 
         if shouldSucceed,
-            let responseDataRequest = self.responseDataRequest {
-            return Observable.just(responseDataRequest)
+            let responseData = self.responseData,
+            let urlResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: "1.1", headerFields: nil) {
+
+            return Observable.just(WebClient.DataResponse(urlResponse, responseData))
         }
 
         return Observable.error(WebClientMockError.failed)

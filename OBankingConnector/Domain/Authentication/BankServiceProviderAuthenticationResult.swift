@@ -8,8 +8,4 @@
 
 import Foundation
 
-public enum BankServiceProviderAuthenticationResult {
-
-    case success(bankServiceConnectionInformation: BankServiceConnectionInformation)
-    case failure(error: Error)
-}
+public typealias BankServiceProviderAuthenticationResult = BankServiceConnectionInformation
