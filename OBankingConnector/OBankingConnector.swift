@@ -10,13 +10,13 @@ import Foundation
 
 public final class OBankingConnector {
 
-    private let configuration: Configuration
+    private let configurationParser: ConfigurationParser
     private let deepLinkService: DeepLinkService
     private let externalWebBrowserLauncher: ExternalWebBrowserLauncher
     private let webClient: WebClient
 
-    init(configuration: Configuration) {
-        self.configuration = configuration
+    init(configuration: OBankingConnectorConfiguration) {
+        self.configurationParser = ConfigurationParser(configuration: configuration)
 
         // Initialize Dependencies
         self.deepLinkService = DefaultDeepLinkService()
