@@ -32,8 +32,11 @@ public final class OBankingConnector {
                 webClient: webClient
             )
 
+        let authenticationRequestFactoryProvider = ConfigurationBankServiceProviderAuthenticationRequestFactoryProvider(
+            configurationParser: configurationParser
+        )
         return DefaultBankServiceProviderAuthenticationProvider(
-            supportedBankServiceProviderMap: [:],
+            authenticationRequestFactoryProvider: authenticationRequestFactoryProvider,
             bankServiceProviderRequestProcessors: [
                 oAuth2Processors
             ]

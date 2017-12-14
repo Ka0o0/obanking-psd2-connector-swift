@@ -11,6 +11,7 @@ import RxSwift
 import RxBlocking
 @testable import OBankingConnector
 
+// swiftlint:disable colon
 class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
 
     private class BankServiceProviderAuthenticationRequestMock: BankServiceProviderAuthenticationRequest {
@@ -24,6 +25,18 @@ class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
     }
 
     private class BankServiceConnectionInformationMock: BankServiceConnectionInformation {
+    }
+
+    private class BankServiceProviderAuthenticationRequestFactoryProviderMock:
+        BankServiceProviderAuthenticationRequestFactoryProvider {
+
+        func makeAuthenticationRequestFactory(for bankServiceProvider: BankServiceProvider)
+            -> BankServiceProviderAuthenticationRequestFactory? {
+            guard bankServiceProvider.id == "test" else {
+                return nil
+            }
+            return BankServiceProviderAuthenticationRequestFactoryMock()
+        }
     }
 
     // swiftlint:disable colon
@@ -46,27 +59,16 @@ class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
     }
     // swiftlint:enable colon
 
-    func test_Init_TakesSupportedBankServiceProviderMapAndProcessors() {
-        let bankServiceToRequestFactory: [BankServiceProvider: BankServiceProviderAuthenticationRequestFactory] = [
-            BankServiceProvider(id: "test", name: ""): BankServiceProviderAuthenticationRequestFactoryMock()
-        ]
-
-        let processors = [BankServiceProviderAuthenticationRequestMockProcessor()]
-
-        _ = DefaultBankServiceProviderAuthenticationProvider(
-            supportedBankServiceProviderMap: bankServiceToRequestFactory,
-            bankServiceProviderRequestProcessors: processors
-        )
-    }
-
     func test_Authenticate_FailsForInvalidBankService() {
+        let factoryProvider = BankServiceProviderAuthenticationRequestFactoryProviderMock()
+
         let sut = DefaultBankServiceProviderAuthenticationProvider(
-            supportedBankServiceProviderMap: [:],
+            authenticationRequestFactoryProvider: factoryProvider,
             bankServiceProviderRequestProcessors: []
         )
 
         do {
-            _ = try sut.authenticate(against: BankServiceProvider(id: "test", name: "")).toBlocking().single()
+            _ = try sut.authenticate(against: BankServiceProvider(id: "aaa", name: "")).toBlocking().single()
             XCTFail("Shouldn't come here")
         } catch let error {
             guard let providerError = error as? BankServiceProviderAuthenticationProviderError else {
@@ -79,11 +81,10 @@ class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
     }
 
     func test_Authenticate_FailsForMissingProcessor() {
-        let bankServiceToRequestFactory: [BankServiceProvider: BankServiceProviderAuthenticationRequestFactory] = [
-            BankServiceProvider(id: "test", name: ""): BankServiceProviderAuthenticationRequestFactoryMock()
-        ]
+        let factoryProvider = BankServiceProviderAuthenticationRequestFactoryProviderMock()
+
         let sut = DefaultBankServiceProviderAuthenticationProvider(
-            supportedBankServiceProviderMap: bankServiceToRequestFactory,
+            authenticationRequestFactoryProvider: factoryProvider,
             bankServiceProviderRequestProcessors: []
         )
 
@@ -101,14 +102,11 @@ class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
     }
 
     func test_Authenticate_Success() {
-        let bankServiceToRequestFactory: [BankServiceProvider: BankServiceProviderAuthenticationRequestFactory] = [
-            BankServiceProvider(id: "test", name: ""): BankServiceProviderAuthenticationRequestFactoryMock()
-        ]
-
         let processors = [BankServiceProviderAuthenticationRequestMockProcessor()]
+        let factoryProvider = BankServiceProviderAuthenticationRequestFactoryProviderMock()
 
         let sut = DefaultBankServiceProviderAuthenticationProvider(
-            supportedBankServiceProviderMap: bankServiceToRequestFactory,
+            authenticationRequestFactoryProvider: factoryProvider,
             bankServiceProviderRequestProcessors: processors
         )
 
@@ -126,3 +124,5 @@ class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
         }
     }
 }
+
+// swiftlint:enable colon

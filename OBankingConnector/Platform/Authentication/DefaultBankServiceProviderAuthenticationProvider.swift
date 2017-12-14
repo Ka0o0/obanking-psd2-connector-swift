@@ -11,21 +11,22 @@ import RxSwift
 
 final class DefaultBankServiceProviderAuthenticationProvider: BankServiceProviderAuthenticationProvider {
 
-    typealias SupportedBankServiceProviderMap = [BankServiceProvider: BankServiceProviderAuthenticationRequestFactory]
-
-    private let supportedBankServiceProviderMap: SupportedBankServiceProviderMap
+    private let authenticationRequestFactoryProvider: BankServiceProviderAuthenticationRequestFactoryProvider
     private let bankServiceProviderRequestProcessors: [BankServiceProviderAuthenticationRequestProcessor]
 
-    init(supportedBankServiceProviderMap: SupportedBankServiceProviderMap,
-         bankServiceProviderRequestProcessors: [BankServiceProviderAuthenticationRequestProcessor]) {
-        self.supportedBankServiceProviderMap = supportedBankServiceProviderMap
+    init(
+        authenticationRequestFactoryProvider: BankServiceProviderAuthenticationRequestFactoryProvider,
+        bankServiceProviderRequestProcessors: [BankServiceProviderAuthenticationRequestProcessor]
+    ) {
+        self.authenticationRequestFactoryProvider = authenticationRequestFactoryProvider
         self.bankServiceProviderRequestProcessors = bankServiceProviderRequestProcessors
     }
 
     func authenticate(against bankServiceProvider: BankServiceProvider)
         -> Single<BankServiceProviderAuthenticationResult> {
 
-        guard let requestFactory = supportedBankServiceProviderMap[bankServiceProvider] else {
+        guard let requestFactory = authenticationRequestFactoryProvider
+            .makeAuthenticationRequestFactory(for: bankServiceProvider) else {
             return Single.error(BankServiceProviderAuthenticationProviderError.unsupportedBankServiceProvider)
         }
 
