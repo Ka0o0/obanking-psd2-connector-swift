@@ -10,8 +10,12 @@
 		207BB2A00B9D329907FBD2E6 /* Pods_OBankingConnector_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEF83787BFA3F6A7F9B5DA5 /* Pods_OBankingConnector_iOS.framework */; };
 		2A220A7E1FE57A8200397FBE /* OAuth2BankServiceProviderAuthenticationRequest+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A220A7D1FE57A8200397FBE /* OAuth2BankServiceProviderAuthenticationRequest+Init.swift */; };
 		2A220A7F1FE57A8200397FBE /* OAuth2BankServiceProviderAuthenticationRequest+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A220A7D1FE57A8200397FBE /* OAuth2BankServiceProviderAuthenticationRequest+Init.swift */; };
+		2A280A771FE400D400B90104 /* GustavBankServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A761FE400D400B90104 /* GustavBankServiceProvider.swift */; };
+		2A280A781FE4018B00B90104 /* GustavBankServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A761FE400D400B90104 /* GustavBankServiceProvider.swift */; };
 		2A280A7B1FE4025A00B90104 /* BankServiceProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A791FE4025800B90104 /* BankServiceProviderMock.swift */; };
 		2A280A7C1FE4025A00B90104 /* BankServiceProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A791FE4025800B90104 /* BankServiceProviderMock.swift */; };
+		2A280A7E1FE403D200B90104 /* GustavBankServiceProviderConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A7D1FE403D200B90104 /* GustavBankServiceProviderConfiguration.swift */; };
+		2A280A7F1FE405CD00B90104 /* GustavBankServiceProviderConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A7D1FE403D200B90104 /* GustavBankServiceProviderConfiguration.swift */; };
 		2A58F0931FDFD1040024D33E /* BankServiceProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0921FDFD1040024D33E /* BankServiceProviderTests.swift */; };
 		2A58F0971FDFDD4C0024D33E /* BankServiceProviderAuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0961FDFDD4C0024D33E /* BankServiceProviderAuthenticationProvider.swift */; };
 		2A58F0991FDFDDA10024D33E /* SupportedBankServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0981FDFDDA10024D33E /* SupportedBankServicesProvider.swift */; };
@@ -220,7 +224,9 @@
 		1AC02DC9FEB83178885E671C /* Pods-OBankingConnector.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OBankingConnector.release.xcconfig"; path = "Pods/Target Support Files/Pods-OBankingConnector/Pods-OBankingConnector.release.xcconfig"; sourceTree = "<group>"; };
 		1ED8EEB6E8E4D11A08CD3FD6 /* Pods-OBankingConnectorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OBankingConnectorTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OBankingConnectorTests/Pods-OBankingConnectorTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2A220A7D1FE57A8200397FBE /* OAuth2BankServiceProviderAuthenticationRequest+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OAuth2BankServiceProviderAuthenticationRequest+Init.swift"; sourceTree = "<group>"; };
+		2A280A761FE400D400B90104 /* GustavBankServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavBankServiceProvider.swift; sourceTree = "<group>"; };
 		2A280A791FE4025800B90104 /* BankServiceProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankServiceProviderMock.swift; sourceTree = "<group>"; };
+		2A280A7D1FE403D200B90104 /* GustavBankServiceProviderConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavBankServiceProviderConfiguration.swift; sourceTree = "<group>"; };
 		2A58F0921FDFD1040024D33E /* BankServiceProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankServiceProviderTests.swift; sourceTree = "<group>"; };
 		2A58F0961FDFDD4C0024D33E /* BankServiceProviderAuthenticationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankServiceProviderAuthenticationProvider.swift; sourceTree = "<group>"; };
 		2A58F0981FDFDDA10024D33E /* SupportedBankServicesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedBankServicesProvider.swift; sourceTree = "<group>"; };
@@ -377,6 +383,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A280A751FE400C200B90104 /* Gustav */ = {
+			isa = PBXGroup;
+			children = (
+				2A280A761FE400D400B90104 /* GustavBankServiceProvider.swift */,
+				2A280A7D1FE403D200B90104 /* GustavBankServiceProviderConfiguration.swift */,
+			);
+			path = Gustav;
+			sourceTree = "<group>";
+		};
 		2A58F0951FDFDD370024D33E /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -746,18 +761,18 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2AECE5701FDDD71700FEEC14 /* Banking */ = {
+		2AECE5701FDDD71700FEEC14 /* BankServiceProviders */ = {
 			isa = PBXGroup;
 			children = (
+				2A280A751FE400C200B90104 /* Gustav */,
 			);
-			path = Banking;
+			path = BankServiceProviders;
 			sourceTree = "<group>";
 		};
 		2AECE57B1FDDD9CA00FEEC14 /* Platform */ = {
 			isa = PBXGroup;
 			children = (
 				2A58F0CE1FE00FC50024D33E /* Authentication */,
-				2AECE5701FDDD71700FEEC14 /* Banking */,
 				2A58F1DE1FE2D7690024D33E /* Configuration */,
 				2A58F0D01FE010030024D33E /* DeepLinkHandling */,
 				2A58F0F61FE070E90024D33E /* ExternalWebBrowserLauncher */,
@@ -772,6 +787,7 @@
 				2A58F1D61FE2D4170024D33E /* Configuration */,
 				2A58F0951FDFDD370024D33E /* Authentication */,
 				2AECE5831FDDDD4700FEEC14 /* Banking */,
+				2AECE5701FDDD71700FEEC14 /* BankServiceProviders */,
 				2A58F0A41FDFE16D0024D33E /* Connection */,
 				2AECE57E1FDDD9FC00FEEC14 /* DeepLinkHandling */,
 				2AECE55E1FDDCF4200FEEC14 /* Entities */,
@@ -1271,6 +1287,7 @@
 				2A58F1911FE088C30024D33E /* URLBuilder.swift in Sources */,
 				2A58F12A1FE078400024D33E /* MacOSExternalWebBrowserLauncher.swift in Sources */,
 				2A58F13B1FE07D0D0024D33E /* BankingRequest.swift in Sources */,
+				2A280A7F1FE405CD00B90104 /* GustavBankServiceProviderConfiguration.swift in Sources */,
 				2A58F13D1FE07D0D0024D33E /* BankServiceConnectionInformation.swift in Sources */,
 				2A58F12E1FE07D090024D33E /* AccountNumber.swift in Sources */,
 				2A58F1D21FE2CEEB0024D33E /* DefaultOAuth2BankServiceAuthenticationRequestProcessorFactory.swift in Sources */,
@@ -1278,6 +1295,7 @@
 				2A58F1EE1FE308AF0024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProvider.swift in Sources */,
 				2A58F13A1FE07D0D0024D33E /* SupportedBankServicesProvider.swift in Sources */,
 				2A58F1331FE07D090024D33E /* BankAccountType.swift in Sources */,
+				2A280A781FE4018B00B90104 /* GustavBankServiceProvider.swift in Sources */,
 				2A58F13E1FE07D0D0024D33E /* BankServiceProviderConnector.swift in Sources */,
 				2A58F1DD1FE2D4930024D33E /* OAuth2BankServiceConfiguration.swift in Sources */,
 				2A58F1E51FE2D86C0024D33E /* OBankingConnectorConfiguration.swift in Sources */,
@@ -1374,6 +1392,7 @@
 				2A58F0991FDFDDA10024D33E /* SupportedBankServicesProvider.swift in Sources */,
 				2A58F1901FE086550024D33E /* URLBuilder.swift in Sources */,
 				2AECE5931FDDDFE300FEEC14 /* SepaAccountNumber.swift in Sources */,
+				2A280A7E1FE403D200B90104 /* GustavBankServiceProviderConfiguration.swift in Sources */,
 				2A58F0A61FDFE1A70024D33E /* BankingRequest.swift in Sources */,
 				2A58F0F51FE056980024D33E /* WebClient.swift in Sources */,
 				2A58F0E01FE01BAB0024D33E /* BankServiceProviderAuthenticationRequest.swift in Sources */,
@@ -1381,6 +1400,7 @@
 				2A58F1ED1FE308AF0024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProvider.swift in Sources */,
 				2AECE5A11FDDE74C00FEEC14 /* ExchangeRateInformation.swift in Sources */,
 				2A58F0EA1FE04D780024D33E /* BankServiceProviderAuthenticationRequestProcessor.swift in Sources */,
+				2A280A771FE400D400B90104 /* GustavBankServiceProvider.swift in Sources */,
 				2A58F0A21FDFDF020024D33E /* ConnectedBankServiceProvider.swift in Sources */,
 				2A58F1DC1FE2D4930024D33E /* OAuth2BankServiceConfiguration.swift in Sources */,
 				2A58F1E41FE2D86C0024D33E /* OBankingConnectorConfiguration.swift in Sources */,
