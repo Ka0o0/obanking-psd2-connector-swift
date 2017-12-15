@@ -24,7 +24,7 @@ class ConfigurationParserTests: XCTestCase {
         )
 
         let sut = ConfigurationParser(configuration: configuration)
-        let exampleTestService = BankServiceProvider(id: "test", name: "test")
+        let exampleTestService = BankServiceProviderMock(id: "test", name: "test")
 
         let result = sut.getBankServiceConfiguration(for: exampleTestService)
         XCTAssertNil(result)
@@ -41,7 +41,7 @@ class ConfigurationParserTests: XCTestCase {
         )
 
         let sut = ConfigurationParser(configuration: configuration)
-        let exampleTestService = BankServiceProvider(id: "test", name: "test")
+        let exampleTestService = BankServiceProviderMock(id: "test", name: "test")
 
         guard let result = sut.getBankServiceConfiguration(for: exampleTestService) else {
             XCTFail("Need result")

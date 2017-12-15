@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		207BB2A00B9D329907FBD2E6 /* Pods_OBankingConnector_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEF83787BFA3F6A7F9B5DA5 /* Pods_OBankingConnector_iOS.framework */; };
+		2A280A7B1FE4025A00B90104 /* BankServiceProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A791FE4025800B90104 /* BankServiceProviderMock.swift */; };
+		2A280A7C1FE4025A00B90104 /* BankServiceProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A791FE4025800B90104 /* BankServiceProviderMock.swift */; };
 		2A58F0931FDFD1040024D33E /* BankServiceProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0921FDFD1040024D33E /* BankServiceProviderTests.swift */; };
 		2A58F0971FDFDD4C0024D33E /* BankServiceProviderAuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0961FDFDD4C0024D33E /* BankServiceProviderAuthenticationProvider.swift */; };
 		2A58F0991FDFDDA10024D33E /* SupportedBankServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0981FDFDDA10024D33E /* SupportedBankServicesProvider.swift */; };
@@ -215,6 +217,7 @@
 		1584D46A0804EF8186873CD8 /* Pods-OBankingConnector-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OBankingConnector-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OBankingConnector-iOS/Pods-OBankingConnector-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		1AC02DC9FEB83178885E671C /* Pods-OBankingConnector.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OBankingConnector.release.xcconfig"; path = "Pods/Target Support Files/Pods-OBankingConnector/Pods-OBankingConnector.release.xcconfig"; sourceTree = "<group>"; };
 		1ED8EEB6E8E4D11A08CD3FD6 /* Pods-OBankingConnectorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OBankingConnectorTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OBankingConnectorTests/Pods-OBankingConnectorTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2A280A791FE4025800B90104 /* BankServiceProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankServiceProviderMock.swift; sourceTree = "<group>"; };
 		2A58F0921FDFD1040024D33E /* BankServiceProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankServiceProviderTests.swift; sourceTree = "<group>"; };
 		2A58F0961FDFDD4C0024D33E /* BankServiceProviderAuthenticationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankServiceProviderAuthenticationProvider.swift; sourceTree = "<group>"; };
 		2A58F0981FDFDDA10024D33E /* SupportedBankServicesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedBankServicesProvider.swift; sourceTree = "<group>"; };
@@ -442,6 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				2A58F0C01FE007410024D33E /* AccountNumberMock.swift */,
+				2A280A791FE4025800B90104 /* BankServiceProviderMock.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1328,6 +1332,7 @@
 				2A58F1661FE07F5B0024D33E /* BankAccountTypeTests.swift in Sources */,
 				2A58F16F1FE07F600024D33E /* SupportedBankServicesProviderTests.swift in Sources */,
 				2A58F16C1FE07F5B0024D33E /* TransactionTests.swift in Sources */,
+				2A280A7C1FE4025A00B90104 /* BankServiceProviderMock.swift in Sources */,
 				2A58F16D1FE07F600024D33E /* BankServiceProviderAuthenticationProviderTests.swift in Sources */,
 				2A58F16A1FE07F5B0024D33E /* ExchangeRateInformationTests.swift in Sources */,
 				2A58F1701FE07F600024D33E /* BankingRequestResultTests.swift in Sources */,
@@ -1429,6 +1434,7 @@
 				2A58F0B91FE003F50024D33E /* AccountNumberTests.swift in Sources */,
 				2A58F0DC1FE0173D0024D33E /* OAuth2BankServiceProviderAuthenticationRequestTests.swift in Sources */,
 				2AECE58B1FDDDE8B00FEEC14 /* BankAccountTests.swift in Sources */,
+				2A280A7B1FE4025A00B90104 /* BankServiceProviderMock.swift in Sources */,
 				2A58F0BB1FE004430024D33E /* BankAccountTypeTests.swift in Sources */,
 				2A58F0B21FE002F90024D33E /* BankServiceProviderAuthenticationProviderTests.swift in Sources */,
 				2AECE5951FDDE07400FEEC14 /* AmountTests.swift in Sources */,

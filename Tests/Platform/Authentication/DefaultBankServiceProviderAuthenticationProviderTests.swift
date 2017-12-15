@@ -68,7 +68,7 @@ class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
         )
 
         do {
-            _ = try sut.authenticate(against: BankServiceProvider(id: "aaa", name: "")).toBlocking().single()
+            _ = try sut.authenticate(against: BankServiceProviderMock(id: "aaa", name: "")).toBlocking().single()
             XCTFail("Shouldn't come here")
         } catch let error {
             guard let providerError = error as? BankServiceProviderAuthenticationProviderError else {
@@ -89,7 +89,7 @@ class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
         )
 
         do {
-            _ = try sut.authenticate(against: BankServiceProvider(id: "test", name: "")).toBlocking().single()
+            _ = try sut.authenticate(against: BankServiceProviderMock(id: "test", name: "")).toBlocking().single()
             XCTFail("Shouldn't come here")
         } catch let error {
             guard let providerError = error as? BankServiceProviderAuthenticationProviderError else {
@@ -111,7 +111,7 @@ class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
         )
 
         do {
-            guard let result = try sut.authenticate(against: BankServiceProvider(id: "test", name: ""))
+            guard let result = try sut.authenticate(against: BankServiceProviderMock(id: "test", name: ""))
                 .toBlocking()
                 .single() else {
                 XCTFail("Should not be nil")

@@ -29,7 +29,7 @@ class ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests:
             configurationParser: ConfigurationParser(configuration: configuration)
         )
 
-        XCTAssertNil(sut.makeAuthenticationRequestFactory(for: BankServiceProvider(id: "test", name: "test")))
+        XCTAssertNil(sut.makeAuthenticationRequestFactory(for: BankServiceProviderMock(id: "test", name: "test")))
     }
 
     func test_make_ReturnsOAuth2RequestFactory() {
@@ -41,7 +41,7 @@ class ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests:
         let sut = ConfigurationBankServiceProviderAuthenticationRequestFactoryProvider(
             configurationParser: ConfigurationParser(configuration: configuration)
         )
-        let provider = BankServiceProvider(id: "test", name: "test")
+        let provider = BankServiceProviderMock(id: "test", name: "test")
         guard let result = sut.makeAuthenticationRequestFactory(for: provider) else {
             XCTFail("Should not be nil")
             return

@@ -12,7 +12,7 @@ import XCTest
 class BankServiceProviderTests: XCTestCase {
 
     func test_Init_TakesIdAndName() {
-        let sut = BankServiceProvider(id: "1234", name: "Example Provider")
+        let sut = BankServiceProviderMock(id: "1234", name: "Example Provider")
 
         XCTAssertEqual(sut.id, "1234")
         XCTAssertEqual(sut.name, "Example Provider")
