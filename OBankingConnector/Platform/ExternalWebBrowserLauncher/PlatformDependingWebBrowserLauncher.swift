@@ -13,11 +13,11 @@ final class PlatformDependingExternalWebBrowserLauncher: ExternalWebBrowserLaunc
 
     func open(url: URL) -> Single<Void> {
 
-        #if TARGET_OS_IOS
+        #if os(iOS)
             return IOSExternalWebBrowserLauncher().open(url: url)
         #endif
 
-        #if TARGET_OS_MAC
+        #if os(OSX)
             return MacOSExternalWebBrowserLauncher().open(url: url)
         #endif
 
