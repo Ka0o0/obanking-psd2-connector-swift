@@ -59,6 +59,10 @@ final class DefaultOAuth2AccessTokenRequestor: OAuth2AccessTokenRequestor {
             parameters["client_secret"] = secret
         }
 
+        if let redirectURI = request.redirectURI {
+            parameters["redirect_uri"] = redirectURI
+        }
+
         return parameters
     }
 }

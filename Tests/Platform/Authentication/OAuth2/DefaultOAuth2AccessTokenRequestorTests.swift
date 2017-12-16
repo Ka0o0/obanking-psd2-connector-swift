@@ -78,7 +78,8 @@ class DefaultOAuth2AccessTokenRequestorTests: XCTestCase {
             authorizationEndpointURL: authorizationEndpointURL,
             clientId: "example",
             clientSecret: "secret",
-            tokenEndpointURL: tokenEndpointURL
+            tokenEndpointURL: tokenEndpointURL,
+            redirectURI: "target_uri"
         )
 
         _ = testRequest(request: request)
@@ -95,7 +96,8 @@ class DefaultOAuth2AccessTokenRequestorTests: XCTestCase {
                 "client_id": "example",
                 "client_secret": "secret",
                 "grant_type": "authorization_code",
-                "code": "thisonetoken"
+                "code": "thisonetoken",
+                "redirect_uri": "target_uri"
             ]
 
             XCTAssertEqual(parameters, expectedParameters)
