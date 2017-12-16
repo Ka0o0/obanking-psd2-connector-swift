@@ -23,7 +23,10 @@ final class OAuth2BankServiceProviderAuthenticationRequestFactory: BankServicePr
             clientSecret: configuration.clientSecret,
             tokenEndpointURL: configuration.tokenEndpointURL,
             redirectURI: configuration.redirectURI,
-            scope: configuration.scope
+            scope: configuration.scope,
+            additionalAuthorizationRequestParameters: configuration.additionalAuthorizationRequestParameters,
+            additionalTokenRequestParameters: configuration.additionalTokenRequestParameters,
+            additionalRequestHeaders: configuration.additionalHeaders
         )
     }
 }

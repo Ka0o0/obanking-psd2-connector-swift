@@ -15,7 +15,7 @@ public final class OBankingConnector {
     private let externalWebBrowserLauncher: ExternalWebBrowserLauncher
     private let webClient: WebClient
 
-    init(configuration: OBankingConnectorConfiguration) {
+    public init(configuration: OBankingConnectorConfiguration) {
         self.configurationParser = ConfigurationParser(configuration: configuration)
 
         // Initialize Dependencies
@@ -24,7 +24,7 @@ public final class OBankingConnector {
         self.webClient = AlamofireWebClient()
     }
 
-    func makeBankServiceProviderAuthenticationProvider() -> BankServiceProviderAuthenticationProvider {
+    public func makeBankServiceProviderAuthenticationProvider() -> BankServiceProviderAuthenticationProvider {
         let oAuth2Processors = DefaultOAuth2BankServiceAuthenticationRequestProcessorFactory()
             .makeProcessor(
                 externalWebBrowserLauncher: externalWebBrowserLauncher,
@@ -43,11 +43,11 @@ public final class OBankingConnector {
         )
     }
 
-    func makeBankServiceProviderConnector() -> BankServiceProviderConnector {
+    public func makeBankServiceProviderConnector() -> BankServiceProviderConnector {
         fatalError("Not implemented yet")
     }
 
-    func makeDeepLinkHandler() -> DeepLinkHandler {
+    public func makeDeepLinkHandler() -> DeepLinkHandler {
         return self.deepLinkService
     }
 }

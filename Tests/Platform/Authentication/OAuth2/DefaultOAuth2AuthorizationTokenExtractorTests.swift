@@ -40,7 +40,7 @@ class DefaultOAuth2AuthorizationTokenExtractorTests: XCTestCase {
 
         let sut = DefaultOAuth2AuthorizationTokenExtractor()
 
-        guard let testURL = URL(string: "example://test?token=thisonetoken") else {
+        guard let testURL = URL(string: "example://test?code=thisonetoken") else {
             XCTFail("Shouldn't happen")
             return
         }
@@ -57,7 +57,7 @@ class DefaultOAuth2AuthorizationTokenExtractorTests: XCTestCase {
 
         let sut = DefaultOAuth2AuthorizationTokenExtractor()
 
-        guard let testURL = URL(string: "example://test?token=thisonetoken") else {
+        guard let testURL = URL(string: "example://test?code=thisonetoken") else {
             XCTFail("Shouldn't happen")
             return
         }
@@ -75,48 +75,12 @@ class DefaultOAuth2AuthorizationTokenExtractorTests: XCTestCase {
         let sut = DefaultOAuth2AuthorizationTokenExtractor()
         let state = UUID()
 
-        guard let testURL = URL(string: "example://test?token=thisonetoken&state=" + state.uuidString) else {
+        guard let testURL = URL(string: "example://test?code=thisonetoken&state=" + state.uuidString) else {
             XCTFail("Shouldn't happen")
             return
         }
 
         let result = sut.exctract(from: testURL, considering: request, and: state.uuidString)
-        XCTAssertEqual(result, "thisonetoken")
-    }
-
-    func test_ExtractFromURL_NilIfWrongRedirectURI() {
-        let request = OAuth2BankServiceProviderAuthenticationRequest(
-            authorizationEndpointURL: authorizationEndpointURL,
-            clientId: "example",
-            redirectURI: "myapp://wrong" // doesn't match example://test
-        )
-
-        let sut = DefaultOAuth2AuthorizationTokenExtractor()
-
-        guard let testURL = URL(string: "example://test?token=thisonetoken") else {
-            XCTFail("Shouldn't happen")
-            return
-        }
-
-        let result = sut.exctract(from: testURL, considering: request, and: nil)
-        XCTAssertNil(result)
-    }
-
-    func test_ExtractFromURL_RedirectURIMatch() {
-        let request = OAuth2BankServiceProviderAuthenticationRequest(
-            authorizationEndpointURL: authorizationEndpointURL,
-            clientId: "example",
-            redirectURI: "example://test" // doesn't match example://test
-        )
-
-        let sut = DefaultOAuth2AuthorizationTokenExtractor()
-
-        guard let testURL = URL(string: "example://test?token=thisonetoken") else {
-            XCTFail("Shouldn't happen")
-            return
-        }
-
-        let result = sut.exctract(from: testURL, considering: request, and: nil)
         XCTAssertEqual(result, "thisonetoken")
     }
 
@@ -128,7 +92,7 @@ class DefaultOAuth2AuthorizationTokenExtractorTests: XCTestCase {
 
         let sut = DefaultOAuth2AuthorizationTokenExtractor()
 
-        guard let testURL = URL(string: "example://test?token=thisonetoken") else {
+        guard let testURL = URL(string: "example://test?code=thisonetoken") else {
             XCTFail("Shouldn't happen")
             return
         }

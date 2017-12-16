@@ -19,6 +19,9 @@ class ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests:
         let redirectURI: String? = nil
         let scope: String? = nil
         let bankServiceProviderId: String = "test"
+        let additionalAuthorizationRequestParameters: [String: String]? = nil
+        let additionalTokenRequestParameters: [String: String]? = nil
+        let additionalHeaders: [String: String]? = nil
     }
 
     func test_make_ReturnsNilIfNoProviderConfigured() {

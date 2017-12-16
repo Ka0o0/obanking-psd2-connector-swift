@@ -12,7 +12,7 @@ public struct OBankingConnectorConfiguration {
 
     let bankServiceProviderConfigurations: [BankServiceProviderConfiguration]
 
-    init(
+    public init(
         bankServiceProviderConfigurations: [BankServiceProviderConfiguration]
     ) {
         self.bankServiceProviderConfigurations = bankServiceProviderConfigurations

@@ -13,15 +13,13 @@ final class PlatformDependingExternalWebBrowserLauncher: ExternalWebBrowserLaunc
 
     func open(url: URL) -> Single<Void> {
 
-        #if TARGET_OS_IOS
+        #if os(iOS)
             return IOSExternalWebBrowserLauncher().open(url: url)
-        #endif
-
-        #if TARGET_OS_MAC
+        #elseif os(OSX)
             return MacOSExternalWebBrowserLauncher().open(url: url)
+        #else
+            return Single.error(PlatformDependingExternalWebBrowserLauncherError.unsupported)
         #endif
-
-        return Single.error(PlatformDependingExternalWebBrowserLauncherError.unsupported)
     }
 }
 

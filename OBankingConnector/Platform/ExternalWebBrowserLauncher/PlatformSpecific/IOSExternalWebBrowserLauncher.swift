@@ -9,6 +9,8 @@
 import Foundation
 import RxSwift
 
+#if os(iOS)
+
 final class IOSExternalWebBrowserLauncher: ExternalWebBrowserLauncher {
 
     func open(url: URL) -> Single<Void> {
@@ -32,3 +34,5 @@ final class IOSExternalWebBrowserLauncher: ExternalWebBrowserLauncher {
         }
     }
 }
+
+#endif

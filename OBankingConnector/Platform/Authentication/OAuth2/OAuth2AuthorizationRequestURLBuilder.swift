@@ -26,10 +26,6 @@ final class DefaultOAuth2AuthorizationRequestURLBuilder: OAuth2AuthorizationRequ
         urlBuilder.append(queryParameter: ("response_type", "code"))
         urlBuilder.append(queryParameter: ("client_id", request.clientId))
 
-        if let clientSecret = request.clientSecret {
-            urlBuilder.append(queryParameter: ("client_secret", clientSecret))
-        }
-
         if let redirectUri = request.redirectURI {
             urlBuilder.append(queryParameter: ("redirect_uri", redirectUri))
         }
@@ -40,6 +36,12 @@ final class DefaultOAuth2AuthorizationRequestURLBuilder: OAuth2AuthorizationRequ
 
         if let state = state {
             urlBuilder.append(queryParameter: ("state", state.uuidString))
+        }
+
+        if let additionalParameters = request.additionalAuthorizationRequestParameters {
+            additionalParameters.forEach {
+                urlBuilder.append(queryParameter: ($0.key, $0.value))
+            }
         }
 
         return urlBuilder.build()

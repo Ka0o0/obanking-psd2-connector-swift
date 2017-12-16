@@ -36,22 +36,12 @@ final class DefaultOAuth2AuthorizationTokenExtractor: OAuth2AuthorizationTokenEx
             return nil
         }
 
-        guard let token = extractParameterValue(from: queryItems, key: "token") else {
+        guard let token = extractParameterValue(from: queryItems, key: "code") else {
             return nil
         }
 
         if let state = state {
             guard state == extractParameterValue(from: queryItems, key: "state") else {
-                return nil
-            }
-        }
-
-        if let redirectURI = request.redirectURI,
-            let scheme = urlComponents.scheme,
-            let host = urlComponents.host {
-
-            let redirectedURI = String(format: "%@://%@", scheme, host)
-            guard redirectedURI == redirectURI else {
                 return nil
             }
         }
@@ -65,7 +55,7 @@ final class DefaultOAuth2AuthorizationTokenExtractor: OAuth2AuthorizationTokenEx
         and state: String?
     ) -> Observable<String> {
         return stream
-            .flatMap { url -> Observable<String> in
+            .flatMapLatest { url -> Observable<String> in
                 guard let result = self.exctract(from: url, considering: request, and: state) else {
                     return Observable.never()
                 }

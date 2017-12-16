@@ -11,4 +11,5 @@ import Foundation
 enum BankServiceProviderAuthenticationRequestProcessorError: Error {
     case unsupportedRequest
     case invalidAuthorizationURL
+    case invalidAuthorizationToken
 }
