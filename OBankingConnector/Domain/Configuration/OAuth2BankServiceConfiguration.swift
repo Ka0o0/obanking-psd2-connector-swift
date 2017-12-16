@@ -18,4 +18,5 @@ protocol OAuth2BankServiceConfiguration: BankServiceProviderConfiguration {
     var scope: String? { get }
     var additionalAuthorizationRequestParameters: [String: String]? { get }
     var additionalTokenRequestParameters: [String: String]? { get }
+    var additionalHeaders: [String: String]? { get }
 }

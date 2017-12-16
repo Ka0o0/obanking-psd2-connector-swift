@@ -13,18 +13,6 @@ class OAuth2BankServiceProviderAuthenticationRequestTests: XCTestCase {
 
     func test_Init_TakesRequired() {
         let authorizationEndpointURL = URL(fileURLWithPath: "temp")
-
-        let sut = OAuth2BankServiceProviderAuthenticationRequest(
-            authorizationEndpointURL: authorizationEndpointURL,
-            clientId: "johns_app"
-        )
-
-        XCTAssertEqual(sut.authorizationEndpointURL, authorizationEndpointURL)
-        XCTAssertEqual(sut.clientId, "johns_app")
-    }
-
-    func test_Init_TakesOptionals() {
-        let authorizationEndpointURL = URL(fileURLWithPath: "temp")
         let tokenEndpointURL = URL(fileURLWithPath: "another")
 
         let sut = OAuth2BankServiceProviderAuthenticationRequest(
@@ -35,9 +23,12 @@ class OAuth2BankServiceProviderAuthenticationRequestTests: XCTestCase {
             redirectURI: "redirectme",
             scope: "create+delete",
             additionalAuthorizationRequestParameters: ["john": "doe"],
-            additionalTokenRequestParameters: ["giveme": "mytoken"]
+            additionalTokenRequestParameters: ["giveme": "mytoken"],
+            additionalRequestHeaders: ["web-api-key": "test"]
         )
 
+        XCTAssertEqual(sut.authorizationEndpointURL, authorizationEndpointURL)
+        XCTAssertEqual(sut.clientId, "johns_app")
         XCTAssertEqual(sut.clientSecret, "secret")
         XCTAssertEqual(sut.tokenEndpointURL, tokenEndpointURL)
         XCTAssertEqual(sut.redirectURI, "redirectme")
@@ -52,6 +43,12 @@ class OAuth2BankServiceProviderAuthenticationRequestTests: XCTestCase {
             XCTAssertEqual(additionalTokenRequestParameters, ["giveme": "mytoken"])
         } else {
             XCTFail("additionalTokenRequestParameters should not be null")
+        }
+
+        if let additionalRequestHeaders = sut.additionalRequestHeaders {
+            XCTAssertEqual(additionalRequestHeaders, ["web-api-key": "test"])
+        } else {
+            XCTFail("requestHeaders should not be null")
         }
     }
 }

@@ -18,15 +18,17 @@ struct OAuth2BankServiceProviderAuthenticationRequest: BankServiceProviderAuthen
     let scope: String?
     let additionalAuthorizationRequestParameters: [String: String]?
     let additionalTokenRequestParameters: [String: String]?
+    let additionalRequestHeaders: [String: String]?
 
     init(authorizationEndpointURL: URL,
          clientId: String,
-         clientSecret: String? = nil,
-         tokenEndpointURL: URL? = nil,
-         redirectURI: String? = nil,
-         scope: String? = nil,
-         additionalAuthorizationRequestParameters: [String: String]? = nil,
-         additionalTokenRequestParameters: [String: String]? = nil) {
+         clientSecret: String?,
+         tokenEndpointURL: URL?,
+         redirectURI: String?,
+         scope: String?,
+         additionalAuthorizationRequestParameters: [String: String]?,
+         additionalTokenRequestParameters: [String: String]?,
+         additionalRequestHeaders: [String: String]?) {
         self.authorizationEndpointURL = authorizationEndpointURL
         self.clientId = clientId
         self.clientSecret = clientSecret
@@ -35,5 +37,6 @@ struct OAuth2BankServiceProviderAuthenticationRequest: BankServiceProviderAuthen
         self.scope = scope
         self.additionalAuthorizationRequestParameters = additionalAuthorizationRequestParameters
         self.additionalTokenRequestParameters = additionalTokenRequestParameters
+        self.additionalRequestHeaders = additionalRequestHeaders
     }
 }

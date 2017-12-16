@@ -21,6 +21,7 @@ class ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests:
         let bankServiceProviderId: String = "test"
         let additionalAuthorizationRequestParameters: [String: String]? = nil
         let additionalTokenRequestParameters: [String: String]? = nil
+        let additionalHeaders: [String: String]? = nil
     }
 
     func test_make_ReturnsNilIfNoProviderConfigured() {
