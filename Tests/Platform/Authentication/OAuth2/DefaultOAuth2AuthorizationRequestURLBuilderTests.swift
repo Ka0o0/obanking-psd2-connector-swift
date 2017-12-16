@@ -11,12 +11,9 @@ import XCTest
 
 class DefaultOAuth2AuthorizationRequestURLBuilderTests: XCTestCase {
 
-    func test_Make_BuildsCorrectMinimumRequestString() {
-        guard let baseURL = URL(string: "https://authorization-server.com/auth") else {
-            XCTFail("Should not happen")
-            return
-        }
+    var baseURL: URL! = URL(string: "https://authorization-server.com/auth")
 
+    func test_Make_BuildsCorrectMinimumRequestString() {
         var expectedURLString = "https://authorization-server.com/auth?response_type=code"
         expectedURLString += "&client_id=example"
 
@@ -37,11 +34,6 @@ class DefaultOAuth2AuthorizationRequestURLBuilderTests: XCTestCase {
     }
 
     func test_Make_BuildsCorrectMaximumRequestString() {
-        guard let baseURL = URL(string: "https://authorization-server.com/auth") else {
-            XCTFail("Should not happen")
-            return
-        }
-
         let mockedRequest = OAuth2BankServiceProviderAuthenticationRequest(
             authorizationEndpointURL: baseURL,
             clientId: "example",
@@ -57,7 +49,6 @@ class DefaultOAuth2AuthorizationRequestURLBuilderTests: XCTestCase {
         var expectedURLString = "https://authorization-server.com/auth"
         expectedURLString += "?response_type=code"
         expectedURLString += "&client_id=example"
-        expectedURLString += "&client_secret=secret"
         expectedURLString += "&redirect_uri=myapp://handleme"
         expectedURLString += "&scope=create+delete"
         expectedURLString += "&state=" + state.uuidString
@@ -66,6 +57,30 @@ class DefaultOAuth2AuthorizationRequestURLBuilderTests: XCTestCase {
             XCTFail("Should not happen")
             return
         }
+
+        XCTAssertEqual(result, expectedURL)
+    }
+
+    func test_Make_UsesAdditionalParameters() {
+        var expectedURLString = "https://authorization-server.com/auth?response_type=code"
+        expectedURLString += "&client_id=example"
+        expectedURLString += "&test=asdf%20asdf"
+
+        guard let expectedURL = URL(string: expectedURLString) else {
+            XCTFail("Should not happen")
+            return
+        }
+
+        let mockedRequest = OAuth2BankServiceProviderAuthenticationRequest(
+            authorizationEndpointURL: baseURL,
+            clientId: "example",
+            additionalAuthorizationRequestParameters: [
+                "test": "asdf asdf"
+            ]
+        )
+
+        let sut = DefaultOAuth2AuthorizationRequestURLBuilder()
+        let result = sut.makeAuthorizationCodeRequestURL(for: mockedRequest, adding: nil)
 
         XCTAssertEqual(result, expectedURL)
     }

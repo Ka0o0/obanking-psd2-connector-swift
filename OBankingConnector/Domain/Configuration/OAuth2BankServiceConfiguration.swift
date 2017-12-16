@@ -16,4 +16,6 @@ protocol OAuth2BankServiceConfiguration: BankServiceProviderConfiguration {
     var tokenEndpointURL: URL? { get }
     var redirectURI: String? { get }
     var scope: String? { get }
+    var additionalAuthorizationRequestParameters: [String: String]? { get }
+    var additionalTokenRequestParameters: [String: String]? { get }
 }

@@ -33,12 +33,25 @@ class OAuth2BankServiceProviderAuthenticationRequestTests: XCTestCase {
             clientSecret: "secret",
             tokenEndpointURL: tokenEndpointURL,
             redirectURI: "redirectme",
-            scope: "create+delete"
+            scope: "create+delete",
+            additionalAuthorizationRequestParameters: ["john": "doe"],
+            additionalTokenRequestParameters: ["giveme": "mytoken"]
         )
 
         XCTAssertEqual(sut.clientSecret, "secret")
         XCTAssertEqual(sut.tokenEndpointURL, tokenEndpointURL)
         XCTAssertEqual(sut.redirectURI, "redirectme")
         XCTAssertEqual(sut.scope, "create+delete")
+        if let additionalAuthorizationRequestParameters = sut.additionalAuthorizationRequestParameters {
+            XCTAssertEqual(additionalAuthorizationRequestParameters, ["john": "doe"])
+        } else {
+            XCTFail("additionalAuthorizationRequestParameters should not be null")
+        }
+
+        if let additionalTokenRequestParameters = sut.additionalTokenRequestParameters {
+            XCTAssertEqual(additionalTokenRequestParameters, ["giveme": "mytoken"])
+        } else {
+            XCTFail("additionalTokenRequestParameters should not be null")
+        }
     }
 }

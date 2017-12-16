@@ -32,7 +32,7 @@ final class DefaultOAuth2AccessTokenRequestor: OAuth2AccessTokenRequestor {
 
         let requestURL = request.tokenEndpointURL ?? request.authorizationEndpointURL
         let parameters = makeParameters(for: request, authorizationToken: authorizationToken)
-        return webClient.request(.post, requestURL, parameters: parameters, encoding: .json, headers: nil)
+        return webClient.request(.post, requestURL, parameters: parameters, encoding: .urlEncoding, headers: nil)
             .asSingle()
             .map { response, data -> OAuth2BankServiceConnectionInformation in
 
@@ -61,6 +61,12 @@ final class DefaultOAuth2AccessTokenRequestor: OAuth2AccessTokenRequestor {
 
         if let redirectURI = request.redirectURI {
             parameters["redirect_uri"] = redirectURI
+        }
+
+        if let additionalParameters = request.additionalTokenRequestParameters {
+            additionalParameters.forEach {
+                parameters[$0.key] = $0.value
+            }
         }
 
         return parameters
