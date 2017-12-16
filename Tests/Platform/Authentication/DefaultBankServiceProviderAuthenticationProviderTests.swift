@@ -113,7 +113,7 @@ class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
         do {
             guard let result = try sut.authenticate(against: BankServiceProviderMock(id: "test", name: ""))
                 .toBlocking()
-                .single() else {
+                .first() else {
                 XCTFail("Should not be nil")
                 return
             }

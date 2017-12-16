@@ -100,7 +100,7 @@ class OAuth2BankServiceProviderAuthenticationRequestProcessorTests: XCTestCase {
             accessTokenRequestorMock.nextConnectionInformation =
                 OAuth2BankServiceConnectionInformation(accessToken: "mockedAccessToken", tokenType: "bearer")
 
-            guard let result = try sut.authenticate(using: oauth2Request).toBlocking().single() else {
+            guard let result = try sut.authenticate(using: oauth2Request).toBlocking().first() else {
                 XCTFail("Result must not be nil")
                 return
             }
