@@ -15,7 +15,7 @@ public struct GustavBankServiceProvider: BankServiceProvider {
     public let id: String
     public let name: String
 
-    init() {
+    public init() {
         self.id = GustavBankServiceProvider.id
         self.name = "Gustav Netbanking v3"
     }

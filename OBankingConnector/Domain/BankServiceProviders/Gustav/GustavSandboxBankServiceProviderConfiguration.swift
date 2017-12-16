@@ -1,5 +1,5 @@
 //
-//  GustavBankServiceProviderConfiguration.swift
+//  GustavSandboxBankServiceProviderConfiguration.swift
 //  OBankingConnector-iOS
 //
 //  Created by Kai Takac on 15.12.17.
@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct GustavBankServiceProviderConfiguration: OAuth2BankServiceConfiguration {
+/// See https://github.com/Ceskasporitelna/WebAPI/wiki/The-integration-of-the-WebAPI-in-the-CS
+public struct GustavSandboxBankServiceProviderConfiguration: OAuth2BankServiceConfiguration {
 
     public let bankServiceProviderId: String = GustavBankServiceProvider.id
 
@@ -17,8 +18,8 @@ public struct GustavBankServiceProviderConfiguration: OAuth2BankServiceConfigura
     let redirectURI: String?
 
     // swiftlint:disable force_unwrapping
-    let authorizationEndpointURL: URL = URL(string: "https://www.csas.cz/widp/oauth2/auth")!
-    let tokenEndpointURL: URL? = URL(string: "https://www.csas.cz/widp/oauth2/token")!
+    let authorizationEndpointURL: URL = URL(string: "https://www.csast.csas.cz/widp/oauth2/auth")!
+    let tokenEndpointURL: URL? = URL(string: "https://www.csast.csas.cz/widp/oauth2/token")!
     // swiftlint:enable force_unwrapping
 
     let scope: String? = nil

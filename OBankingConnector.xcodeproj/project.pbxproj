@@ -16,6 +16,8 @@
 		2A280A7C1FE4025A00B90104 /* BankServiceProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A791FE4025800B90104 /* BankServiceProviderMock.swift */; };
 		2A280A7E1FE403D200B90104 /* GustavBankServiceProviderConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A7D1FE403D200B90104 /* GustavBankServiceProviderConfiguration.swift */; };
 		2A280A7F1FE405CD00B90104 /* GustavBankServiceProviderConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A7D1FE403D200B90104 /* GustavBankServiceProviderConfiguration.swift */; };
+		2A280A811FE408DF00B90104 /* GustavSandboxBankServiceProviderConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A801FE408DF00B90104 /* GustavSandboxBankServiceProviderConfiguration.swift */; };
+		2A280A821FE408E100B90104 /* GustavSandboxBankServiceProviderConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A801FE408DF00B90104 /* GustavSandboxBankServiceProviderConfiguration.swift */; };
 		2A58F0931FDFD1040024D33E /* BankServiceProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0921FDFD1040024D33E /* BankServiceProviderTests.swift */; };
 		2A58F0971FDFDD4C0024D33E /* BankServiceProviderAuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0961FDFDD4C0024D33E /* BankServiceProviderAuthenticationProvider.swift */; };
 		2A58F0991FDFDDA10024D33E /* SupportedBankServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0981FDFDDA10024D33E /* SupportedBankServicesProvider.swift */; };
@@ -227,6 +229,7 @@
 		2A280A761FE400D400B90104 /* GustavBankServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavBankServiceProvider.swift; sourceTree = "<group>"; };
 		2A280A791FE4025800B90104 /* BankServiceProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankServiceProviderMock.swift; sourceTree = "<group>"; };
 		2A280A7D1FE403D200B90104 /* GustavBankServiceProviderConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavBankServiceProviderConfiguration.swift; sourceTree = "<group>"; };
+		2A280A801FE408DF00B90104 /* GustavSandboxBankServiceProviderConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavSandboxBankServiceProviderConfiguration.swift; sourceTree = "<group>"; };
 		2A58F0921FDFD1040024D33E /* BankServiceProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankServiceProviderTests.swift; sourceTree = "<group>"; };
 		2A58F0961FDFDD4C0024D33E /* BankServiceProviderAuthenticationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankServiceProviderAuthenticationProvider.swift; sourceTree = "<group>"; };
 		2A58F0981FDFDDA10024D33E /* SupportedBankServicesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedBankServicesProvider.swift; sourceTree = "<group>"; };
@@ -388,6 +391,7 @@
 			children = (
 				2A280A761FE400D400B90104 /* GustavBankServiceProvider.swift */,
 				2A280A7D1FE403D200B90104 /* GustavBankServiceProviderConfiguration.swift */,
+				2A280A801FE408DF00B90104 /* GustavSandboxBankServiceProviderConfiguration.swift */,
 			);
 			path = Gustav;
 			sourceTree = "<group>";
@@ -1277,6 +1281,7 @@
 				2A58F13C1FE07D0D0024D33E /* BankingRequestResult.swift in Sources */,
 				2A58F1461FE07D3B0024D33E /* PlatformDependingWebBrowserLauncher.swift in Sources */,
 				2A58F1D91FE2D4650024D33E /* BankServiceProviderConfiguration.swift in Sources */,
+				2A280A821FE408E100B90104 /* GustavSandboxBankServiceProviderConfiguration.swift in Sources */,
 				2A58F1311FE07D090024D33E /* Bank.swift in Sources */,
 				2A58F1401FE07D110024D33E /* BankServiceProviderAuthenticationProvider.swift in Sources */,
 				2A58F12B1FE07CF90024D33E /* OBankingConnector.swift in Sources */,
@@ -1382,6 +1387,7 @@
 				2A58F0AB1FDFE44B0024D33E /* BankingRequestResult.swift in Sources */,
 				2A58F0F01FE055DD0024D33E /* BankServiceProviderAuthenticationRequestProcessorError.swift in Sources */,
 				2A58F0C91FE00B5D0024D33E /* BankServiceProviderConnector.swift in Sources */,
+				2A280A811FE408DF00B90104 /* GustavSandboxBankServiceProviderConfiguration.swift in Sources */,
 				2A58F1D81FE2D4650024D33E /* BankServiceProviderConfiguration.swift in Sources */,
 				2AECE5681FDDD28400FEEC14 /* Currency.swift in Sources */,
 				2A58F0E61FE01D2F0024D33E /* BankServiceProviderAuthenticationRequestFactory.swift in Sources */,
