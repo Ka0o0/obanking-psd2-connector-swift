@@ -56,7 +56,13 @@ final class OAuth2BankServiceProviderAuthenticationRequestProcessor: BankService
                     considering: request,
                     and: state.uuidString
                 )
-                .asSingle()
+                .first()
+                .map { token -> String in
+                    guard let token = token else {
+                        throw BankServiceProviderAuthenticationRequestProcessorError.invalidAuthorizationToken
+                    }
+                    return token
+                }
             }
             .flatMap { authorizationToken -> Single<BankServiceProviderAuthenticationResult> in
                 self.accessTokenRequestor.requestAccessToken(
