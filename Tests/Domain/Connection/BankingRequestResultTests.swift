@@ -12,7 +12,7 @@ import XCTest
 class BankingRequestResultTests: XCTestCase {
 
     private class BankingRequestMock: BankingRequest {
-        typealias ResultType = Bool
+        typealias Result = Bool
     }
 
     private enum ErrorMock: Error {

@@ -10,6 +10,6 @@ import Foundation
 
 public enum BankingRequestResult<T: BankingRequest> {
 
-    case success(result: T.ResultType)
+    case success(result: T.Result)
     case failure(error: Error)
 }
