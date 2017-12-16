@@ -15,13 +15,11 @@ final class PlatformDependingExternalWebBrowserLauncher: ExternalWebBrowserLaunc
 
         #if os(iOS)
             return IOSExternalWebBrowserLauncher().open(url: url)
-        #endif
-
-        #if os(OSX)
+        #elseif os(OSX)
             return MacOSExternalWebBrowserLauncher().open(url: url)
+        #else
+            return Single.error(PlatformDependingExternalWebBrowserLauncherError.unsupported)
         #endif
-
-        return Single.error(PlatformDependingExternalWebBrowserLauncherError.unsupported)
     }
 }
 
