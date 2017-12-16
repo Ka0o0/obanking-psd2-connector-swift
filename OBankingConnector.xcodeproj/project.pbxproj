@@ -22,6 +22,8 @@
 		2A220A941FE5CE1800397FBE /* TransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A220A921FE5CE1800397FBE /* TransactionHistory.swift */; };
 		2A220A961FE5CF9100397FBE /* GetDateFilteredTransactionHistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A220A951FE5CF9100397FBE /* GetDateFilteredTransactionHistoryRequest.swift */; };
 		2A220A971FE5CF9100397FBE /* GetDateFilteredTransactionHistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A220A951FE5CF9100397FBE /* GetDateFilteredTransactionHistoryRequest.swift */; };
+		2A220A991FE5D2BF00397FBE /* PaginatedBankingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A220A981FE5D2BF00397FBE /* PaginatedBankingRequest.swift */; };
+		2A220A9A1FE5D2BF00397FBE /* PaginatedBankingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A220A981FE5D2BF00397FBE /* PaginatedBankingRequest.swift */; };
 		2A280A7B1FE4025A00B90104 /* BankServiceProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A791FE4025800B90104 /* BankServiceProviderMock.swift */; };
 		2A280A7C1FE4025A00B90104 /* BankServiceProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A791FE4025800B90104 /* BankServiceProviderMock.swift */; };
 		2A58F0931FDFD1040024D33E /* BankServiceProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F0921FDFD1040024D33E /* BankServiceProviderTests.swift */; };
@@ -238,6 +240,7 @@
 		2A220A8F1FE5CBD800397FBE /* BankAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
 		2A220A921FE5CE1800397FBE /* TransactionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistory.swift; sourceTree = "<group>"; };
 		2A220A951FE5CF9100397FBE /* GetDateFilteredTransactionHistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDateFilteredTransactionHistoryRequest.swift; sourceTree = "<group>"; };
+		2A220A981FE5D2BF00397FBE /* PaginatedBankingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedBankingRequest.swift; sourceTree = "<group>"; };
 		2A280A791FE4025800B90104 /* BankServiceProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankServiceProviderMock.swift; sourceTree = "<group>"; };
 		2A58F0921FDFD1040024D33E /* BankServiceProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankServiceProviderTests.swift; sourceTree = "<group>"; };
 		2A58F0961FDFDD4C0024D33E /* BankServiceProviderAuthenticationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankServiceProviderAuthenticationProvider.swift; sourceTree = "<group>"; };
@@ -840,6 +843,7 @@
 			children = (
 				2A58F0A51FDFE1A70024D33E /* BankingRequest.swift */,
 				2A58F0AA1FDFE44B0024D33E /* BankingRequestResult.swift */,
+				2A220A981FE5D2BF00397FBE /* PaginatedBankingRequest.swift */,
 				2A58F0981FDFDDA10024D33E /* SupportedBankServicesProvider.swift */,
 				2A220A841FE5C8C600397FBE /* BankAccount */,
 				2A220A881FE5C96800397FBE /* Transactions */,
@@ -1290,6 +1294,7 @@
 				2A58F1351FE07D090024D33E /* Currency.swift in Sources */,
 				2A58F1391FE07D090024D33E /* TransactionTextType.swift in Sources */,
 				2A58F1BE1FE289E60024D33E /* OAuth2AccessTokenRequestor.swift in Sources */,
+				2A220A9A1FE5D2BF00397FBE /* PaginatedBankingRequest.swift in Sources */,
 				2A58F1491FE07D670024D33E /* DeepLinkProvider.swift in Sources */,
 				2A58F1C91FE2B7820024D33E /* OAuth2BankServiceConnectionInformation.swift in Sources */,
 				2A58F14F1FE07D6F0024D33E /* BankServiceProviderAuthenticationRequestProcessor.swift in Sources */,
@@ -1399,6 +1404,7 @@
 				2AECE59D1FDDE48500FEEC14 /* AmountSample.swift in Sources */,
 				2A58F0E21FE01C590024D33E /* DefaultBankServiceProviderAuthenticationProvider.swift in Sources */,
 				2A58F1BD1FE289E50024D33E /* OAuth2AccessTokenRequestor.swift in Sources */,
+				2A220A991FE5D2BF00397FBE /* PaginatedBankingRequest.swift in Sources */,
 				2AECE5A71FDDEA0700FEEC14 /* TransactionTextType.swift in Sources */,
 				2A58F1C81FE2B7810024D33E /* OAuth2BankServiceConnectionInformation.swift in Sources */,
 				2A58F0FA1FE071560024D33E /* PlatformDependingWebBrowserLauncher.swift in Sources */,
