@@ -79,7 +79,8 @@ class DefaultOAuth2AccessTokenRequestorTests: XCTestCase {
             clientId: "example",
             clientSecret: "secret",
             tokenEndpointURL: tokenEndpointURL,
-            redirectURI: "target_uri"
+            redirectURI: "target_uri",
+            additionalRequestHeaders: ["test": "asdf"]
         )
 
         _ = testRequest(request: request)
@@ -103,6 +104,12 @@ class DefaultOAuth2AccessTokenRequestorTests: XCTestCase {
             XCTAssertEqual(parameters, expectedParameters)
         } else {
             XCTFail("Invalid parameters provided")
+        }
+
+        if let headers = lastRequest.headers {
+            XCTAssertEqual(headers, ["test": "asdf"])
+        } else {
+            XCTFail("Invalid headers provided")
         }
     }
 

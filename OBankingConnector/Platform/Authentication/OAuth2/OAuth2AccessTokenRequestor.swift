@@ -32,17 +32,23 @@ final class DefaultOAuth2AccessTokenRequestor: OAuth2AccessTokenRequestor {
 
         let requestURL = request.tokenEndpointURL ?? request.authorizationEndpointURL
         let parameters = makeParameters(for: request, authorizationToken: authorizationToken)
-        return webClient.request(.post, requestURL, parameters: parameters, encoding: .urlEncoding, headers: nil)
-            .asSingle()
-            .map { response, data -> OAuth2BankServiceConnectionInformation in
+        return webClient.request(
+            .post,
+            requestURL,
+            parameters: parameters,
+            encoding: .urlEncoding,
+            headers: request.additionalRequestHeaders
+        )
+        .asSingle()
+        .map { response, data -> OAuth2BankServiceConnectionInformation in
 
-                guard 200..<300 ~= response.statusCode else {
-                    throw WebClientError.invalidStatusCode
-                }
-
-                let jsonDecoder = JSONDecoder()
-                return try jsonDecoder.decode(OAuth2BankServiceConnectionInformation.self, from: data)
+            guard 200..<300 ~= response.statusCode else {
+                throw WebClientError.invalidStatusCode
             }
+
+            let jsonDecoder = JSONDecoder()
+            return try jsonDecoder.decode(OAuth2BankServiceConnectionInformation.self, from: data)
+        }
     }
 
     private func makeParameters(
