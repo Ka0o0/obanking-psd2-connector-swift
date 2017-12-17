@@ -44,7 +44,7 @@ public final class OBankingConnector {
     }
 
     public func makeBankServiceProviderConnector() -> BankServiceProviderConnector {
-        fatalError("Not implemented yet")
+        return DefaultBankServiceProviderConnector()
     }
 
     public func makeDeepLinkHandler() -> DeepLinkHandler {

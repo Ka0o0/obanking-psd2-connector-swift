@@ -14,3 +14,8 @@ public protocol BankServiceProviderConnector {
     func connectToBankService(using connectionInformation: BankServiceConnectionInformation)
         -> Single<ConnectedBankServiceProvider>
 }
+
+enum BankServiceProviderConnectorError: Error {
+    case unsupportedConnectionInformation
+    case connectionError
+}
