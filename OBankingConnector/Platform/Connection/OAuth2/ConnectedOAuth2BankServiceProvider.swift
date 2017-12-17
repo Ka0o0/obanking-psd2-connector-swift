@@ -17,7 +17,7 @@ final class ConnectedOAuth2BankServiceProvider: ConnectedBankServiceProvider {
         self.oAuth2ConnectionInformation = oAuth2ConnectionInformation
     }
 
-    func perform<T>(request: T) -> Single<BankingRequestResult<T>> where T: BankingRequest {
+    func perform<T>(_ request: T) -> Single<BankingRequestResult<T>> where T: BankingRequest {
         fatalError()
     }
 }

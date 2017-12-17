@@ -11,5 +11,5 @@ import RxSwift
 
 public protocol ConnectedBankServiceProvider {
 
-    func perform<T: BankingRequest>(request: T) -> Single<BankingRequestResult<T>>
+    func perform<T: BankingRequest>(_ request: T) -> Single<BankingRequestResult<T>>
 }
