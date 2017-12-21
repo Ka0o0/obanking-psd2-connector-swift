@@ -14,6 +14,8 @@ import RxSwift
 // swiftlint:disable function_parameter_count
 final class AlamofireWebClient: WebClient {
 
+    private var sessionManagerRetainmentMap: [String: SessionManager] = [:]
+
     func request(
         _ method: HTTPMethod,
         _ url: URL,
@@ -37,6 +39,7 @@ final class AlamofireWebClient: WebClient {
 
         do {
             let sessionManager = try createSessionManager(for: url, pinning: certificate)
+            let requestId = retain(sessionManager: sessionManager)
 
             return sessionManager.rx.responseData(
                 alamofireMethod,
@@ -46,6 +49,14 @@ final class AlamofireWebClient: WebClient {
                 headers: headers
             )
             .map { WebClient.DataResponse($0.0, $0.1) }
+            .do(
+                onNext: { [weak self] _ in
+                    self?.release(requestId: requestId)
+                },
+                onError: { [weak self] _ in
+                    self?.release(requestId: requestId)
+                }
+            )
         } catch let error {
             return Observable.error(error)
         }
@@ -54,6 +65,16 @@ final class AlamofireWebClient: WebClient {
 // swiftlint:enable function_parameter_count
 
 private extension AlamofireWebClient {
+
+    func retain(sessionManager: SessionManager) -> String {
+        let requestId = UUID()
+        sessionManagerRetainmentMap[requestId.uuidString] = sessionManager
+        return requestId.uuidString
+    }
+
+    func release(requestId: String) {
+        sessionManagerRetainmentMap.removeValue(forKey: requestId)
+    }
 
     func createSessionManager(for url: URL, pinning certificate: Data) throws -> SessionManager {
 
