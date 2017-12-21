@@ -13,6 +13,7 @@ class OAuth2BankServiceConnectionInformationTests: XCTestCase {
 
     func test_Init_TakesRequired() {
         let sut = OAuth2BankServiceConnectionInformation(
+            bankServiceProviderId: "test",
             accessToken: "accesstoken",
             tokenType: "bearer"
         )
@@ -25,6 +26,7 @@ class OAuth2BankServiceConnectionInformationTests: XCTestCase {
         let expirationDate = Date(timeIntervalSinceNow: 1000)
 
         let sut = OAuth2BankServiceConnectionInformation(
+            bankServiceProviderId: "test",
             accessToken: "",
             tokenType: "",
             expirationDate: expirationDate,

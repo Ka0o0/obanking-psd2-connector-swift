@@ -23,6 +23,7 @@ class DefaultOAuth2AuthorizationRequestURLBuilderTests: XCTestCase {
         }
 
         let mockedRequest = OAuth2BankServiceProviderAuthenticationRequest(
+            bankingServiceProviderId: "test",
             authorizationEndpointURL: baseURL,
             clientId: "example"
         )
@@ -35,6 +36,7 @@ class DefaultOAuth2AuthorizationRequestURLBuilderTests: XCTestCase {
 
     func test_Make_BuildsCorrectMaximumRequestString() {
         let mockedRequest = OAuth2BankServiceProviderAuthenticationRequest(
+            bankingServiceProviderId: "test",
             authorizationEndpointURL: baseURL,
             clientId: "example",
             clientSecret: "secret",
@@ -72,6 +74,7 @@ class DefaultOAuth2AuthorizationRequestURLBuilderTests: XCTestCase {
         }
 
         let mockedRequest = OAuth2BankServiceProviderAuthenticationRequest(
+            bankingServiceProviderId: "test",
             authorizationEndpointURL: baseURL,
             clientId: "example",
             additionalAuthorizationRequestParameters: [

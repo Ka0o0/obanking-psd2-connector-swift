@@ -13,13 +13,17 @@ import RxBlocking
 class DefaultBankServiceProviderConnectorTests: XCTestCase {
 
     private class BankServiceConnectionInformationMock: BankServiceConnectionInformation {
+        let bankServiceProviderId: String = "test"
     }
 
     var sut: DefaultBankServiceProviderConnector!
 
     override func setUp() {
         super.setUp()
-        sut = DefaultBankServiceProviderConnector()
+        sut = DefaultBankServiceProviderConnector(
+            httpBankingRequestFactory: HTTPBankingRequestFactoryMock(),
+            webClient: WebClientMock()
+        )
     }
 
     func test_Connect_ErrorForUnknown() {
@@ -38,6 +42,7 @@ class DefaultBankServiceProviderConnectorTests: XCTestCase {
     func test_Connect_WorksForOAuth2() {
         do {
             let oAuth2ConnectionInformation = OAuth2BankServiceConnectionInformation(
+                bankServiceProviderId: "test",
                 accessToken: "asdf",
                 tokenType: "bearer"
             )
@@ -50,4 +55,16 @@ class DefaultBankServiceProviderConnectorTests: XCTestCase {
         }
     }
 
+}
+
+private extension DefaultBankServiceProviderConnectorTests {
+    class HTTPBankingRequestFactoryMock: HTTPBankingRequestFactory {
+
+        func makeHTTPRequest<T: BankingRequest>(
+            for bankingRequest: T,
+            bankServiceProvider: BankServiceProvider
+        ) -> HTTPRequest? {
+            fatalError()
+        }
+    }
 }

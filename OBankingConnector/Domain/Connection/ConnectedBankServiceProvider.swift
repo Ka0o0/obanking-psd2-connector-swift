@@ -13,3 +13,7 @@ public protocol ConnectedBankServiceProvider {
 
     func perform<T: BankingRequest>(_ request: T) -> Single<BankingRequestResult<T>>
 }
+
+enum ConnectedBankServiceProviderError: Error {
+    case unsupportedRequest
+}

@@ -14,6 +14,7 @@ public final class OBankingConnector {
     private let deepLinkService: DeepLinkService
     private let externalWebBrowserLauncher: ExternalWebBrowserLauncher
     private let webClient: WebClient
+    private let supportedBankServicesProvider: SupportedBankServicesProvider
 
     public init(configuration: OBankingConnectorConfiguration) {
         self.configurationParser = ConfigurationParser(configuration: configuration)
@@ -22,6 +23,9 @@ public final class OBankingConnector {
         self.deepLinkService = DefaultDeepLinkService()
         self.externalWebBrowserLauncher = PlatformDependingExternalWebBrowserLauncher()
         self.webClient = AlamofireWebClient()
+        self.supportedBankServicesProvider = ConfigurationEnabledSupportedBankServicesProvider(
+            configuration: configuration
+        )
     }
 
     public func makeBankServiceProviderAuthenticationProvider() -> BankServiceProviderAuthenticationProvider {
@@ -44,10 +48,22 @@ public final class OBankingConnector {
     }
 
     public func makeBankServiceProviderConnector() -> BankServiceProviderConnector {
-        return DefaultBankServiceProviderConnector()
+        let httpBankingRequestFactory = ConfigurationHTTPBankingRequestFactory(
+            configurationParser: configurationParser
+        )
+
+        return DefaultBankServiceProviderConnector(
+            httpBankingRequestFactory: httpBankingRequestFactory,
+            webClient: webClient,
+            supportedBankServicesProvider: supportedBankServicesProvider
+        )
     }
 
     public func makeDeepLinkHandler() -> DeepLinkHandler {
         return self.deepLinkService
+    }
+
+    public func makeSupportedBankServicesProvider() -> SupportedBankServicesProvider {
+        return self.supportedBankServicesProvider
     }
 }

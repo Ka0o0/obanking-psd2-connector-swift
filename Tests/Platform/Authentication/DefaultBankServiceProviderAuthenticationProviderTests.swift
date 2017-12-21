@@ -25,6 +25,7 @@ class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
     }
 
     private class BankServiceConnectionInformationMock: BankServiceConnectionInformation {
+        let bankServiceProviderId: String = "test"
     }
 
     private class BankServiceProviderAuthenticationRequestFactoryProviderMock:

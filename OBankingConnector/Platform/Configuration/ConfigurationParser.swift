@@ -20,7 +20,7 @@ final class ConfigurationParser {
         -> BankServiceProviderConfiguration? {
 
         let result = configuration.bankServiceProviderConfigurations.filter {
-            $0.bankServiceProviderId == bankService.id
+            $0.bankServiceProvider.id == bankService.id
         }
         return result.first
     }

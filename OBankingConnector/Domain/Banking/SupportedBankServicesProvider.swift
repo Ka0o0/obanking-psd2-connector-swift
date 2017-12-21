@@ -11,4 +11,6 @@ import Foundation
 public protocol SupportedBankServicesProvider {
 
     var supportedBankServices: [BankServiceProvider] { get }
+
+    func bankService(for id: String) -> BankServiceProvider?
 }

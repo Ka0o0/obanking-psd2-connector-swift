@@ -16,6 +16,7 @@ class OAuth2BankServiceProviderAuthenticationRequestTests: XCTestCase {
         let tokenEndpointURL = URL(fileURLWithPath: "another")
 
         let sut = OAuth2BankServiceProviderAuthenticationRequest(
+            bankingServiceProviderId: "test",
             authorizationEndpointURL: authorizationEndpointURL,
             clientId: "johns_app",
             clientSecret: "secret",
@@ -27,6 +28,7 @@ class OAuth2BankServiceProviderAuthenticationRequestTests: XCTestCase {
             additionalRequestHeaders: ["web-api-key": "test"]
         )
 
+        XCTAssertEqual(sut.bankingServiceProviderId, "test")
         XCTAssertEqual(sut.authorizationEndpointURL, authorizationEndpointURL)
         XCTAssertEqual(sut.clientId, "johns_app")
         XCTAssertEqual(sut.clientSecret, "secret")
