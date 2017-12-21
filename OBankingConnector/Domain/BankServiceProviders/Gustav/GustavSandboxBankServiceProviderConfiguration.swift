@@ -30,6 +30,25 @@ public struct GustavSandboxBankServiceProviderConfiguration: OAuth2BankServiceCo
     let additionalHeaders: [String: String]?
     let bankingRequestTranslator: BankingRequestTranslator
 
+    var authorizationServerCertificate: Data {
+        return self.apiServerCertificate
+    }
+
+    var tokenServerCertificate: Data {
+        return self.apiServerCertificate
+    }
+
+    // swiftlint:disable force_try
+    var apiServerCertificate: Data {
+        let bundle = Bundle(for: OBankingConnector.self)
+        guard let certificateURL = bundle.url(forResource: "wwwcsastcsascz", withExtension: "crt") else {
+            fatalError("Could not read certificate")
+        }
+
+        return try! Data(contentsOf: certificateURL)
+    }
+    // swiftlint:enable force_try
+
     public init(clientId: String, clientSecret: String, redirectURI: String, webAPIKey: String) {
         self.clientId = clientId
         self.clientSecret = clientSecret

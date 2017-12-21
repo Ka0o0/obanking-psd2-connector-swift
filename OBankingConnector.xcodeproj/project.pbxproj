@@ -16,6 +16,14 @@
 		2A1081D61FEC2D7F0053767C /* DefaultBankServiceConnectionInformationDecoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1081D41FEC2D7F0053767C /* DefaultBankServiceConnectionInformationDecoderTests.swift */; };
 		2A1081D91FEC412A0053767C /* GustavBankingRequestTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1081D81FEC412A0053767C /* GustavBankingRequestTranslator.swift */; };
 		2A1081DA1FEC41C30053767C /* GustavBankingRequestTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1081D81FEC412A0053767C /* GustavBankingRequestTranslator.swift */; };
+		2A1081DD1FEC53F80053767C /* wwwcsastcsascz.crt in Resources */ = {isa = PBXBuildFile; fileRef = 2A1081DC1FEC53F80053767C /* wwwcsastcsascz.crt */; };
+		2A1081DE1FEC53F80053767C /* wwwcsastcsascz.crt in Resources */ = {isa = PBXBuildFile; fileRef = 2A1081DC1FEC53F80053767C /* wwwcsastcsascz.crt */; };
+		2A1081E01FEC552A0053767C /* wwwcsascz.crt in Resources */ = {isa = PBXBuildFile; fileRef = 2A1081DF1FEC552A0053767C /* wwwcsascz.crt */; };
+		2A1081E11FEC552A0053767C /* wwwcsascz.crt in Resources */ = {isa = PBXBuildFile; fileRef = 2A1081DF1FEC552A0053767C /* wwwcsascz.crt */; };
+		2A1081E51FEC559D0053767C /* GustavBankServiceProviderConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1081E41FEC559D0053767C /* GustavBankServiceProviderConfigurationTests.swift */; };
+		2A1081E61FEC559D0053767C /* GustavBankServiceProviderConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1081E41FEC559D0053767C /* GustavBankServiceProviderConfigurationTests.swift */; };
+		2A1081E81FEC56060053767C /* GustavSandboxBankServiceProviderConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1081E71FEC56060053767C /* GustavSandboxBankServiceProviderConfigurationTests.swift */; };
+		2A1081E91FEC56060053767C /* GustavSandboxBankServiceProviderConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1081E71FEC56060053767C /* GustavSandboxBankServiceProviderConfigurationTests.swift */; };
 		2A220A7E1FE57A8200397FBE /* OAuth2BankServiceProviderAuthenticationRequest+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A220A7D1FE57A8200397FBE /* OAuth2BankServiceProviderAuthenticationRequest+Init.swift */; };
 		2A220A7F1FE57A8200397FBE /* OAuth2BankServiceProviderAuthenticationRequest+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A220A7D1FE57A8200397FBE /* OAuth2BankServiceProviderAuthenticationRequest+Init.swift */; };
 		2A220A861FE5C8E000397FBE /* GetBankAccountDetailsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A220A851FE5C8E000397FBE /* GetBankAccountDetailsRequest.swift */; };
@@ -261,6 +269,10 @@
 		2A1081D11FEC2D5B0053767C /* DefaultBankServiceConnectionInformationDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBankServiceConnectionInformationDecoder.swift; sourceTree = "<group>"; };
 		2A1081D41FEC2D7F0053767C /* DefaultBankServiceConnectionInformationDecoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBankServiceConnectionInformationDecoderTests.swift; sourceTree = "<group>"; };
 		2A1081D81FEC412A0053767C /* GustavBankingRequestTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavBankingRequestTranslator.swift; sourceTree = "<group>"; };
+		2A1081DC1FEC53F80053767C /* wwwcsastcsascz.crt */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwwcsastcsascz.crt; sourceTree = "<group>"; };
+		2A1081DF1FEC552A0053767C /* wwwcsascz.crt */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwwcsascz.crt; sourceTree = "<group>"; };
+		2A1081E41FEC559D0053767C /* GustavBankServiceProviderConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavBankServiceProviderConfigurationTests.swift; sourceTree = "<group>"; };
+		2A1081E71FEC56060053767C /* GustavSandboxBankServiceProviderConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavSandboxBankServiceProviderConfigurationTests.swift; sourceTree = "<group>"; };
 		2A220A7D1FE57A8200397FBE /* OAuth2BankServiceProviderAuthenticationRequest+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OAuth2BankServiceProviderAuthenticationRequest+Init.swift"; sourceTree = "<group>"; };
 		2A220A851FE5C8E000397FBE /* GetBankAccountDetailsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBankAccountDetailsRequest.swift; sourceTree = "<group>"; };
 		2A220A891FE5CA1500397FBE /* GetTransactionHistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTransactionHistoryRequest.swift; sourceTree = "<group>"; };
@@ -442,6 +454,32 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
+		2A1081DB1FEC53DF0053767C /* certificates */ = {
+			isa = PBXGroup;
+			children = (
+				2A1081DF1FEC552A0053767C /* wwwcsascz.crt */,
+				2A1081DC1FEC53F80053767C /* wwwcsastcsascz.crt */,
+			);
+			path = certificates;
+			sourceTree = "<group>";
+		};
+		2A1081E21FEC55810053767C /* BankServiceProviders */ = {
+			isa = PBXGroup;
+			children = (
+				2A1081E31FEC558B0053767C /* Gustav */,
+			);
+			path = BankServiceProviders;
+			sourceTree = "<group>";
+		};
+		2A1081E31FEC558B0053767C /* Gustav */ = {
+			isa = PBXGroup;
+			children = (
+				2A1081E41FEC559D0053767C /* GustavBankServiceProviderConfigurationTests.swift */,
+				2A1081E71FEC56060053767C /* GustavSandboxBankServiceProviderConfigurationTests.swift */,
+			);
+			path = Gustav;
+			sourceTree = "<group>";
+		};
 		2A220A841FE5C8C600397FBE /* BankAccount */ = {
 			isa = PBXGroup;
 			children = (
@@ -502,6 +540,7 @@
 				2A280A761FE400D400B90104 /* GustavBankServiceProvider.swift */,
 				2A280A7D1FE403D200B90104 /* GustavBankServiceProviderConfiguration.swift */,
 				2A280A801FE408DF00B90104 /* GustavSandboxBankServiceProviderConfiguration.swift */,
+				2A1081DB1FEC53DF0053767C /* certificates */,
 				2A1081D71FEC41190053767C /* Requests */,
 			);
 			path = Gustav;
@@ -919,6 +958,7 @@
 			children = (
 				2A58F09A1FDFDE390024D33E /* Authentication */,
 				2A58F0B51FE003A20024D33E /* Banking */,
+				2A1081E21FEC55810053767C /* BankServiceProviders */,
 				2A58F0A71FDFE1B50024D33E /* Connection */,
 				2A58F0AE1FE0027D0024D33E /* DeepLinkHandling */,
 				2AECE56A1FDDD39300FEEC14 /* Entities */,
@@ -1140,6 +1180,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A1081E11FEC552A0053767C /* wwwcsascz.crt in Resources */,
+				2A1081DE1FEC53F80053767C /* wwwcsastcsascz.crt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1154,6 +1196,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A1081E01FEC552A0053767C /* wwwcsascz.crt in Resources */,
+				2A1081DD1FEC53F80053767C /* wwwcsastcsascz.crt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1466,6 +1510,7 @@
 				2A58F1721FE07F600024D33E /* ConnectedBankServiceProviderTests.swift in Sources */,
 				2A58F1621FE07F5B0024D33E /* AccountNumberTests.swift in Sources */,
 				2A58F1691FE07F5B0024D33E /* CurrencyTests.swift in Sources */,
+				2A1081E61FEC559D0053767C /* GustavBankServiceProviderConfigurationTests.swift in Sources */,
 				2A58F1751FE07F6F0024D33E /* OAuth2BankServiceProviderAuthenticationRequestProcessorTests.swift in Sources */,
 				2A58F1681FE07F5B0024D33E /* BankTests.swift in Sources */,
 				2A58F1951FE089170024D33E /* URLBuilderTests.swift in Sources */,
@@ -1493,6 +1538,7 @@
 				2A58F1671FE07F5B0024D33E /* BankServiceProviderTests.swift in Sources */,
 				2A58F1711FE07F600024D33E /* BankingRequestTests.swift in Sources */,
 				2A58F1641FE07F5B0024D33E /* AmountTests.swift in Sources */,
+				2A1081E91FEC56060053767C /* GustavSandboxBankServiceProviderConfigurationTests.swift in Sources */,
 				2A58F1661FE07F5B0024D33E /* BankAccountTypeTests.swift in Sources */,
 				2A58F16F1FE07F600024D33E /* SupportedBankServicesProviderTests.swift in Sources */,
 				2A58F16C1FE07F5B0024D33E /* TransactionTests.swift in Sources */,
@@ -1588,6 +1634,7 @@
 				2AECE5911FDDDFC500FEEC14 /* SepaAccountNumberTests.swift in Sources */,
 				2A58F0A91FDFE1CE0024D33E /* BankingRequestTests.swift in Sources */,
 				2AECE56D1FDDD43200FEEC14 /* BankTests.swift in Sources */,
+				2A1081E51FEC559D0053767C /* GustavBankServiceProviderConfigurationTests.swift in Sources */,
 				2A58F1941FE089170024D33E /* URLBuilderTests.swift in Sources */,
 				2A58F1AD1FE13C1D0024D33E /* OAuth2AuthorizationRequestURLBuilderMock.swift in Sources */,
 				2AECE59B1FDDE43F00FEEC14 /* AmountSampleTests.swift in Sources */,
@@ -1615,6 +1662,7 @@
 				2A58F0B41FE003650024D33E /* ConnectedBankServiceProviderTests.swift in Sources */,
 				2A58F0B71FE003B10024D33E /* SupportedBankServicesProviderTests.swift in Sources */,
 				2A58F0B91FE003F50024D33E /* AccountNumberTests.swift in Sources */,
+				2A1081E81FEC56060053767C /* GustavSandboxBankServiceProviderConfigurationTests.swift in Sources */,
 				2A58F0DC1FE0173D0024D33E /* OAuth2BankServiceProviderAuthenticationRequestTests.swift in Sources */,
 				2AECE58B1FDDDE8B00FEEC14 /* BankAccountDetailsTests.swift in Sources */,
 				2A280A7B1FE4025A00B90104 /* BankServiceProviderMock.swift in Sources */,
