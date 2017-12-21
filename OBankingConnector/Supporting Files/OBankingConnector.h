@@ -6,9 +6,11 @@
 //  Copyright © 2017 Kai Takac. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 #if TARGET_IOS
     #import <UIKit/UIKit.h>
-#else if TARGET_OSX
+#elseif TARGET_OSX
     #import <Cocoa/Cocoa.h>
 #endif
 
