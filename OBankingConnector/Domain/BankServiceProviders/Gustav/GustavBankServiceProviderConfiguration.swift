@@ -10,7 +10,7 @@ import Foundation
 
 public struct GustavBankServiceProviderConfiguration: OAuth2BankServiceConfiguration {
 
-    public let bankServiceProviderId: String = GustavBankServiceProvider.id
+    public let bankServiceProvider: BankServiceProvider = GustavBankServiceProvider()
 
     let clientId: String
     let clientSecret: String?
@@ -27,6 +27,7 @@ public struct GustavBankServiceProviderConfiguration: OAuth2BankServiceConfigura
     ]
     let additionalTokenRequestParameters: [String: String]? = nil
     let additionalHeaders: [String: String]?
+    let bankingRequestTranslator: BankingRequestTranslator
 
     public init(clientId: String, clientSecret: String, redirectURI: String, webAPIKey: String) {
         self.clientId = clientId
@@ -36,5 +37,11 @@ public struct GustavBankServiceProviderConfiguration: OAuth2BankServiceConfigura
         self.additionalHeaders = [
             "web-api-key": webAPIKey
         ]
+
+        guard let baseURL = URL(string: "https://www.csas.cz/widp") else {
+            fatalError("Cannot create base URL")
+        }
+
+        self.bankingRequestTranslator = GustavBankingRequestTranslator(baseURL: baseURL)
     }
 }
