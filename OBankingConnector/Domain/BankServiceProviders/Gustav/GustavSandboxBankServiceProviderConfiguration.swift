@@ -40,7 +40,7 @@ public struct GustavSandboxBankServiceProviderConfiguration: OAuth2BankServiceCo
 
     // swiftlint:disable force_try
     var apiServerCertificate: Data {
-        let bundle = Bundle(for: OBankingConnector.self)
+        let bundle = OBankingConnector.bundle
         guard let certificateURL = bundle.url(forResource: "wwwcsastcsascz", withExtension: "crt") else {
             fatalError("Could not read certificate")
         }
