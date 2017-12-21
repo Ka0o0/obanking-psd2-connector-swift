@@ -35,17 +35,53 @@ final class AlamofireWebClient: WebClient {
             parameterEncoding = URLEncoding.default
         }
 
-        return RxAlamofire.requestData(
-            alamofireMethod, url,
-            parameters: parameters,
-            encoding: parameterEncoding,
-            headers: headers
-        )
-        .map { WebClient.DataResponse($0.0, $0.1) }
+        do {
+            let sessionManager = try createSessionManager(for: url, pinning: certificate)
+
+            return sessionManager.rx.responseData(
+                alamofireMethod,
+                url,
+                parameters: parameters,
+                encoding: parameterEncoding,
+                headers: headers
+            )
+            .map { WebClient.DataResponse($0.0, $0.1) }
+        } catch let error {
+            return Observable.error(error)
+        }
     }
 }
 // swiftlint:enable function_parameter_count
 
+private extension AlamofireWebClient {
+
+    func createSessionManager(for url: URL, pinning certificate: Data) throws -> SessionManager {
+
+        guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true),
+            let host = urlComponents.host else {
+            throw AlamofireWebClientError.failedToParseURL
+        }
+
+        guard let certificate = SecCertificateCreateWithData(kCFAllocatorDefault, NSData(data: certificate)) else {
+            throw AlamofireWebClientError.failedToReadCertificate
+        }
+
+        let serverTrustPolicies: [String: ServerTrustPolicy] = [
+            host: .pinCertificates(
+                certificates: [certificate],
+                validateCertificateChain: true,
+                validateHost: true
+            )
+        ]
+
+        return SessionManager(
+            serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies)
+        )
+    }
+}
+
 enum AlamofireWebClientError: Error {
     case invalidMethod
+    case failedToParseURL
+    case failedToReadCertificate
 }
