@@ -20,28 +20,6 @@ struct OAuth2BankServiceProviderAuthenticationRequest: BankServiceProviderAuthen
     let additionalAuthorizationRequestParameters: [String: String]?
     let additionalTokenRequestParameters: [String: String]?
     let additionalRequestHeaders: [String: String]?
-
-    init(
-        bankingServiceProviderId: String,
-        authorizationEndpointURL: URL,
-        clientId: String,
-        clientSecret: String?,
-        tokenEndpointURL: URL?,
-        redirectURI: String?,
-        scope: String?,
-        additionalAuthorizationRequestParameters: [String: String]?,
-        additionalTokenRequestParameters: [String: String]?,
-        additionalRequestHeaders: [String: String]?
-    ) {
-        self.bankingServiceProviderId = bankingServiceProviderId
-        self.authorizationEndpointURL = authorizationEndpointURL
-        self.clientId = clientId
-        self.clientSecret = clientSecret
-        self.tokenEndpointURL = tokenEndpointURL
-        self.redirectURI = redirectURI
-        self.scope = scope
-        self.additionalAuthorizationRequestParameters = additionalAuthorizationRequestParameters
-        self.additionalTokenRequestParameters = additionalTokenRequestParameters
-        self.additionalRequestHeaders = additionalRequestHeaders
-    }
+    let authorizationServerCertificate: Data
+    let tokenServerCertificate: Data
 }

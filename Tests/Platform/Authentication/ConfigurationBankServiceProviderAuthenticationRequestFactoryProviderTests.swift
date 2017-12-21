@@ -72,8 +72,18 @@ private extension ConfigurationBankServiceProviderAuthenticationRequestFactoryPr
         let additionalTokenRequestParameters: [String: String]? = nil
         let additionalHeaders: [String: String]? = nil
         let bankingRequestTranslator: BankingRequestTranslator = BankingRequestTranslatorMock()
-        var authorizationServerCertificate: Data { fatalError() }
-        var tokenServerCertificate: Data { fatalError() }
+        var authorizationServerCertificate: Data {
+            guard let certificate = "authorizationServerCertificate".data(using: .utf8) else {
+                fatalError()
+            }
+            return certificate
+        }
+        var tokenServerCertificate: Data {
+            guard let certificate = "tokenServerCertificate".data(using: .utf8) else {
+                fatalError()
+            }
+            return certificate
+        }
         var apiServerCertificate: Data { fatalError() }
     }
 }
