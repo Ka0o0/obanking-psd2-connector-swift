@@ -66,6 +66,11 @@ class ConnectedOAuth2BankServiceProviderTests: XCTestCase {
             } else {
                 XCTFail("Headers must be set")
             }
+
+            guard let certificate = "apiServerCertificate".data(using: .utf8) else {
+                fatalError()
+            }
+            XCTAssertEqual(request.certificate, certificate)
         } catch let error {
             XCTFail(String(describing: error))
         }
@@ -133,7 +138,12 @@ private extension ConnectedOAuth2BankServiceProviderTests {
         let bankServiceProvider: BankServiceProvider = BankServiceProviderMock()
         var authorizationServerCertificate: Data { fatalError() }
         var tokenServerCertificate: Data { fatalError() }
-        var apiServerCertificate: Data { fatalError() }
+        var apiServerCertificate: Data {
+            guard let certificate = "apiServerCertificate".data(using: .utf8) else {
+                fatalError()
+            }
+            return certificate
+        }
 
         init(bankingRequestTranslator: BankingRequestTranslator) {
             self.bankingRequestTranslator = bankingRequestTranslator

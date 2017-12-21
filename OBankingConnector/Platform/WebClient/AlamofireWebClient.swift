@@ -11,6 +11,7 @@ import Alamofire
 import RxAlamofire
 import RxSwift
 
+// swiftlint:disable function_parameter_count
 final class AlamofireWebClient: WebClient {
 
     func request(
@@ -18,7 +19,8 @@ final class AlamofireWebClient: WebClient {
         _ url: URL,
         parameters: [String: Any]?,
         encoding: ParameterEncoding,
-        headers: [String: String]?
+        headers: [String: String]?,
+        certificate: Data
     ) -> Observable<WebClient.DataResponse> {
 
         guard let alamofireMethod = Alamofire.HTTPMethod(rawValue: method.rawValue) else {
@@ -42,6 +44,7 @@ final class AlamofireWebClient: WebClient {
         .map { WebClient.DataResponse($0.0, $0.1) }
     }
 }
+// swiftlint:enable function_parameter_count
 
 enum AlamofireWebClientError: Error {
     case invalidMethod
