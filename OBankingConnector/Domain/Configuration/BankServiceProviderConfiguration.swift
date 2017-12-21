@@ -10,5 +10,5 @@ import Foundation
 
 public protocol BankServiceProviderConfiguration {
 
-    var bankServiceProviderId: String { get }
+    var bankServiceProvider: BankServiceProvider { get }
 }

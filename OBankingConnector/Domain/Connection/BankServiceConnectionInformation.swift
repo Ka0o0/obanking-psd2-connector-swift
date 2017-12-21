@@ -9,4 +9,6 @@
 import Foundation
 
 public protocol BankServiceConnectionInformation: Codable {
+
+    var bankServiceProviderId: String { get }
 }

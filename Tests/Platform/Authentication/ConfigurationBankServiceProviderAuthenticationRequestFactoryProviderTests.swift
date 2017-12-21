@@ -11,19 +11,6 @@ import XCTest
 
 class ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests: XCTestCase {
 
-    private class BankServiceConfigurationMock: OAuth2BankServiceConfiguration {
-        let authorizationEndpointURL: URL = URL(fileURLWithPath: "test")
-        let clientId: String = "client"
-        let clientSecret: String? = nil
-        let tokenEndpointURL: URL? = nil
-        let redirectURI: String? = nil
-        let scope: String? = nil
-        let bankServiceProviderId: String = "test"
-        let additionalAuthorizationRequestParameters: [String: String]? = nil
-        let additionalTokenRequestParameters: [String: String]? = nil
-        let additionalHeaders: [String: String]? = nil
-    }
-
     func test_make_ReturnsNilIfNoProviderConfigured() {
         let configuration = OBankingConnectorConfiguration(
             bankServiceProviderConfigurations: []
@@ -59,4 +46,31 @@ class ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests:
         XCTAssertEqual(oAuth2Request.authorizationEndpointURL, URL(fileURLWithPath: "test"))
     }
 
+}
+
+private extension ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests {
+
+    class BankingRequestTranslatorMock: BankingRequestTranslator {
+        func parseResponse<T>(of bankingRequest: T, response: Data) throws -> T.Result where T: BankingRequest {
+            fatalError()
+        }
+
+        func makeHTTPRequest<T: BankingRequest>(from bankingRequest: T) -> HTTPRequest? {
+            return nil
+        }
+    }
+
+    class BankServiceConfigurationMock: OAuth2BankServiceConfiguration {
+        let authorizationEndpointURL: URL = URL(fileURLWithPath: "test")
+        let clientId: String = "client"
+        let clientSecret: String? = nil
+        let tokenEndpointURL: URL? = nil
+        let redirectURI: String? = nil
+        let scope: String? = nil
+        let bankServiceProvider: BankServiceProvider = BankServiceProviderMock(id: "test", name: "test")
+        let additionalAuthorizationRequestParameters: [String: String]? = nil
+        let additionalTokenRequestParameters: [String: String]? = nil
+        let additionalHeaders: [String: String]? = nil
+        let bankingRequestTranslator: BankingRequestTranslator = BankingRequestTranslatorMock()
+    }
 }

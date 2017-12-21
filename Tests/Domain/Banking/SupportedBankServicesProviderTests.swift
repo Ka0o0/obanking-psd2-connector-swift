@@ -12,6 +12,11 @@ import XCTest
 class SupportedBankServicesProviderTests: XCTestCase {
 
     private class SupportedBankServicesProviderMock: SupportedBankServicesProvider {
+
         let supportedBankServices = [BankServiceProvider]()
+
+        func bankService(for id: String) -> BankServiceProvider? {
+            fatalError()
+        }
     }
 }

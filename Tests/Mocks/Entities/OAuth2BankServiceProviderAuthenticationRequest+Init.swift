@@ -11,15 +11,19 @@ import Foundation
 
 extension OAuth2BankServiceProviderAuthenticationRequest {
 
-    init(authorizationEndpointURL: URL,
-         clientId: String,
-         clientSecret: String? = nil,
-         tokenEndpointURL: URL? = nil,
-         redirectURI: String? = nil,
-         scope: String? = nil,
-         additionalAuthorizationRequestParameters: [String: String]? = nil,
-         additionalTokenRequestParameters: [String: String]? = nil,
-         additionalRequestHeaders: [String: String]? = nil) {
+    init(
+        bankingServiceProviderId: String,
+        authorizationEndpointURL: URL,
+        clientId: String,
+        clientSecret: String? = nil,
+        tokenEndpointURL: URL? = nil,
+        redirectURI: String? = nil,
+        scope: String? = nil,
+        additionalAuthorizationRequestParameters: [String: String]? = nil,
+        additionalTokenRequestParameters: [String: String]? = nil,
+        additionalRequestHeaders: [String: String]? = nil
+    ) {
+        self.bankingServiceProviderId = bankingServiceProviderId
         self.authorizationEndpointURL = authorizationEndpointURL
         self.clientId = clientId
         self.clientSecret = clientSecret
