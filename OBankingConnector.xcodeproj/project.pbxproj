@@ -443,9 +443,9 @@
 		2A220A9B1FE5D49C00397FBE /* Connection */ = {
 			isa = PBXGroup;
 			children = (
-				2A220AA31FE5D67A00397FBE /* OAuth2 */,
-				2A220A9C1FE5D4AF00397FBE /* DefaultBankServiceProviderConnector.swift */,
 				2A1081D11FEC2D5B0053767C /* DefaultBankServiceConnectionInformationDecoder.swift */,
+				2A220A9C1FE5D4AF00397FBE /* DefaultBankServiceProviderConnector.swift */,
+				2A220AA31FE5D67A00397FBE /* OAuth2 */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -453,9 +453,9 @@
 		2A220A9F1FE5D52500397FBE /* Connection */ = {
 			isa = PBXGroup;
 			children = (
-				2A220AA71FE65BB700397FBE /* OAuth2 */,
-				2A220AA01FE5D53000397FBE /* DefaultBankServiceProviderConnectorTests.swift */,
 				2A1081D41FEC2D7F0053767C /* DefaultBankServiceConnectionInformationDecoderTests.swift */,
+				2A220AA01FE5D53000397FBE /* DefaultBankServiceProviderConnectorTests.swift */,
+				2A220AA71FE65BB700397FBE /* OAuth2 */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
