@@ -10,5 +10,5 @@ import Foundation
 
 public protocol BankingRequest {
 
-    associatedtype ResultType
+    associatedtype Result
 }

@@ -10,6 +10,7 @@ import Foundation
 
 struct OAuth2BankServiceProviderAuthenticationRequest: BankServiceProviderAuthenticationRequest {
 
+    let bankingServiceProviderId: String
     let authorizationEndpointURL: URL
     let clientId: String
     let clientSecret: String?
@@ -20,15 +21,19 @@ struct OAuth2BankServiceProviderAuthenticationRequest: BankServiceProviderAuthen
     let additionalTokenRequestParameters: [String: String]?
     let additionalRequestHeaders: [String: String]?
 
-    init(authorizationEndpointURL: URL,
-         clientId: String,
-         clientSecret: String?,
-         tokenEndpointURL: URL?,
-         redirectURI: String?,
-         scope: String?,
-         additionalAuthorizationRequestParameters: [String: String]?,
-         additionalTokenRequestParameters: [String: String]?,
-         additionalRequestHeaders: [String: String]?) {
+    init(
+        bankingServiceProviderId: String,
+        authorizationEndpointURL: URL,
+        clientId: String,
+        clientSecret: String?,
+        tokenEndpointURL: URL?,
+        redirectURI: String?,
+        scope: String?,
+        additionalAuthorizationRequestParameters: [String: String]?,
+        additionalTokenRequestParameters: [String: String]?,
+        additionalRequestHeaders: [String: String]?
+    ) {
+        self.bankingServiceProviderId = bankingServiceProviderId
         self.authorizationEndpointURL = authorizationEndpointURL
         self.clientId = clientId
         self.clientSecret = clientSecret

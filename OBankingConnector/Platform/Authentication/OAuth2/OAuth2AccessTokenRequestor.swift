@@ -49,6 +49,16 @@ final class DefaultOAuth2AccessTokenRequestor: OAuth2AccessTokenRequestor {
             let jsonDecoder = JSONDecoder()
             return try jsonDecoder.decode(OAuth2BankServiceConnectionInformation.self, from: data)
         }
+        .map {
+            OAuth2BankServiceConnectionInformation(
+                bankServiceProviderId: request.bankingServiceProviderId,
+                accessToken: $0.accessToken,
+                tokenType: $0.tokenType,
+                expirationDate: $0.expirationDate,
+                refreshToken: $0.refreshToken,
+                scope: $0.scope
+            )
+        }
     }
 
     private func makeParameters(

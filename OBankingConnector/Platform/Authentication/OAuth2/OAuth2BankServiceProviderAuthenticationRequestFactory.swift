@@ -18,6 +18,7 @@ final class OAuth2BankServiceProviderAuthenticationRequestFactory: BankServicePr
 
     func makeBankServiceProviderAuthenticationRequest() -> BankServiceProviderAuthenticationRequest {
         return OAuth2BankServiceProviderAuthenticationRequest(
+            bankingServiceProviderId: configuration.bankServiceProvider.id,
             authorizationEndpointURL: configuration.authorizationEndpointURL,
             clientId: configuration.clientId,
             clientSecret: configuration.clientSecret,

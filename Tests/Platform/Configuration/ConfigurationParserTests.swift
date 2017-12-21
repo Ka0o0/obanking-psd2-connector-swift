@@ -12,7 +12,7 @@ import XCTest
 class ConfigurationParserTests: XCTestCase {
 
     private class BankServiceProviderConfigurationMock: BankServiceProviderConfiguration {
-        let bankServiceProviderId: String = "test"
+        let bankServiceProvider: BankServiceProvider = BankServiceProviderMock(id: "test", name: "test")
     }
 
     func test_getBankServiceConfigurationFor_ReturnsNilForUnconfiguredBankService() {
@@ -48,6 +48,6 @@ class ConfigurationParserTests: XCTestCase {
             return
         }
 
-        XCTAssertEqual(result.bankServiceProviderId, "test")
+        XCTAssertEqual(result.bankServiceProvider.id, "test")
     }
 }

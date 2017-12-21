@@ -12,6 +12,6 @@ import XCTest
 class BankingRequestTests: XCTestCase {
 
     private class TestBankingRequest: BankingRequest {
-        typealias ResultType = Bool
+        typealias Result = Bool
     }
 }

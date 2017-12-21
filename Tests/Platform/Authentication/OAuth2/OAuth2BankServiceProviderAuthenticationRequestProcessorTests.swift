@@ -34,6 +34,7 @@ class OAuth2BankServiceProviderAuthenticationRequestProcessorTests: XCTestCase {
         }
 
         oauth2Request = OAuth2BankServiceProviderAuthenticationRequest(
+            bankingServiceProviderId: "test",
             authorizationEndpointURL: baseURL,
             clientId: "example",
             clientSecret: "secret",
@@ -58,6 +59,7 @@ class OAuth2BankServiceProviderAuthenticationRequestProcessorTests: XCTestCase {
 
     func test_CanProcess_TrueForOAuthRequest() {
         let request = OAuth2BankServiceProviderAuthenticationRequest(
+            bankingServiceProviderId: "test",
             authorizationEndpointURL: URL(fileURLWithPath: "asdf"),
             clientId: "asdf"
         )
@@ -98,7 +100,11 @@ class OAuth2BankServiceProviderAuthenticationRequestProcessorTests: XCTestCase {
             deepLinkProvider.nextRequestResponse = authorizationRequestResponseURL
             tokenExtractorMock.nextToken = "mockedAuthToken"
             accessTokenRequestorMock.nextConnectionInformation =
-                OAuth2BankServiceConnectionInformation(accessToken: "mockedAccessToken", tokenType: "bearer")
+                OAuth2BankServiceConnectionInformation(
+                    bankServiceProviderId: "test",
+                    accessToken: "mockedAccessToken",
+                    tokenType: "bearer"
+                )
 
             guard let result = try sut.authenticate(using: oauth2Request).toBlocking().first() else {
                 XCTFail("Result must not be nil")

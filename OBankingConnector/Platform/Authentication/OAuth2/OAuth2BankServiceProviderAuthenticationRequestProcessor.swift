@@ -68,7 +68,8 @@ final class OAuth2BankServiceProviderAuthenticationRequestProcessor: BankService
                 self.accessTokenRequestor.requestAccessToken(
                     for: request,
                     authorizationToken: authorizationToken
-                ).map { $0 as BankServiceConnectionInformation }
+                )
+                .map { $0 as BankServiceConnectionInformation }
             }
     }
 }

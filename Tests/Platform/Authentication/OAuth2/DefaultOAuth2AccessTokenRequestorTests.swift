@@ -47,6 +47,7 @@ class DefaultOAuth2AccessTokenRequestorTests: XCTestCase {
 
     func test_ClaimAccessTokenForAuthorizationToken_UsesAuthUrlIfNoTokenURLSpecified() {
         let request = OAuth2BankServiceProviderAuthenticationRequest(
+            bankingServiceProviderId: "test",
             authorizationEndpointURL: authorizationEndpointURL,
             clientId: "example"
         )
@@ -75,6 +76,7 @@ class DefaultOAuth2AccessTokenRequestorTests: XCTestCase {
 
     func test_ClaimAccessTokenForAuthorizationToken_UsesTokenURLIfSpecified() {
         let request = OAuth2BankServiceProviderAuthenticationRequest(
+            bankingServiceProviderId: "test",
             authorizationEndpointURL: authorizationEndpointURL,
             clientId: "example",
             clientSecret: "secret",
@@ -115,6 +117,7 @@ class DefaultOAuth2AccessTokenRequestorTests: XCTestCase {
 
     func test_ClaimAccessTokenForAuthorizationToken_ParsesResponseCorrectly() {
         let request = OAuth2BankServiceProviderAuthenticationRequest(
+            bankingServiceProviderId: "test",
             authorizationEndpointURL: authorizationEndpointURL,
             clientId: "example"
         )
@@ -124,6 +127,7 @@ class DefaultOAuth2AccessTokenRequestorTests: XCTestCase {
             return
         }
 
+        XCTAssertEqual(result.bankServiceProviderId, "test")
         XCTAssertEqual(result.accessToken, mockedAccessToken)
         XCTAssertEqual(result.refreshToken, mockedRefreshToken)
         XCTAssertEqual(result.scope, "create")
