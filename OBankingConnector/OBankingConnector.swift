@@ -48,12 +48,8 @@ public final class OBankingConnector {
     }
 
     public func makeBankServiceProviderConnector() -> BankServiceProviderConnector {
-        let httpBankingRequestFactory = ConfigurationHTTPBankingRequestFactory(
-            configurationParser: configurationParser
-        )
-
         return DefaultBankServiceProviderConnector(
-            httpBankingRequestFactory: httpBankingRequestFactory,
+            configurationParser: configurationParser,
             webClient: webClient,
             supportedBankServicesProvider: supportedBankServicesProvider
         )

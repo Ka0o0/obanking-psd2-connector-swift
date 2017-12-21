@@ -13,7 +13,7 @@ import RxSwift
 class ConnectedBankServiceProviderTests: XCTestCase {
 
     private class ConnectedBankServiceProviderMock: ConnectedBankServiceProvider {
-        func perform<T: BankingRequest>(_ request: T) -> Single<BankingRequestResult<T>> {
+        func perform<T: BankingRequest>(_ request: T) -> Single<T.Result> {
             fatalError()
         }
     }

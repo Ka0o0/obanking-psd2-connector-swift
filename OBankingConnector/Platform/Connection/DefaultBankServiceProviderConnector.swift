@@ -11,16 +11,16 @@ import RxSwift
 
 final class DefaultBankServiceProviderConnector: BankServiceProviderConnector {
 
-    private let httpBankingRequestFactory: HTTPBankingRequestFactory
+    private let configurationParser: ConfigurationParser
     private let webClient: WebClient
     private let supportedBankServicesProvider: SupportedBankServicesProvider
 
     init(
-        httpBankingRequestFactory: HTTPBankingRequestFactory,
+        configurationParser: ConfigurationParser,
         webClient: WebClient,
         supportedBankServicesProvider: SupportedBankServicesProvider
     ) {
-        self.httpBankingRequestFactory = httpBankingRequestFactory
+        self.configurationParser = configurationParser
         self.webClient = webClient
         self.supportedBankServicesProvider = supportedBankServicesProvider
     }
@@ -34,7 +34,7 @@ final class DefaultBankServiceProviderConnector: BankServiceProviderConnector {
             return Single.just(
                 ConnectedOAuth2BankServiceProvider(
                     oAuth2ConnectionInformation: oAuth2ConnectionInformation,
-                    httpBankingRequestFactory: httpBankingRequestFactory,
+                    configurationParser: configurationParser,
                     webClient: webClient,
                     supportedBankServicesProvider: supportedBankServicesProvider
                 )

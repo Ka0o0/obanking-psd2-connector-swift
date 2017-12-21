@@ -12,41 +12,53 @@ import RxSwift
 final class ConnectedOAuth2BankServiceProvider: ConnectedBankServiceProvider {
 
     private let oAuth2ConnectionInformation: OAuth2BankServiceConnectionInformation
-    private let httpBankingRequestFactory: HTTPBankingRequestFactory
+    private let configurationParser: ConfigurationParser
     private let webClient: WebClient
     private let supportedBankServicesProvider: SupportedBankServicesProvider
 
     init(
         oAuth2ConnectionInformation: OAuth2BankServiceConnectionInformation,
-        httpBankingRequestFactory: HTTPBankingRequestFactory,
+        configurationParser: ConfigurationParser,
         webClient: WebClient,
         supportedBankServicesProvider: SupportedBankServicesProvider
     ) {
         self.oAuth2ConnectionInformation = oAuth2ConnectionInformation
-        self.httpBankingRequestFactory = httpBankingRequestFactory
+        self.configurationParser = configurationParser
         self.webClient = webClient
         self.supportedBankServicesProvider = supportedBankServicesProvider
     }
 
-    func perform<T: BankingRequest>(_ request: T) -> Single<BankingRequestResult<T>> {
+    func perform<T: BankingRequest>(_ request: T) -> Single<T.Result> {
 
-        guard let request = makeRequestAndAppendAuthorizationHeader(for: request) else {
+        guard let translator = getTranslator() else {
             return Single.error(ConnectedBankServiceProviderError.unsupportedRequest)
         }
 
-//        return webClient.request(
-//            request.method,
-//            request.url,
-//            parameters: request.parameters,
-//            encoding: request.encoding,
-//            headers: request.headers
-//        )
+        guard let httpRequest = makeRequestAndAppendAuthorizationHeader(for: request, using: translator) else {
+            return Single.error(ConnectedBankServiceProviderError.unsupportedRequest)
+        }
+
+        return webClient.request(
+            httpRequest.method,
+            httpRequest.url,
+            parameters: httpRequest.parameters,
+            encoding: httpRequest.encoding,
+            headers: httpRequest.headers
+        )
+        .map { response, data -> T.Result in
+            guard 200..<300 ~= response.statusCode else {
+                throw WebClientError.invalidStatusCode
+            }
+
+            return try translator.parseResponse(of: request, response: data)
+        }
+        .asSingle()
     }
 }
 
 private extension ConnectedOAuth2BankServiceProvider {
 
-    func makeRequestAndAppendAuthorizationHeader<T: BankingRequest>(for bankingRequest: T) -> HTTPRequest? {
+    func getTranslator() -> BankingRequestTranslator? {
 
         guard let bankServiceProvider = supportedBankServicesProvider.bankService(
             for: oAuth2ConnectionInformation.bankServiceProviderId
@@ -54,10 +66,20 @@ private extension ConnectedOAuth2BankServiceProvider {
             return nil
         }
 
-        guard let request = httpBankingRequestFactory.makeHTTPRequest(
-            for: bankingRequest,
-            bankServiceProvider: bankServiceProvider
-        ) else {
+        guard let configuration = configurationParser.getBankServiceConfiguration(for: bankServiceProvider)
+            as? OAuth2BankServiceConfiguration else {
+            return nil
+        }
+
+        return configuration.bankingRequestTranslator
+    }
+
+    func makeRequestAndAppendAuthorizationHeader<T: BankingRequest>(
+        for bankingRequest: T,
+        using translator: BankingRequestTranslator
+    ) -> HTTPRequest? {
+
+        guard let request = translator.makeHTTPRequest(from: bankingRequest) else {
             return nil
         }
 

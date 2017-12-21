@@ -20,9 +20,14 @@ class DefaultBankServiceProviderConnectorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+
+        let supportedBankServicesProvider = SupportedBankServicesProviderMock()
+        let connectorConfiguration = OBankingConnectorConfiguration(bankServiceProviderConfigurations: [])
+
         sut = DefaultBankServiceProviderConnector(
-            httpBankingRequestFactory: HTTPBankingRequestFactoryMock(),
-            webClient: WebClientMock()
+            configurationParser: ConfigurationParser(configuration: connectorConfiguration),
+            webClient: WebClientMock(),
+            supportedBankServicesProvider: supportedBankServicesProvider
         )
     }
 
@@ -58,12 +63,11 @@ class DefaultBankServiceProviderConnectorTests: XCTestCase {
 }
 
 private extension DefaultBankServiceProviderConnectorTests {
-    class HTTPBankingRequestFactoryMock: HTTPBankingRequestFactory {
 
-        func makeHTTPRequest<T: BankingRequest>(
-            for bankingRequest: T,
-            bankServiceProvider: BankServiceProvider
-        ) -> HTTPRequest? {
+    class SupportedBankServicesProviderMock: SupportedBankServicesProvider {
+        let supportedBankServices: [BankServiceProvider] = []
+
+        func bankService(for id: String) -> BankServiceProvider? {
             fatalError()
         }
     }
