@@ -131,6 +131,9 @@ private extension ConnectedOAuth2BankServiceProviderTests {
         let additionalHeaders: [String: String]? = nil
         let bankingRequestTranslator: BankingRequestTranslator
         let bankServiceProvider: BankServiceProvider = BankServiceProviderMock()
+        var authorizationServerCertificate: Data { fatalError() }
+        var tokenServerCertificate: Data { fatalError() }
+        var apiServerCertificate: Data { fatalError() }
 
         init(bankingRequestTranslator: BankingRequestTranslator) {
             self.bankingRequestTranslator = bankingRequestTranslator
