@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 @testable import OBankingConnector
 
+// swiftlint:disable function_parameter_count
 final class WebClientMock: WebClient {
 
     struct Request {
@@ -18,6 +19,7 @@ final class WebClientMock: WebClient {
         let parameters: [String: Any]?
         let encoding: ParameterEncoding
         let headers: [String: String]?
+        let certificate: Data
     }
 
     var lastRequest: Request?
@@ -28,9 +30,17 @@ final class WebClientMock: WebClient {
                  _ url: URL,
                  parameters: [String: Any]?,
                  encoding: ParameterEncoding,
-                 headers: [String: String]?)
+                 headers: [String: String]?,
+                 certificate: Data)
         -> Observable<DataResponse> {
-        lastRequest = Request(method: method, url: url, parameters: parameters, encoding: encoding, headers: headers)
+        lastRequest = Request(
+            method: method,
+            url: url,
+            parameters: parameters,
+            encoding: encoding,
+            headers: headers,
+            certificate: certificate
+        )
 
         if shouldSucceed,
             let responseData = self.responseData,
@@ -42,6 +52,7 @@ final class WebClientMock: WebClient {
         return Observable.error(WebClientMockError.failed)
     }
 }
+// swiftlint:enable function_parameter_count
 
 enum WebClientMockError: Error {
     case failed

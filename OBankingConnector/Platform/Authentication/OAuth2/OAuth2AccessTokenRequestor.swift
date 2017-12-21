@@ -37,7 +37,8 @@ final class DefaultOAuth2AccessTokenRequestor: OAuth2AccessTokenRequestor {
             requestURL,
             parameters: parameters,
             encoding: .urlEncoding,
-            headers: request.additionalRequestHeaders
+            headers: request.additionalRequestHeaders,
+            certificate: request.tokenServerCertificate
         )
         .asSingle()
         .map { response, data -> OAuth2BankServiceConnectionInformation in

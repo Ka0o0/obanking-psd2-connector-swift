@@ -33,5 +33,14 @@ extension OAuth2BankServiceProviderAuthenticationRequest {
         self.additionalAuthorizationRequestParameters = additionalAuthorizationRequestParameters
         self.additionalTokenRequestParameters = additionalTokenRequestParameters
         self.additionalRequestHeaders = additionalRequestHeaders
+        guard let authorizationServerCertificateData = "authorizationServerCertificate".data(using: .utf8) else {
+            fatalError()
+        }
+        self.authorizationServerCertificate = authorizationServerCertificateData
+
+        guard let tokenServerCertificate = "tokenServerCertificate".data(using: .utf8) else {
+            fatalError()
+        }
+        self.tokenServerCertificate = tokenServerCertificate
     }
 }

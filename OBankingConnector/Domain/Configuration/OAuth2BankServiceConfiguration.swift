@@ -19,6 +19,9 @@ protocol OAuth2BankServiceConfiguration: BankServiceProviderConfiguration {
     var additionalAuthorizationRequestParameters: [String: String]? { get }
     var additionalTokenRequestParameters: [String: String]? { get }
     var additionalHeaders: [String: String]? { get }
+    var authorizationServerCertificate: Data { get }
+    var tokenServerCertificate: Data { get }
+    var apiServerCertificate: Data { get }
 
     var bankingRequestTranslator: BankingRequestTranslator { get }
 }
