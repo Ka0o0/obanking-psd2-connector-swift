@@ -62,4 +62,8 @@ public final class OBankingConnector {
     public func makeSupportedBankServicesProvider() -> SupportedBankServicesProvider {
         return self.supportedBankServicesProvider
     }
+
+    public func makeBankServiceConnectionInformationDecoder() -> BankServiceConnectionInformationDecoder {
+        return DefaultBankServiceConnectionInformationDecoder()
+    }
 }
