@@ -27,7 +27,9 @@ final class OAuth2BankServiceProviderAuthenticationRequestFactory: BankServicePr
             scope: configuration.scope,
             additionalAuthorizationRequestParameters: configuration.additionalAuthorizationRequestParameters,
             additionalTokenRequestParameters: configuration.additionalTokenRequestParameters,
-            additionalRequestHeaders: configuration.additionalHeaders
+            additionalRequestHeaders: configuration.additionalHeaders,
+            authorizationServerCertificate: configuration.authorizationServerCertificate,
+            tokenServerCertificate: configuration.tokenServerCertificate
         )
     }
 }

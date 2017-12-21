@@ -154,4 +154,25 @@ class DefaultOAuth2AccessTokenRequestorTests: XCTestCase {
             return nil
         }
     }
+
+    func test_ClaimAccessTokenForAuthorizationToken_ChecksProperCertificate() {
+        let request = OAuth2BankServiceProviderAuthenticationRequest(
+            bankingServiceProviderId: "test",
+            authorizationEndpointURL: authorizationEndpointURL,
+            clientId: "example"
+        )
+
+        _ = testRequest(request: request)
+
+        guard let lastRequest = webClient.lastRequest else {
+            XCTFail("Should have made a request")
+            return
+        }
+
+        guard let certificate = "tokenServerCertificate".data(using: .utf8) else {
+            fatalError()
+        }
+
+        XCTAssertEqual(lastRequest.certificate, certificate)
+    }
 }

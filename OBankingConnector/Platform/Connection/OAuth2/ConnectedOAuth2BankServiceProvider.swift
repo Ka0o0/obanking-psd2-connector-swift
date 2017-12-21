@@ -30,10 +30,11 @@ final class ConnectedOAuth2BankServiceProvider: ConnectedBankServiceProvider {
 
     func perform<T: BankingRequest>(_ request: T) -> Single<T.Result> {
 
-        guard let translator = getTranslator() else {
+        guard let configuration = getConfiguration() else {
             return Single.error(ConnectedBankServiceProviderError.unsupportedRequest)
         }
 
+        let translator = configuration.bankingRequestTranslator
         guard let httpRequest = makeRequestAndAppendAuthorizationHeader(for: request, using: translator) else {
             return Single.error(ConnectedBankServiceProviderError.unsupportedRequest)
         }
@@ -43,7 +44,8 @@ final class ConnectedOAuth2BankServiceProvider: ConnectedBankServiceProvider {
             httpRequest.url,
             parameters: httpRequest.parameters,
             encoding: httpRequest.encoding,
-            headers: httpRequest.headers
+            headers: httpRequest.headers,
+            certificate: configuration.apiServerCertificate
         )
         .map { response, data -> T.Result in
             guard 200..<300 ~= response.statusCode else {
@@ -58,20 +60,15 @@ final class ConnectedOAuth2BankServiceProvider: ConnectedBankServiceProvider {
 
 private extension ConnectedOAuth2BankServiceProvider {
 
-    func getTranslator() -> BankingRequestTranslator? {
-
+    func getConfiguration() -> OAuth2BankServiceConfiguration? {
         guard let bankServiceProvider = supportedBankServicesProvider.bankService(
             for: oAuth2ConnectionInformation.bankServiceProviderId
-        ) else {
-            return nil
+            ) else {
+                return nil
         }
 
-        guard let configuration = configurationParser.getBankServiceConfiguration(for: bankServiceProvider)
-            as? OAuth2BankServiceConfiguration else {
-            return nil
-        }
-
-        return configuration.bankingRequestTranslator
+        return configurationParser.getBankServiceConfiguration(for: bankServiceProvider)
+            as? OAuth2BankServiceConfiguration
     }
 
     func makeRequestAndAppendAuthorizationHeader<T: BankingRequest>(
