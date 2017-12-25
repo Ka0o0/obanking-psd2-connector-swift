@@ -218,6 +218,8 @@
 		2A58F1F11FE30A560024D33E /* OAuth2BankServiceProviderAuthenticationRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F1EF1FE30A560024D33E /* OAuth2BankServiceProviderAuthenticationRequestFactory.swift */; };
 		2A58F1F31FE30B970024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F1F21FE30B970024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift */; };
 		2A58F1F41FE30B970024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F1F21FE30B970024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift */; };
+		2A8B1F361FF10CA900482BF3 /* GetBankAccountsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F351FF10CA900482BF3 /* GetBankAccountsRequestResponse.json */; };
+		2A8B1F371FF10CA900482BF3 /* GetBankAccountsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F351FF10CA900482BF3 /* GetBankAccountsRequestResponse.json */; };
 		2A8B1F3A1FF17D2F00482BF3 /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F391FF17D2F00482BF3 /* BankAccountTests.swift */; };
 		2A8B1F3B1FF17D2F00482BF3 /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F391FF17D2F00482BF3 /* BankAccountTests.swift */; };
 		2AECE54E1FDDCF0000FEEC14 /* OBankingConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AECE5441FDDCF0000FEEC14 /* OBankingConnector.framework */; };
@@ -370,6 +372,7 @@
 		2A58F1EC1FE308AF0024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationBankServiceProviderAuthenticationRequestFactoryProvider.swift; sourceTree = "<group>"; };
 		2A58F1EF1FE30A560024D33E /* OAuth2BankServiceProviderAuthenticationRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2BankServiceProviderAuthenticationRequestFactory.swift; sourceTree = "<group>"; };
 		2A58F1F21FE30B970024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift; sourceTree = "<group>"; };
+		2A8B1F351FF10CA900482BF3 /* GetBankAccountsRequestResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetBankAccountsRequestResponse.json; sourceTree = "<group>"; };
 		2A8B1F391FF17D2F00482BF3 /* BankAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		2AECE5441FDDCF0000FEEC14 /* OBankingConnector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OBankingConnector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AECE5471FDDCF0000FEEC14 /* OBankingConnector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBankingConnector.h; sourceTree = "<group>"; };
@@ -466,6 +469,7 @@
 		2A0FF77B1FEFA2E9006963A9 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				2A8B1F381FF10CBC00482BF3 /* Responses */,
 				2A0FF77C1FEFA2FF006963A9 /* GustavBankingRequestTranslatorTests.swift */,
 			);
 			path = Requests;
@@ -836,6 +840,14 @@
 				2A58F1E01FE2D7950024D33E /* ConfigurationParserTests.swift */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		2A8B1F381FF10CBC00482BF3 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				2A8B1F351FF10CA900482BF3 /* GetBankAccountsRequestResponse.json */,
+			);
+			path = Responses;
 			sourceTree = "<group>";
 		};
 		2AECE53A1FDDCF0000FEEC14 = {
@@ -1217,6 +1229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A8B1F371FF10CA900482BF3 /* GetBankAccountsRequestResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1233,6 +1246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A8B1F361FF10CA900482BF3 /* GetBankAccountsRequestResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

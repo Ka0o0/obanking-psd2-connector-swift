@@ -31,7 +31,15 @@ final class GustavBankingRequestTranslator: BankingRequestTranslator {
         return nil
     }
 
+    // swiftlint:disable force_cast
     func parseResponse<T>(of bankingRequest: T, response: Data) throws -> T.Result where T: BankingRequest {
+
+        if bankingRequest is GetBankAccountRequest {
+            return try GustavGetBankAccountsRequest(baseURL: baseURL)
+                .parseResponse(response) as! T.Result
+        }
+
         throw BankingRequestTranslatorError.unsupportedRequestType
     }
+    // swiftlint:enable force_cast
 }

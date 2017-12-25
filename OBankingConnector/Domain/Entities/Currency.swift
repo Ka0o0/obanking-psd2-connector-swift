@@ -12,6 +12,7 @@ public enum Currency: String {
 
     case EUR
     case GBP
+    case CZK
 
     public var name: String {
         switch self {
@@ -19,6 +20,8 @@ public enum Currency: String {
             return "Euro"
         case .GBP:
             return "Great British Pound"
+        case .CZK:
+            return "Koruna česká"
         }
     }
 }
