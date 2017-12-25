@@ -56,7 +56,7 @@ public struct GustavBankServiceProviderConfiguration: OAuth2BankServiceConfigura
             "web-api-key": webAPIKey
         ]
 
-        guard let baseURL = URL(string: "https://www.csas.cz/widp") else {
+        guard let baseURL = URL(string: "https://www.csas.cz/webapi/api/v3") else {
             fatalError("Cannot create base URL")
         }
 

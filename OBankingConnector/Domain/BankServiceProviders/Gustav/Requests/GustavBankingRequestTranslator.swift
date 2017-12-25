@@ -17,10 +17,21 @@ final class GustavBankingRequestTranslator: BankingRequestTranslator {
     }
 
     func makeHTTPRequest<T>(from bankingRequest: T) -> HTTPRequest? where T: BankingRequest {
-        fatalError()
+
+        if bankingRequest is GetBankAccountRequest {
+            return GustavGetBankAccountsRequest(baseURL: baseURL)
+                .makeHTTPRequest()
+        }
+
+        if let request = bankingRequest as? PaginatedBankingRequest<GetBankAccountRequest> {
+            return GustavGetBankAccountsRequest(baseURL: baseURL)
+                .makeHTTPRequest(pageSize: request.itemsPerPage, page: request.page)
+        }
+
+        return nil
     }
 
     func parseResponse<T>(of bankingRequest: T, response: Data) throws -> T.Result where T: BankingRequest {
-        fatalError()
+        throw BankingRequestTranslatorError.unsupportedRequestType
     }
 }

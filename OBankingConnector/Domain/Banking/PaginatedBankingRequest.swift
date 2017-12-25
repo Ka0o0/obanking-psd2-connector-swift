@@ -20,9 +20,11 @@ public struct PaginatedBankingRequest<T: BankingRequest>: BankingRequest {
 
     let page: Int
     let itemsPerPage: Int
+    let request: T
 
-    public init(page: Int, itemsPerPage: Int) {
+    public init(page: Int, itemsPerPage: Int, request: T) {
         self.page = page
         self.itemsPerPage = itemsPerPage
+        self.request = request
     }
 }
