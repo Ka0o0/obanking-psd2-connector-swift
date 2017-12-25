@@ -222,6 +222,8 @@
 		2A8B1F371FF10CA900482BF3 /* GetBankAccountsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F351FF10CA900482BF3 /* GetBankAccountsRequestResponse.json */; };
 		2A8B1F3A1FF17D2F00482BF3 /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F391FF17D2F00482BF3 /* BankAccountTests.swift */; };
 		2A8B1F3B1FF17D2F00482BF3 /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F391FF17D2F00482BF3 /* BankAccountTests.swift */; };
+		2A8B1F3D1FF1895400482BF3 /* GustavGetBankAccountsRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F3C1FF1895400482BF3 /* GustavGetBankAccountsRequestResponse.swift */; };
+		2A8B1F3E1FF1895400482BF3 /* GustavGetBankAccountsRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F3C1FF1895400482BF3 /* GustavGetBankAccountsRequestResponse.swift */; };
 		2AECE54E1FDDCF0000FEEC14 /* OBankingConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AECE5441FDDCF0000FEEC14 /* OBankingConnector.framework */; };
 		2AECE5551FDDCF0000FEEC14 /* OBankingConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AECE5471FDDCF0000FEEC14 /* OBankingConnector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2AECE5621FDDD04500FEEC14 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AECE5611FDDD04500FEEC14 /* Bank.swift */; };
@@ -374,6 +376,7 @@
 		2A58F1F21FE30B970024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift; sourceTree = "<group>"; };
 		2A8B1F351FF10CA900482BF3 /* GetBankAccountsRequestResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetBankAccountsRequestResponse.json; sourceTree = "<group>"; };
 		2A8B1F391FF17D2F00482BF3 /* BankAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
+		2A8B1F3C1FF1895400482BF3 /* GustavGetBankAccountsRequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavGetBankAccountsRequestResponse.swift; sourceTree = "<group>"; };
 		2AECE5441FDDCF0000FEEC14 /* OBankingConnector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OBankingConnector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AECE5471FDDCF0000FEEC14 /* OBankingConnector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBankingConnector.h; sourceTree = "<group>"; };
 		2AECE5481FDDCF0000FEEC14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -462,6 +465,7 @@
 			isa = PBXGroup;
 			children = (
 				2A0FF7781FEEE250006963A9 /* GustavGetBankAccountsRequest.swift */,
+				2A8B1F3C1FF1895400482BF3 /* GustavGetBankAccountsRequestResponse.swift */,
 			);
 			path = BankAccount;
 			sourceTree = "<group>";
@@ -1483,6 +1487,7 @@
 				2A58F1491FE07D670024D33E /* DeepLinkProvider.swift in Sources */,
 				2A220AB31FE7060F00397FBE /* BankingRequestTranslator.swift in Sources */,
 				2A58F1C91FE2B7820024D33E /* OAuth2BankServiceConnectionInformation.swift in Sources */,
+				2A8B1F3E1FF1895400482BF3 /* GustavGetBankAccountsRequestResponse.swift in Sources */,
 				2A58F14F1FE07D6F0024D33E /* BankServiceProviderAuthenticationRequestProcessor.swift in Sources */,
 				2A220A941FE5CE1800397FBE /* TransactionHistory.swift in Sources */,
 				2A58F14B1FE07D6C0024D33E /* OAuth2BankServiceProviderAuthenticationRequest.swift in Sources */,
@@ -1610,6 +1615,7 @@
 				2AECE5A71FDDEA0700FEEC14 /* TransactionTextType.swift in Sources */,
 				2A220AB21FE7060F00397FBE /* BankingRequestTranslator.swift in Sources */,
 				2A58F1C81FE2B7810024D33E /* OAuth2BankServiceConnectionInformation.swift in Sources */,
+				2A8B1F3D1FF1895400482BF3 /* GustavGetBankAccountsRequestResponse.swift in Sources */,
 				2A58F0FA1FE071560024D33E /* PlatformDependingWebBrowserLauncher.swift in Sources */,
 				2A220A931FE5CE1800397FBE /* TransactionHistory.swift in Sources */,
 				2A58F0971FDFDD4C0024D33E /* BankServiceProviderAuthenticationProvider.swift in Sources */,
