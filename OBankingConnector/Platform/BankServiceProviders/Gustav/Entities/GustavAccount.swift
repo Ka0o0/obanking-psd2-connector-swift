@@ -9,6 +9,7 @@
 import Foundation
 
 struct GustavAccount: Codable {
+
     let id: String
     let accountno: GustavAccountno
     let alias: String?

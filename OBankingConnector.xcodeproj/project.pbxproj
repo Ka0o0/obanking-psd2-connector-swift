@@ -534,9 +534,9 @@
 			isa = PBXGroup;
 			children = (
 				2A1081D81FEC412A0053767C /* GustavBankingRequestTranslator.swift */,
+				2A8B1F751FF28A6D00482BF3 /* GustavPaginatedRequestResponse.swift */,
 				2A0FF7771FEEE234006963A9 /* BankAccount */,
 				2A8B1F581FF254D000482BF3 /* Transactions */,
-				2A8B1F751FF28A6D00482BF3 /* GustavPaginatedRequestResponse.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -629,9 +629,6 @@
 				2A280A761FE400D400B90104 /* GustavBankServiceProvider.swift */,
 				2A280A7D1FE403D200B90104 /* GustavBankServiceProviderConfiguration.swift */,
 				2A280A801FE408DF00B90104 /* GustavSandboxBankServiceProviderConfiguration.swift */,
-				2A1081DB1FEC53DF0053767C /* Certificates */,
-				2A8B1F421FF246FB00482BF3 /* Entities */,
-				2A1081D71FEC41190053767C /* Requests */,
 			);
 			path = Gustav;
 			sourceTree = "<group>";
@@ -879,9 +876,7 @@
 		2A58F1D61FE2D4170024D33E /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				2A58F1D71FE2D4650024D33E /* BankServiceProviderConfiguration.swift */,
 				2A58F1E31FE2D86C0024D33E /* OBankingConnectorConfiguration.swift */,
-				2A58F1DB1FE2D4930024D33E /* OAuth2BankServiceConfiguration.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -1055,6 +1050,7 @@
 		2AECE5701FDDD71700FEEC14 /* BankServiceProviders */ = {
 			isa = PBXGroup;
 			children = (
+				2A58F1D71FE2D4650024D33E /* BankServiceProviderConfiguration.swift */,
 				2A280A751FE400C200B90104 /* Gustav */,
 			);
 			path = BankServiceProviders;
@@ -1077,10 +1073,10 @@
 		2AECE57C1FDDD9D100FEEC14 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				2A58F1D61FE2D4170024D33E /* Configuration */,
 				2A58F0951FDFDD370024D33E /* Authentication */,
 				2AECE5831FDDDD4700FEEC14 /* Banking */,
 				2AECE5701FDDD71700FEEC14 /* BankServiceProviders */,
+				2A58F1D61FE2D4170024D33E /* Configuration */,
 				2A58F0A41FDFE16D0024D33E /* Connection */,
 				2AECE57E1FDDD9FC00FEEC14 /* DeepLinkHandling */,
 				2AECE55E1FDDCF4200FEEC14 /* Entities */,
@@ -1125,6 +1121,7 @@
 		2AF5F8D51FF2BC9700C33ED5 /* BankServiceProviders */ = {
 			isa = PBXGroup;
 			children = (
+				2A58F1DB1FE2D4930024D33E /* OAuth2BankServiceConfiguration.swift */,
 				2AF5F8D61FF2BCA700C33ED5 /* Gustav */,
 			);
 			path = BankServiceProviders;
@@ -1135,6 +1132,9 @@
 			children = (
 				2AF5F8D71FF2BCCE00C33ED5 /* GustavBankServiceProviderConfiguration+Platform.swift */,
 				2AF5F8DA1FF2BDD100C33ED5 /* GustavSandboxBankServiceProviderConfiguration+Platform.swift */,
+				2A1081DB1FEC53DF0053767C /* Certificates */,
+				2A8B1F421FF246FB00482BF3 /* Entities */,
+				2A1081D71FEC41190053767C /* Requests */,
 			);
 			path = Gustav;
 			sourceTree = "<group>";

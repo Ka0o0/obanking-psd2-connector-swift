@@ -9,6 +9,7 @@
 import Foundation
 
 struct GustavBalance: Codable {
+
     let value: Int
     let precision: Int
     let currency: String
