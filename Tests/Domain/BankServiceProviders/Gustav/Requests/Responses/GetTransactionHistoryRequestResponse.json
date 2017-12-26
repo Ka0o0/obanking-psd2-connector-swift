@@ -1,0 +1,41 @@
+{
+    "pageNumber": 0,
+    "pageCount": 2,
+    "nextPage": 1,
+    "pageSize": 100,
+    "transactions": [
+                     {
+                     "accountParty": {
+                     "accountNumber": "2812275553",
+                     "accountPrefix": "0",
+                     "bankCode": "0800",
+                     "bic": "GIBACZPX",
+                     "iban": "CZ6508000000003766862329",
+                     "partyInfo": "Petr Malý",
+                     "partyDescription": "2812275553/0800"
+                     },
+                     "amount": {
+                     "currency": "CZK",
+                     "precision": 2,
+                     "value": 100
+                     },
+                     "amountSender": {
+                     "currency": "CZK",
+                     "precision": 2,
+                     "value": 100
+                     },
+                     "bookingDate": "2014-11-26T00:00:00+01:00",
+                     "cardNumber": 0,
+                     "constantSymbol": "0558",
+                     "description": "domácí platba",
+                     "descriptionEditable": "false",
+                     "id": "I141126DXHZ3T",
+                     "payeeNote": "note for payee",
+                     "payerNote": "note for payer",
+                     "specificSymbol": "55",
+                     "transactionType": "54",
+                     "valuationDate": "2014-11-26T00:00:00+01:00",
+                     "variableSymbol": "0000000009"
+                     }
+                     ]
+}

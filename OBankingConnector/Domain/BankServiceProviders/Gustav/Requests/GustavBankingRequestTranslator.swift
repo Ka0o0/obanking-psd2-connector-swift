@@ -33,6 +33,12 @@ final class GustavBankingRequestTranslator: BankingRequestTranslator {
                 .makeHTTPRequest(bankAccountId: request.bankAccount.id)
         }
 
+        if let request = bankingRequest as? GetTransactionHistoryRequest,
+            let sepaAccountNumber = request.bankAccount.accountNumber as? SepaAccountNumber {
+            return GustavGetTransactionHistoryRequest(baseURL: baseURL)
+                .makeHTTPRequest(iban: sepaAccountNumber.iban)
+        }
+
         return nil
     }
 
@@ -47,6 +53,11 @@ final class GustavBankingRequestTranslator: BankingRequestTranslator {
         if bankingRequest is GetBankAccountDetailsRequest {
             return try GustavGetBankAccountDetailsRequest(baseURL: baseURL)
                 .parseResponse(response) as! T.Result
+        }
+
+        if let request = bankingRequest as? GetTransactionHistoryRequest {
+            return try GustavGetTransactionHistoryRequest(baseURL: baseURL)
+                .parseResponse(response, bankAccount: request.bankAccount) as! T.Result
         }
 
         throw BankingRequestTranslatorError.unsupportedRequestType

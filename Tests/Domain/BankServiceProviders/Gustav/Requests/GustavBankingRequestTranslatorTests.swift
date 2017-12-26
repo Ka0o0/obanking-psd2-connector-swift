@@ -17,12 +17,24 @@ class GustavBankingRequestTranslatorTests: XCTestCase {
         URL(string: "https://api.csas.cz/sandbox/webapi/api/v3/netbanking/my/accounts")
     var getBankAccountDetailsRequestURL: URL! =
         URL(string: "https://api.csas.cz/sandbox/webapi/api/v3/netbanking/my/accounts")
+    // swiftlint:disable line_length
+    var getTransactionHistoryRequestURL: URL! =
+        URL(string: "https://api.csas.cz/sandbox/webapi/api/v3/netbanking/cz/my/accounts/CZ6508000000003766862329/transactions")
+    // swiftlint:enable line_length
+
     var sepaAccountNumberMock: SepaAccountNumber! = SepaAccountNumber(iban: "CZ6508000000003766862329", bic: "GIBACZPX")
+    var bankAccountMock: BankAccount!
 
     var sut: GustavBankingRequestTranslator!
 
     override func setUp() {
         super.setUp()
+
+        bankAccountMock = BankAccount(
+            bankId: "csas",
+            id: "asdf",
+            accountNumber: sepaAccountNumberMock
+        )
 
         sut = GustavBankingRequestTranslator(baseURL: baseURL)
     }
@@ -126,13 +138,7 @@ class GustavBankingRequestTranslatorTests: XCTestCase {
     }
 
     func test_makeHTTPRequest_SupportsGetBankAccountDetailsRequest() {
-        let bankAccount = BankAccount(
-            bankId: "csas",
-            id: "asdf",
-            accountNumber: sepaAccountNumberMock
-        )
-
-        let bankingRequest = GetBankAccountDetailsRequest(bankAccount: bankAccount)
+        let bankingRequest = GetBankAccountDetailsRequest(bankAccount: bankAccountMock)
 
         guard let result = sut.makeHTTPRequest(from: bankingRequest) else {
             XCTFail("Request must not be nil")
@@ -141,23 +147,17 @@ class GustavBankingRequestTranslatorTests: XCTestCase {
 
         XCTAssertEqual(result.encoding, .urlEncoding)
         XCTAssertEqual(result.method, .get)
-        XCTAssertEqual(result.url, getBankAccountDetailsRequestURL.appendingPathComponent(bankAccount.id))
+        XCTAssertEqual(result.url, getBankAccountDetailsRequestURL.appendingPathComponent(bankAccountMock.id))
     }
 
     func test_ParseResponse_ParsesGetBankAccountDetailsRequestResponseCorrectly() {
-        let bankAccount = BankAccount(
-            bankId: "csas",
-            id: "asdf",
-            accountNumber: sepaAccountNumberMock
-        )
-
-        let bankingRequest = GetBankAccountDetailsRequest(bankAccount: bankAccount)
+        let bankingRequest = GetBankAccountDetailsRequest(bankAccount: bankAccountMock)
 
         let testBundle = Bundle(for: type(of: self))
         guard let apiResponseURL = testBundle
             .url(forResource: "GetBankAccountDetailsRequestResponse", withExtension: "json") else {
-                XCTFail("Could not read GetBankAccountsRequestResponse")
-                return
+            XCTFail("Could not read GetBankAccountsRequestResponse")
+            return
         }
 
         do {
@@ -176,7 +176,50 @@ class GustavBankingRequestTranslatorTests: XCTestCase {
 
             let result = try sut.parseResponse(of: bankingRequest, response: apiResponseMockData)
 
-//            XCTAssertEqual(result, expectedResult)
+            XCTAssertEqual(result.balance, expectedResult.balance)
+            XCTAssertEqual(result.type, expectedResult.type)
+            XCTAssertEqual(result.disposeableBalance, expectedResult.disposeableBalance)
+            XCTAssertEqual(result.alias, expectedResult.alias)
+        } catch let error {
+            XCTFail(String(describing: error))
+        }
+    }
+
+    func test_makeHTTPRequest_SupportsGetTransactionHistoryRequest() {
+        let bankingRequest = GetTransactionHistoryRequest(bankAccount: bankAccountMock)
+
+        guard let result = sut.makeHTTPRequest(from: bankingRequest) else {
+            XCTFail("Request must not be nil")
+            return
+        }
+
+        XCTAssertEqual(result.method, .get)
+        XCTAssertEqual(result.url, getTransactionHistoryRequestURL)
+    }
+
+    func test_ParseResponse_ParsesGetTransactionHistoryRequestResponseCorrectly() {
+        let bankingRequest = GetTransactionHistoryRequest(bankAccount: bankAccountMock)
+
+        let testBundle = Bundle(for: type(of: self))
+        guard let apiResponseURL = testBundle
+            .url(forResource: "GetTransactionHistoryRequestResponse", withExtension: "json") else {
+            XCTFail("Could not read GetBankAccountsRequestResponse")
+            return
+        }
+
+        do {
+            let apiResponseMock = try String(contentsOf: apiResponseURL)
+            guard let apiResponseMockData = apiResponseMock.data(using: .utf8) else {
+                XCTFail("Could not create data from string")
+                return
+            }
+
+            let result = try sut.parseResponse(of: bankingRequest, response: apiResponseMockData)
+
+            XCTAssertEqual(result.transactions.count, 1)
+            if let first = result.transactions.first {
+                XCTAssertEqual(first.id, "I141126DXHZ3T")
+            }
         } catch let error {
             XCTFail(String(describing: error))
         }
