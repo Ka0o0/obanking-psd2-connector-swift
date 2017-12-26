@@ -56,8 +56,8 @@ public func application(_ app: UIApplication, open url: URL, options: [UIApplica
 func application(_ application: NSApplication, open urls: [URL]) {
 	let deepLinkHandler = connector.makeDeepLinkHandler()
         
-    urls.forEach {
-    	deepLinkHandler.handle(deepLink: $0)
+	urls.forEach {
+		deepLinkHandler.handle(deepLink: $0)
 	}
 }
 ```
