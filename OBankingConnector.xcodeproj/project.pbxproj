@@ -221,7 +221,6 @@
 		2AECE5A51FDDE9B500FEEC14 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AECE5A41FDDE9B500FEEC14 /* Transaction.swift */; };
 		2AECE5A71FDDEA0700FEEC14 /* TransactionTextType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AECE5A61FDDEA0700FEEC14 /* TransactionTextType.swift */; };
 		3993EEADAC6A1E11B72A1348 /* Pods_OBankingConnectorTests_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B0B04F3043EFD76F57E994 /* Pods_OBankingConnectorTests_macOS.framework */; };
-		490DBF35F0CCB727C605D8C6 /* Pods_OBankingConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B0559B6D012B841B1F27C39 /* Pods_OBankingConnector.framework */; };
 		529A914CAB1BC4E3BEF699B3 /* Pods_OBankingConnectorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D42217200CE96E8FABF03F97 /* Pods_OBankingConnectorTests.framework */; };
 		55A5A35F34700B084DD4F289 /* Pods_OBankingConnectorTests_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61BB304B436F4FBD5CCCFD0A /* Pods_OBankingConnectorTests_iOS.framework */; };
 		6812244FE5992FF04996E68A /* Pods_OBankingConnector_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6BE0D41873DD4B0A78153FC /* Pods_OBankingConnector_macOS.framework */; };
@@ -404,7 +403,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				490DBF35F0CCB727C605D8C6 /* Pods_OBankingConnector.framework in Frameworks */,
 				207BB2A00B9D329907FBD2E6 /* Pods_OBankingConnector_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
