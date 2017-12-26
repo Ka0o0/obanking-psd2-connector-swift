@@ -10,9 +10,7 @@ import Foundation
 
 protocol BankingRequestTranslator {
 
-    func makeHTTPRequest<T: BankingRequest>(from bankingRequest: T) -> HTTPRequest?
-
-    func parseResponse<T: BankingRequest>(of bankingRequest: T, response: Data) throws -> T.Result
+    func makeProcessor<T: BankingRequest>(for bankingRequest: T) -> BankingRequestProcessor<T>?
 }
 
 enum BankingRequestTranslatorError: Error {

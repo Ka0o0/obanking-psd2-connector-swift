@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class GustavGetBankAccountsRequest {
+final class GustavGetBankAccountsRequest: BankingRequestProcessor<GetBankAccountRequest> {
 
     private var url: URL
 
@@ -16,27 +16,17 @@ final class GustavGetBankAccountsRequest {
         url = baseURL.appendingPathComponent("netbanking/my/accounts")
     }
 
-    func makeHTTPRequest(pageSize: Int? = nil, page: Int? = nil) -> HTTPRequest {
-        var parameters = [String: String]()
-
-        if let pageSize = pageSize {
-            parameters["size"] = String(pageSize)
-        }
-
-        if let page = page {
-            parameters["page"] = String(page)
-        }
-
+    override func makeHTTPRequest(from bankingRequest: GetBankAccountRequest) -> HTTPRequest {
         return HTTPRequest(
             method: .get,
             url: url,
-            parameters: parameters,
+            parameters: nil,
             encoding: .urlEncoding,
             headers: nil
         )
     }
 
-    func parseResponse(_ response: Data) throws -> [BankAccount] {
+    override func parseResponse(of bankingRequest: GetBankAccountRequest, response: Data) throws -> [BankAccount] {
         let jsonDecoder = JSONDecoder()
         let apiResponse = try jsonDecoder.decode(GustavGetBankAccountsRequestResponse.self, from: response)
 

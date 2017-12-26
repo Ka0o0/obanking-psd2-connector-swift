@@ -51,11 +51,7 @@ class ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests:
 private extension ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests {
 
     class BankingRequestTranslatorMock: BankingRequestTranslator {
-        func parseResponse<T>(of bankingRequest: T, response: Data) throws -> T.Result where T: BankingRequest {
-            fatalError()
-        }
-
-        func makeHTTPRequest<T: BankingRequest>(from bankingRequest: T) -> HTTPRequest? {
+        func makeProcessor<T>(for bankingRequest: T) -> BankingRequestProcessor<T>? where T: BankingRequest {
             return nil
         }
     }

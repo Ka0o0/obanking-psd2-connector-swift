@@ -10,132 +10,45 @@ import Foundation
 
 final class GustavBankingRequestTranslator: BankingRequestTranslator {
 
-    private let baseURL: URL
+    private typealias ProcessorFactory = () -> Any
+
+    private var supportedBankServiceProcessorMap: [String: ProcessorFactory]
 
     init(baseURL: URL) {
-        self.baseURL = baseURL
+        supportedBankServiceProcessorMap = [
+            String(describing: GetBankAccountRequest.self): {
+                GustavGetBankAccountsRequest(baseURL: baseURL)
+            },
+            String(describing: GetBankAccountDetailsRequest.self): {
+                GustavGetBankAccountDetailsRequest(baseURL: baseURL)
+            },
+            String(describing: GetTransactionHistoryRequest.self): {
+                GustavGetTransactionHistoryRequest(baseURL: baseURL)
+            },
+            String(describing: GetDateFilteredTransactionHistoryRequest.self): {
+                GustavGetDateFilteredTransactionHistoryRequest(baseURL: baseURL)
+            },
+            String(describing: PaginatedBankingRequest<GetBankAccountRequest>.self): {
+                GustavPaginatedRequest(actualRequestProcessor: GustavGetBankAccountsRequest(baseURL: baseURL))
+            },
+            String(describing: PaginatedBankingRequest<GetTransactionHistoryRequest>.self): {
+                GustavPaginatedRequest(actualRequestProcessor: GustavGetTransactionHistoryRequest(baseURL: baseURL))
+            },
+            String(describing: PaginatedBankingRequest<GetDateFilteredTransactionHistoryRequest>.self): {
+                GustavPaginatedRequest(
+                    actualRequestProcessor: GustavGetDateFilteredTransactionHistoryRequest(baseURL: baseURL)
+                )
+            }
+        ]
     }
 
-    func makeHTTPRequest<T>(from bankingRequest: T) -> HTTPRequest? where T: BankingRequest {
-        if bankingRequest is GetBankAccountRequest {
-            return GustavGetBankAccountsRequest(baseURL: baseURL)
-                .makeHTTPRequest()
+    func makeProcessor<T>(for bankingRequest: T) -> BankingRequestProcessor<T>? where T: BankingRequest {
+        let entry = supportedBankServiceProcessorMap[String(describing: type(of: bankingRequest))]
+
+        guard let factory = entry else {
+            return nil
         }
 
-        if let request = bankingRequest as? PaginatedBankingRequest<GetBankAccountRequest> {
-            return GustavGetBankAccountsRequest(baseURL: baseURL)
-                .makeHTTPRequest(pageSize: request.itemsPerPage, page: request.page)
-        }
-
-        if let request = bankingRequest as? GetBankAccountDetailsRequest {
-            return GustavGetBankAccountDetailsRequest(baseURL: baseURL)
-                .makeHTTPRequest(bankAccountId: request.bankAccount.id)
-        }
-
-        if let request = bankingRequest as? GetTransactionHistoryRequest,
-            let sepaAccountNumber = request.bankAccount.accountNumber as? SepaAccountNumber {
-            return GustavGetTransactionHistoryRequest(baseURL: baseURL)
-                .makeHTTPRequest(iban: sepaAccountNumber.iban)
-        }
-
-        if let request = bankingRequest as? PaginatedBankingRequest<GetTransactionHistoryRequest>,
-            let sepaAccountNumber = request.request.bankAccount.accountNumber as? SepaAccountNumber {
-            return GustavGetTransactionHistoryRequest(baseURL: baseURL)
-                .makeHTTPRequest(iban: sepaAccountNumber.iban, pageSize: request.itemsPerPage, page: request.page)
-        }
-
-        if let request = bankingRequest as? GetDateFilteredTransactionHistoryRequest,
-            let sepaAccountNumber = request.bankAccount.accountNumber as? SepaAccountNumber {
-            return GustavGetTransactionHistoryRequest(baseURL: baseURL)
-                .makeHTTPRequest(iban: sepaAccountNumber.iban, startDate: request.startDate, endDate: request.endDate)
-        }
-
-        if let request = bankingRequest as? PaginatedBankingRequest<GetDateFilteredTransactionHistoryRequest>,
-            let sepaAccountNumber = request.request.bankAccount.accountNumber as? SepaAccountNumber {
-            return GustavGetTransactionHistoryRequest(baseURL: baseURL)
-                .makeHTTPRequest(
-                    iban: sepaAccountNumber.iban,
-                    startDate: request.request.startDate,
-                    endDate: request.request.endDate,
-                    pageSize: request.itemsPerPage,
-                    page: request.page
-            )
-        }
-
-        return nil
-    }
-
-    // swiftlint:disable force_cast function_body_length
-    func parseResponse<T>(of bankingRequest: T, response: Data) throws -> T.Result where T: BankingRequest {
-
-        if bankingRequest is GetBankAccountRequest {
-            return try GustavGetBankAccountsRequest(baseURL: baseURL)
-                .parseResponse(response) as! T.Result
-        }
-
-        if bankingRequest is GetBankAccountDetailsRequest {
-            return try GustavGetBankAccountDetailsRequest(baseURL: baseURL)
-                .parseResponse(response) as! T.Result
-        }
-
-        if bankingRequest is PaginatedBankingRequest<GetBankAccountRequest> {
-            let result = try GustavGetBankAccountsRequest(baseURL: baseURL)
-                .parseResponse(response)
-            let paginationInformation = try extractPaginationInformation(from: response)
-
-            return PaginatedBankingRequest<GetBankAccountRequest>.Result(
-                totalPages: paginationInformation.pageCount,
-                currentPage: paginationInformation.pageNumber,
-                nextPage: paginationInformation.nextPage,
-                result: result
-            ) as! T.Result
-        }
-
-        if let request = bankingRequest as? GetTransactionHistoryRequest {
-            return try GustavGetTransactionHistoryRequest(baseURL: baseURL)
-                .parseResponse(response, bankAccount: request.bankAccount) as! T.Result
-        }
-
-        if let request = bankingRequest as? PaginatedBankingRequest<GetTransactionHistoryRequest> {
-            let result = try GustavGetTransactionHistoryRequest(baseURL: baseURL)
-                .parseResponse(response, bankAccount: request.request.bankAccount)
-            let paginationInformation = try extractPaginationInformation(from: response)
-
-            return PaginatedBankingRequest<GetTransactionHistoryRequest>.Result(
-                totalPages: paginationInformation.pageCount,
-                currentPage: paginationInformation.pageNumber,
-                nextPage: paginationInformation.nextPage,
-                result: result
-                ) as! T.Result
-        }
-
-        if let request = bankingRequest as? GetDateFilteredTransactionHistoryRequest {
-            return try GustavGetTransactionHistoryRequest(baseURL: baseURL)
-                .parseResponse(response, bankAccount: request.bankAccount) as! T.Result
-        }
-
-        if let request = bankingRequest as? PaginatedBankingRequest<GetDateFilteredTransactionHistoryRequest> {
-            let result = try GustavGetTransactionHistoryRequest(baseURL: baseURL)
-                .parseResponse(response, bankAccount: request.request.bankAccount)
-            let paginationInformation = try extractPaginationInformation(from: response)
-
-            return PaginatedBankingRequest<GetDateFilteredTransactionHistoryRequest>.Result(
-                totalPages: paginationInformation.pageCount,
-                currentPage: paginationInformation.pageNumber,
-                nextPage: paginationInformation.nextPage,
-                result: result
-                ) as! T.Result
-        }
-
-        throw BankingRequestTranslatorError.unsupportedRequestType
-    }
-    // swiftlint:enable force_cast function_body_length
-}
-
-private extension GustavBankingRequestTranslator {
-
-    func extractPaginationInformation(from data: Data) throws -> GustavPaginatedRequestResponse {
-        let jsonDecoder = JSONDecoder()
-        return try jsonDecoder.decode(GustavPaginatedRequestResponse.self, from: data)
+        return factory() as? BankingRequestProcessor<T>
     }
 }

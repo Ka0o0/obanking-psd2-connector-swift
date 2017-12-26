@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class GustavGetBankAccountDetailsRequest {
+final class GustavGetBankAccountDetailsRequest: BankingRequestProcessor<GetBankAccountDetailsRequest> {
 
     private var url: URL
 
@@ -16,20 +16,22 @@ final class GustavGetBankAccountDetailsRequest {
         url = baseURL.appendingPathComponent("netbanking/my/accounts")
     }
 
-    func makeHTTPRequest(bankAccountId: String) -> HTTPRequest {
-
+    override func makeHTTPRequest(from bankingRequest: GetBankAccountDetailsRequest) -> HTTPRequest {
         return HTTPRequest(
             method: .get,
-            url: url.appendingPathComponent(bankAccountId),
+            url: url.appendingPathComponent(bankingRequest.bankAccount.id),
             parameters: [:],
             encoding: .urlEncoding,
             headers: nil
         )
     }
 
-    func parseResponse(_ data: Data) throws -> BankAccountDetails {
+    override func parseResponse(
+        of bankingRequest: GetBankAccountDetailsRequest,
+        response: Data
+    ) throws -> BankAccountDetails {
         let decoder = JSONDecoder()
-        let account = try decoder.decode(GustavAccount.self, from: data)
+        let account = try decoder.decode(GustavAccount.self, from: response)
 
         guard let details = try account.toBankAccount().details else {
             throw GustavGetBankAccountDetailsRequestError.insufficientInformationAvailable

@@ -1,5 +1,5 @@
 //
-//  GustavGetTransactionHistoryRequest.swift
+//  GustavGetDateFilteredTransactionHistoryRequest.swift
 //  OBankingConnector
 //
 //  Created by Kai Takac on 26.12.17.
@@ -8,7 +8,9 @@
 
 import Foundation
 
-final class GustavGetTransactionHistoryRequest: BankingRequestProcessor<GetTransactionHistoryRequest> {
+// swiftlint:disable colon
+final class GustavGetDateFilteredTransactionHistoryRequest:
+    BankingRequestProcessor<GetDateFilteredTransactionHistoryRequest> {
 
     private var baseURL: URL
 
@@ -16,26 +18,31 @@ final class GustavGetTransactionHistoryRequest: BankingRequestProcessor<GetTrans
         self.baseURL = baseURL
     }
 
-    override func makeHTTPRequest(from bankingRequest: GetTransactionHistoryRequest) -> HTTPRequest {
+    override func makeHTTPRequest(from bankingRequest: GetDateFilteredTransactionHistoryRequest) -> HTTPRequest {
         guard let sepaAccountNumber = bankingRequest.bankAccount.accountNumber as? SepaAccountNumber else {
             fatalError()
         }
 
         let urlPathAppendix = String(format: "netbanking/cz/my/accounts/%@/transactions", sepaAccountNumber.iban)
 
+        let parameters: [String: String] = [
+            "dateStart": bankingRequest.startDate.iso8601,
+            "dateEnd": bankingRequest.endDate.iso8601
+        ]
+
         return HTTPRequest(
             method: .get,
             url: baseURL.appendingPathComponent(urlPathAppendix),
-            parameters: nil,
+            parameters: parameters,
             encoding: .urlEncoding,
             headers: nil
         )
     }
 
     override func parseResponse(
-        of bankingRequest: GetTransactionHistoryRequest,
+        of bankingRequest: GetDateFilteredTransactionHistoryRequest,
         response: Data
-    ) throws -> TransactionHistory {
+        ) throws -> TransactionHistory {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .custom(ISO8601JSONDateDecodingStrategy)
         let apiTransactions = try jsonDecoder.decode(GustavGetTransactionHistoryRequestResponse.self, from: response)
@@ -46,3 +53,4 @@ final class GustavGetTransactionHistoryRequest: BankingRequestProcessor<GetTrans
         return TransactionHistory(date: Date(), transactions: transactions)
     }
 }
+// swiftlint:enable colon
