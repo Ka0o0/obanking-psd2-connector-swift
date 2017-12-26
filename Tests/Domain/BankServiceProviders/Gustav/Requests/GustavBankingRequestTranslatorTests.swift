@@ -9,7 +9,7 @@
 import XCTest
 @testable import OBankingConnector
 
-// swiftlint:disable function_body_length
+// swiftlint:disable function_body_length type_body_length
 class GustavBankingRequestTranslatorTests: XCTestCase {
 
     var baseURL: URL! = URL(string: "https://api.csas.cz/sandbox/webapi/api/v3")
@@ -132,6 +132,37 @@ class GustavBankingRequestTranslatorTests: XCTestCase {
             let result = try sut.parseResponse(of: GetBankAccountRequest(bankId: ""), response: apiResponseMockData)
 
             XCTAssertEqual(result, expectedResult)
+        } catch let error {
+            XCTFail(String(describing: error))
+        }
+    }
+
+    func test_ParseResponse_ParsesGetPaginatedBankAccountsRequestResponseCorrectly() {
+        let testBundle = Bundle(for: type(of: self))
+        guard let apiResponseURL = testBundle
+            .url(forResource: "GetBankAccountsRequestResponse", withExtension: "json") else {
+            XCTFail("Could not read GetBankAccountsRequestResponse")
+            return
+        }
+
+        do {
+            let apiResponseMock = try String(contentsOf: apiResponseURL)
+            guard let apiResponseMockData = apiResponseMock.data(using: .utf8) else {
+                XCTFail("Could not create data from string")
+                return
+            }
+
+            let bankingRequest = PaginatedBankingRequest(
+                page: 1,
+                itemsPerPage: 20,
+                request: GetBankAccountRequest(bankId: "")
+            )
+
+            let result = try sut.parseResponse(of: bankingRequest, response: apiResponseMockData)
+
+            XCTAssertEqual(result.currentPage, 0)
+            XCTAssertEqual(result.totalPages, 2)
+            XCTAssertEqual(result.nextPage, 1)
         } catch let error {
             XCTFail(String(describing: error))
         }
@@ -276,6 +307,40 @@ class GustavBankingRequestTranslatorTests: XCTestCase {
         XCTAssertEqual(parameters, expectedParameters)
     }
 
+    func test_makeHTTPRequest_SupportsPaginatedGetDateFilteredTransactionHistoryRequest() {
+        let startDate = Date(timeIntervalSince1970: 1401580800) // 2014-06-01T00:00:00+00:00
+        let endDate = Date(timeIntervalSince1970: 1404172800) // 2014-07-01T00:00:00+00:00
+        let bankingRequest = PaginatedBankingRequest(
+            page: 1,
+            itemsPerPage: 20,
+            request: GetDateFilteredTransactionHistoryRequest(
+                bankAccount: bankAccountMock,
+                startDate: startDate,
+                endDate: endDate
+            )
+        )
+
+        guard let result = sut.makeHTTPRequest(from: bankingRequest) else {
+            XCTFail("Request must not be nil")
+            return
+        }
+
+        XCTAssertEqual(result.method, .get)
+        XCTAssertEqual(result.url, getTransactionHistoryRequestURL)
+
+        guard let parameters = result.parameters as? [String: String] else {
+            XCTFail("Parameters should not be nil")
+            return
+        }
+        let expectedParameters: [String: String] = [
+            "dateStart": "2014-06-01T00:00:00.000Z",
+            "dateEnd": "2014-07-01T00:00:00.000Z",
+            "page": "1",
+            "size": "20"
+        ]
+        XCTAssertEqual(parameters, expectedParameters)
+    }
+
     func test_ParseResponse_ParsesGetDateFilteredTransactionHistoryRequestResponseCorrectly() {
         let startDate = Date(timeIntervalSince1970: 1401580800) // 2014-06-01T00:00:00+00:00
         let endDate = Date(timeIntervalSince1970: 1404172800) // 2014-07-01T00:00:00+00:00
@@ -288,8 +353,8 @@ class GustavBankingRequestTranslatorTests: XCTestCase {
         let testBundle = Bundle(for: type(of: self))
         guard let apiResponseURL = testBundle
             .url(forResource: "GetTransactionHistoryRequestResponse", withExtension: "json") else {
-                XCTFail("Could not read GetBankAccountsRequestResponse")
-                return
+            XCTFail("Could not read GetBankAccountsRequestResponse")
+            return
         }
 
         do {
@@ -309,5 +374,6 @@ class GustavBankingRequestTranslatorTests: XCTestCase {
             XCTFail(String(describing: error))
         }
     }
+
 }
-// swiftlint:enable function_body_length
+// swiftlint:enable function_body_length type_body_length

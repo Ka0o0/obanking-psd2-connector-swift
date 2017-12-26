@@ -15,7 +15,7 @@ public struct PaginatedBankingRequest<T: BankingRequest>: BankingRequest {
         public let currentPage: Int
         public let nextPage: Int?
 
-        public let result: T.Type
+        public let result: T.Result
     }
 
     let page: Int

@@ -254,6 +254,8 @@
 		2A8B1F711FF263F700482BF3 /* GustavTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F6F1FF263F700482BF3 /* GustavTransactionTests.swift */; };
 		2A8B1F731FF283A300482BF3 /* Date+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F721FF283A300482BF3 /* Date+ISO8601.swift */; };
 		2A8B1F741FF283A300482BF3 /* Date+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F721FF283A300482BF3 /* Date+ISO8601.swift */; };
+		2A8B1F761FF28A6D00482BF3 /* GustavPaginatedRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F751FF28A6D00482BF3 /* GustavPaginatedRequestResponse.swift */; };
+		2A8B1F771FF28A6D00482BF3 /* GustavPaginatedRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F751FF28A6D00482BF3 /* GustavPaginatedRequestResponse.swift */; };
 		2AECE54E1FDDCF0000FEEC14 /* OBankingConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AECE5441FDDCF0000FEEC14 /* OBankingConnector.framework */; };
 		2AECE5551FDDCF0000FEEC14 /* OBankingConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AECE5471FDDCF0000FEEC14 /* OBankingConnector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2AECE5621FDDD04500FEEC14 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AECE5611FDDD04500FEEC14 /* Bank.swift */; };
@@ -422,6 +424,7 @@
 		2A8B1F6B1FF2604700482BF3 /* ISO8601JSONDateDecodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO8601JSONDateDecodingStrategy.swift; sourceTree = "<group>"; };
 		2A8B1F6F1FF263F700482BF3 /* GustavTransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavTransactionTests.swift; sourceTree = "<group>"; };
 		2A8B1F721FF283A300482BF3 /* Date+ISO8601.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ISO8601.swift"; sourceTree = "<group>"; };
+		2A8B1F751FF28A6D00482BF3 /* GustavPaginatedRequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavPaginatedRequestResponse.swift; sourceTree = "<group>"; };
 		2AECE5441FDDCF0000FEEC14 /* OBankingConnector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OBankingConnector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AECE5471FDDCF0000FEEC14 /* OBankingConnector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBankingConnector.h; sourceTree = "<group>"; };
 		2AECE5481FDDCF0000FEEC14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -531,6 +534,7 @@
 				2A1081D81FEC412A0053767C /* GustavBankingRequestTranslator.swift */,
 				2A0FF7771FEEE234006963A9 /* BankAccount */,
 				2A8B1F581FF254D000482BF3 /* Transactions */,
+				2A8B1F751FF28A6D00482BF3 /* GustavPaginatedRequestResponse.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -1646,6 +1650,7 @@
 				2A58F1371FE07D090024D33E /* SepaAccountNumber.swift in Sources */,
 				2A220AB01FE661E600397FBE /* HTTPRequest.swift in Sources */,
 				2A58F1421FE07D110024D33E /* BankServiceProviderAuthenticationResult.swift in Sources */,
+				2A8B1F771FF28A6D00482BF3 /* GustavPaginatedRequestResponse.swift in Sources */,
 				2A58F1381FE07D090024D33E /* Transaction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1787,6 +1792,7 @@
 				2AECE5A51FDDE9B500FEEC14 /* Transaction.swift in Sources */,
 				2A220AAF1FE661E600397FBE /* HTTPRequest.swift in Sources */,
 				2A58F0D41FE012950024D33E /* DeepLinkProvider.swift in Sources */,
+				2A8B1F761FF28A6D00482BF3 /* GustavPaginatedRequestResponse.swift in Sources */,
 				2A58F09C1FDFDE540024D33E /* BankServiceProviderAuthenticationResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
