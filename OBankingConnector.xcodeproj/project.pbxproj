@@ -252,6 +252,8 @@
 		2A8B1F6D1FF2604700482BF3 /* ISO8601JSONDateDecodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F6B1FF2604700482BF3 /* ISO8601JSONDateDecodingStrategy.swift */; };
 		2A8B1F701FF263F700482BF3 /* GustavTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F6F1FF263F700482BF3 /* GustavTransactionTests.swift */; };
 		2A8B1F711FF263F700482BF3 /* GustavTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F6F1FF263F700482BF3 /* GustavTransactionTests.swift */; };
+		2A8B1F731FF283A300482BF3 /* Date+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F721FF283A300482BF3 /* Date+ISO8601.swift */; };
+		2A8B1F741FF283A300482BF3 /* Date+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F721FF283A300482BF3 /* Date+ISO8601.swift */; };
 		2AECE54E1FDDCF0000FEEC14 /* OBankingConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AECE5441FDDCF0000FEEC14 /* OBankingConnector.framework */; };
 		2AECE5551FDDCF0000FEEC14 /* OBankingConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AECE5471FDDCF0000FEEC14 /* OBankingConnector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2AECE5621FDDD04500FEEC14 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AECE5611FDDD04500FEEC14 /* Bank.swift */; };
@@ -419,6 +421,7 @@
 		2A8B1F681FF25F8400482BF3 /* GustavGetTransactionHistoryRequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavGetTransactionHistoryRequestResponse.swift; sourceTree = "<group>"; };
 		2A8B1F6B1FF2604700482BF3 /* ISO8601JSONDateDecodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO8601JSONDateDecodingStrategy.swift; sourceTree = "<group>"; };
 		2A8B1F6F1FF263F700482BF3 /* GustavTransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavTransactionTests.swift; sourceTree = "<group>"; };
+		2A8B1F721FF283A300482BF3 /* Date+ISO8601.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ISO8601.swift"; sourceTree = "<group>"; };
 		2AECE5441FDDCF0000FEEC14 /* OBankingConnector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OBankingConnector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AECE5471FDDCF0000FEEC14 /* OBankingConnector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBankingConnector.h; sourceTree = "<group>"; };
 		2AECE5481FDDCF0000FEEC14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -708,6 +711,7 @@
 				2A58F0C41FE008E30024D33E /* IBANValidator.swift */,
 				2A58F18F1FE086550024D33E /* URLBuilder.swift */,
 				2A8B1F6B1FF2604700482BF3 /* ISO8601JSONDateDecodingStrategy.swift */,
+				2A8B1F721FF283A300482BF3 /* Date+ISO8601.swift */,
 			);
 			path = Utitlities;
 			sourceTree = "<group>";
@@ -1570,6 +1574,7 @@
 				2A58F1391FE07D090024D33E /* TransactionTextType.swift in Sources */,
 				2A1081D31FEC2D5B0053767C /* DefaultBankServiceConnectionInformationDecoder.swift in Sources */,
 				2A58F1BE1FE289E60024D33E /* OAuth2AccessTokenRequestor.swift in Sources */,
+				2A8B1F741FF283A300482BF3 /* Date+ISO8601.swift in Sources */,
 				2A220A9A1FE5D2BF00397FBE /* PaginatedBankingRequest.swift in Sources */,
 				2A58F1491FE07D670024D33E /* DeepLinkProvider.swift in Sources */,
 				2A220AB31FE7060F00397FBE /* BankingRequestTranslator.swift in Sources */,
@@ -1710,6 +1715,7 @@
 				2A58F0E21FE01C590024D33E /* DefaultBankServiceProviderAuthenticationProvider.swift in Sources */,
 				2A1081D21FEC2D5B0053767C /* DefaultBankServiceConnectionInformationDecoder.swift in Sources */,
 				2A58F1BD1FE289E50024D33E /* OAuth2AccessTokenRequestor.swift in Sources */,
+				2A8B1F731FF283A300482BF3 /* Date+ISO8601.swift in Sources */,
 				2A220A991FE5D2BF00397FBE /* PaginatedBankingRequest.swift in Sources */,
 				2AECE5A71FDDEA0700FEEC14 /* TransactionTextType.swift in Sources */,
 				2A220AB21FE7060F00397FBE /* BankingRequestTranslator.swift in Sources */,

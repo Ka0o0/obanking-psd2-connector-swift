@@ -17,7 +17,6 @@ final class GustavBankingRequestTranslator: BankingRequestTranslator {
     }
 
     func makeHTTPRequest<T>(from bankingRequest: T) -> HTTPRequest? where T: BankingRequest {
-
         if bankingRequest is GetBankAccountRequest {
             return GustavGetBankAccountsRequest(baseURL: baseURL)
                 .makeHTTPRequest()
@@ -45,6 +44,12 @@ final class GustavBankingRequestTranslator: BankingRequestTranslator {
                 .makeHTTPRequest(iban: sepaAccountNumber.iban, pageSize: request.itemsPerPage, page: request.page)
         }
 
+        if let request = bankingRequest as? GetDateFilteredTransactionHistoryRequest,
+            let sepaAccountNumber = request.bankAccount.accountNumber as? SepaAccountNumber {
+            return GustavGetTransactionHistoryRequest(baseURL: baseURL)
+                .makeHTTPRequest(iban: sepaAccountNumber.iban, startDate: request.startDate, endDate: request.endDate)
+        }
+
         return nil
     }
 
@@ -62,6 +67,11 @@ final class GustavBankingRequestTranslator: BankingRequestTranslator {
         }
 
         if let request = bankingRequest as? GetTransactionHistoryRequest {
+            return try GustavGetTransactionHistoryRequest(baseURL: baseURL)
+                .parseResponse(response, bankAccount: request.bankAccount) as! T.Result
+        }
+
+        if let request = bankingRequest as? GetDateFilteredTransactionHistoryRequest {
             return try GustavGetTransactionHistoryRequest(baseURL: baseURL)
                 .parseResponse(response, bankAccount: request.bankAccount) as! T.Result
         }

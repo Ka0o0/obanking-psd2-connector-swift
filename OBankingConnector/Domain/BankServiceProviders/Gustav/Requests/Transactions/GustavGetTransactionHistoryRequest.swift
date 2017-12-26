@@ -16,8 +16,22 @@ final class GustavGetTransactionHistoryRequest {
         self.baseURL = baseURL
     }
 
-    func makeHTTPRequest(iban: String, pageSize: Int? = nil, page: Int? = nil) -> HTTPRequest {
+    func makeHTTPRequest(
+        iban: String,
+        startDate: Date? = nil,
+        endDate: Date? = nil,
+        pageSize: Int? = nil,
+        page: Int? = nil
+    ) -> HTTPRequest {
         var parameters = [String: String]()
+
+        if let startDate = startDate {
+            parameters["dateStart"] = startDate.iso8601
+        }
+
+        if let endDate = endDate {
+            parameters["dateEnd"] = endDate.iso8601
+        }
 
         if let pageSize = pageSize {
             parameters["size"] = String(pageSize)
