@@ -197,6 +197,29 @@ class GustavBankingRequestTranslatorTests: XCTestCase {
         XCTAssertEqual(result.url, getTransactionHistoryRequestURL)
     }
 
+    func test_makeHTTPRequest_SupportsPaginatedGetTransactionHistoryRequest() {
+        let bankingRequest = PaginatedBankingRequest(
+            page: 1,
+            itemsPerPage: 20,
+            request: GetTransactionHistoryRequest(bankAccount: bankAccountMock)
+        )
+
+        guard let result = sut.makeHTTPRequest(from: bankingRequest) else {
+            XCTFail("Request must not be nil")
+            return
+        }
+
+        XCTAssertEqual(result.method, .get)
+        XCTAssertEqual(result.url, getTransactionHistoryRequestURL)
+
+        guard let parameters = result.parameters as? [String: String] else {
+            XCTFail("Parameters should not be nil")
+            return
+        }
+        let expectedParameters: [String: String] = ["page": "1", "size": "20"]
+        XCTAssertEqual(parameters, expectedParameters)
+    }
+
     func test_ParseResponse_ParsesGetTransactionHistoryRequestResponseCorrectly() {
         let bankingRequest = GetTransactionHistoryRequest(bankAccount: bankAccountMock)
 

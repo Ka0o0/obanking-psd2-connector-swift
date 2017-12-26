@@ -16,13 +16,23 @@ final class GustavGetTransactionHistoryRequest {
         self.baseURL = baseURL
     }
 
-    func makeHTTPRequest(iban: String) -> HTTPRequest {
+    func makeHTTPRequest(iban: String, pageSize: Int? = nil, page: Int? = nil) -> HTTPRequest {
+        var parameters = [String: String]()
+
+        if let pageSize = pageSize {
+            parameters["size"] = String(pageSize)
+        }
+
+        if let page = page {
+            parameters["page"] = String(page)
+        }
+
         let urlPathAppendix = String(format: "netbanking/cz/my/accounts/%@/transactions", iban)
 
         return HTTPRequest(
             method: .get,
             url: baseURL.appendingPathComponent(urlPathAppendix),
-            parameters: nil,
+            parameters: parameters,
             encoding: .urlEncoding,
             headers: nil
         )

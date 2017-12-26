@@ -39,6 +39,12 @@ final class GustavBankingRequestTranslator: BankingRequestTranslator {
                 .makeHTTPRequest(iban: sepaAccountNumber.iban)
         }
 
+        if let request = bankingRequest as? PaginatedBankingRequest<GetTransactionHistoryRequest>,
+            let sepaAccountNumber = request.request.bankAccount.accountNumber as? SepaAccountNumber {
+            return GustavGetTransactionHistoryRequest(baseURL: baseURL)
+                .makeHTTPRequest(iban: sepaAccountNumber.iban, pageSize: request.itemsPerPage, page: request.page)
+        }
+
         return nil
     }
 
