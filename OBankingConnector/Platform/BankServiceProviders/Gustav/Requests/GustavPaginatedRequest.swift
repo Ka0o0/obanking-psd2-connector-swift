@@ -16,8 +16,8 @@ final class GustavPaginatedRequest<T>: BankingRequestProcessor<PaginatedBankingR
         self.actualRequestProcessor = actualRequestProcessor
     }
 
-    override func makeHTTPRequest(from bankingRequest: PaginatedBankingRequest<T>) -> HTTPRequest {
-        let httpRequest = actualRequestProcessor.makeHTTPRequest(from: bankingRequest.request)
+    override func makeHTTPRequest(from bankingRequest: PaginatedBankingRequest<T>) throws -> HTTPRequest {
+        let httpRequest = try actualRequestProcessor.makeHTTPRequest(from: bankingRequest.request)
         var parameters: [String: Any] = httpRequest.parameters ?? [:]
         parameters["size"] = String(bankingRequest.itemsPerPage)
         parameters["page"] = String(bankingRequest.page)

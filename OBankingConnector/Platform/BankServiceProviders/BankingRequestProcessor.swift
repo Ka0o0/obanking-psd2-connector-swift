@@ -10,7 +10,7 @@ import Foundation
 
 class BankingRequestProcessor<T> where T: BankingRequest {
 
-    func makeHTTPRequest(from bankingRequest: T) -> HTTPRequest {
+    func makeHTTPRequest(from bankingRequest: T) throws -> HTTPRequest {
         fatalError("Not implemented")
     }
 

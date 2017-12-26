@@ -15,23 +15,27 @@ class GustavPaginatedRequestTests: XCTestCase {
         let actualProcessor = RequestMockRequestProcessor()
         let sut = GustavPaginatedRequest(actualRequestProcessor: actualProcessor)
 
-        let result = sut.makeHTTPRequest(
-            from: PaginatedBankingRequest(page: 1, itemsPerPage: 20, request: RequestMock())
-        )
+        do {
+            let result = try sut.makeHTTPRequest(
+                from: PaginatedBankingRequest(page: 1, itemsPerPage: 20, request: RequestMock())
+            )
 
-        XCTAssertEqual(result.method, .get)
-        XCTAssertEqual(result.url, URL(fileURLWithPath: "test"))
+            XCTAssertEqual(result.method, .get)
+            XCTAssertEqual(result.url, URL(fileURLWithPath: "test"))
 
-        guard let paramters = result.parameters as? [String: String] else {
-            XCTFail("Parameters must not be nil")
-            return
+            guard let paramters = result.parameters as? [String: String] else {
+                XCTFail("Parameters must not be nil")
+                return
+            }
+
+            let expectedParamters: [String: String] = [
+                "page": "1",
+                "size": "20"
+            ]
+            XCTAssertEqual(paramters, expectedParamters)
+        } catch let error {
+            XCTFail(String(describing: error))
         }
-
-        let expectedParamters: [String: String] = [
-            "page": "1",
-            "size": "20"
-        ]
-        XCTAssertEqual(paramters, expectedParamters)
     }
 
     func test_ParseResponse_ParsesResponesProperlyWithoutNextPage() {
