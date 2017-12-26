@@ -19,6 +19,10 @@ public struct Amount {
         self.precision = precision
         self.currency = currency
     }
+
+    public func toDecimal() -> Decimal {
+        return Decimal(value) / pow(10, precision)
+    }
 }
 
 extension Amount: Equatable {

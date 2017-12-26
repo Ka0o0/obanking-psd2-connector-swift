@@ -15,14 +15,16 @@ public struct PaginatedBankingRequest<T: BankingRequest>: BankingRequest {
         public let currentPage: Int
         public let nextPage: Int?
 
-        public let result: T.Type
+        public let result: T.Result
     }
 
     let page: Int
     let itemsPerPage: Int
+    let request: T
 
-    public init(page: Int, itemsPerPage: Int) {
+    public init(page: Int, itemsPerPage: Int, request: T) {
         self.page = page
         self.itemsPerPage = itemsPerPage
+        self.request = request
     }
 }

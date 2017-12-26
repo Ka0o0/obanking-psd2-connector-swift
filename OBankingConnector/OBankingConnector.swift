@@ -10,6 +10,14 @@ import Foundation
 
 public final class OBankingConnector {
 
+    static var bundle: Bundle {
+        if let bundle = Bundle(identifier: "org.cocoapods.OBankingConnector") {
+            return bundle
+        }
+
+        return Bundle(for: OBankingConnector.self)
+    }
+
     private let configurationParser: ConfigurationParser
     private let deepLinkService: DeepLinkService
     private let externalWebBrowserLauncher: ExternalWebBrowserLauncher

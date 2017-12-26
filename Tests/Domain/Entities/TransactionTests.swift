@@ -13,6 +13,7 @@ class TransactionTests: XCTestCase {
 
     func test_Init_TakesRequired() {
         let mockedPartyAccountNumber = AccountNumberMock(identifier: "partyAccountNumber")
+        let mockedPartyAccountHolderInformation = AccountHolderInformation(fullName: "John Doe")
         let mockedAmount = Amount(value: 123, precision: 1, currency: .EUR)
         let mockedBookingDate = Date()
 
@@ -20,6 +21,7 @@ class TransactionTests: XCTestCase {
             id: "example_transaction",
             bankAccountNumberId: "example_bank_account",
             partyAccount: mockedPartyAccountNumber,
+            partyAccountHolderInformation: mockedPartyAccountHolderInformation,
             amount: mockedAmount,
             text: "Hello World!",
             bookingDate: mockedBookingDate
@@ -32,6 +34,7 @@ class TransactionTests: XCTestCase {
         XCTAssertEqual(sut.text, "Hello World!")
         XCTAssertEqual(sut.bookingDate, mockedBookingDate)
         XCTAssertEqual(sut.textType, TransactionTextType.unknown)
+        XCTAssertEqual(sut.partyAccountHolderInformation.fullName, mockedPartyAccountHolderInformation.fullName)
     }
 
     func test_Init_TakesOptionals() {
@@ -41,6 +44,7 @@ class TransactionTests: XCTestCase {
         }
 
         let mockedPartyAccountNumber = AccountNumberMock(identifier: "partyAccountNumber")
+        let mockedPartyAccountHolderInformation = AccountHolderInformation(fullName: "John Doe")
         let mockedAmount = Amount(value: 123, precision: 1, currency: .EUR)
         let mockedBookingDate = Date()
         let mockedProcessingDate = Date()
@@ -55,6 +59,7 @@ class TransactionTests: XCTestCase {
             id: "example_transaction",
             bankAccountNumberId: "example_bank_account",
             partyAccount: mockedPartyAccountNumber,
+            partyAccountHolderInformation: mockedPartyAccountHolderInformation,
             amount: mockedAmount,
             text: "Hello World!",
             bookingDate: mockedBookingDate,

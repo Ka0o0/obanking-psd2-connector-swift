@@ -1,0 +1,62 @@
+
+{
+    "id": "D2C8C1DCC51A3738538A40A4863CA288E0225E52",
+    "accountno": {
+        "number": "1019382023",
+        "bankCode": "0800",
+        "countryCode": "CZ",
+        "cz-iban": "CZ0708000000001019382023",
+        "cz-bic": "GIBACZPX"
+    },
+    "alias": "moj osobny ucet s kasickou",
+    "balance": {
+        "value": 8965200,
+        "precision": 2,
+        "currency": "CZK"
+    },
+    "disposable": {
+        "value": 0,
+        "precision": 2,
+        "currency": "EUR"
+    },
+    "type": "CURRENT",
+    "subtype": "CURRENT_ACCOUNT",
+    "productI18N": "Osobní účet ČS II",
+    "product": "54",
+    "overdraft": {
+        "value": 2000000,
+        "precision": 2,
+        "currency": "CZK"
+    },
+    "overdraftDueDate": "2015-07-31",
+    "flags": [
+              "accountQueryAllowed",
+              "collectiveSigning",
+              "domesticTransferAllowed",
+              "internationalTransferAllowed",
+              "ownTransferAllowed",
+              "urgentTransferAllowed"
+              ],
+    "subaccounts": [
+                    {
+                    "id": "0D5F82464A77DF093858A8A5B938BEE410B4409C",
+                    "accountno": {
+                    "number": "2187142023",
+                    "bankCode": "0800",
+                    "countryCode": "CZ",
+                    "cz-iban": "CZ1308000000002187142023",
+                    "cz-bic": "GIBACZPX"
+                    },
+                    "type": "SAVING",
+                    "subtype": "SAVING_ACCOUNT",
+                    "product": "52",
+                    "productI18N": "Peníze stranou",
+                    "balance": {
+                    "value": 2000000,
+                    "precision": 2,
+                    "currency": "CZK"
+                    },
+                    "creditInterestRate": 1
+                    }
+                    ]
+}

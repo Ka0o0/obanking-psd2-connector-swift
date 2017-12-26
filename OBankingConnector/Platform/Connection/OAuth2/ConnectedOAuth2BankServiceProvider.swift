@@ -34,8 +34,11 @@ final class ConnectedOAuth2BankServiceProvider: ConnectedBankServiceProvider {
             return Single.error(ConnectedBankServiceProviderError.unsupportedRequest)
         }
 
-        let translator = configuration.bankingRequestTranslator
-        guard let httpRequest = makeRequestAndAppendAuthorizationHeader(for: request, using: translator) else {
+        guard let translator = configuration.bankingRequestTranslator.makeProcessor(for: request) else {
+            return Single.error(ConnectedBankServiceProviderError.unsupportedRequest)
+        }
+
+        guard let httpRequest = try? makeRequestAndAppendAuthorizationHeader(for: request, using: translator) else {
             return Single.error(ConnectedBankServiceProviderError.unsupportedRequest)
         }
 
@@ -71,15 +74,12 @@ private extension ConnectedOAuth2BankServiceProvider {
             as? OAuth2BankServiceConfiguration
     }
 
-    func makeRequestAndAppendAuthorizationHeader<T: BankingRequest>(
+    func makeRequestAndAppendAuthorizationHeader<T>(
         for bankingRequest: T,
-        using translator: BankingRequestTranslator
-    ) -> HTTPRequest? {
+        using translator: BankingRequestProcessor<T>
+    ) throws -> HTTPRequest {
 
-        guard let request = translator.makeHTTPRequest(from: bankingRequest) else {
-            return nil
-        }
-
+        let request = try translator.makeHTTPRequest(from: bankingRequest)
         var headers = request.headers ?? [:]
         headers["Authorization"] = String(format: "bearer %@", oAuth2ConnectionInformation.accessToken)
 

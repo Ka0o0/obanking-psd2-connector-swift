@@ -107,20 +107,39 @@ private extension ConnectedOAuth2BankServiceProviderTests {
         case invalidRequestType
     }
 
-    class BankingRequestTranslatorMock: BankingRequestTranslator {
+    class BankingRequestProcessorMock: BankingRequestProcessor<RequestMock> {
 
+        private let httpRequest: HTTPRequest
+
+        init(httpRequest: HTTPRequest) {
+            self.httpRequest = httpRequest
+        }
+
+        override func makeHTTPRequest(
+            from bankingRequest: ConnectedOAuth2BankServiceProviderTests.RequestMock
+        ) -> HTTPRequest {
+            return httpRequest
+        }
+
+        override func parseResponse(
+            of bankingRequest: ConnectedOAuth2BankServiceProviderTests.RequestMock,
+            response: Data
+        ) throws -> ConnectedOAuth2BankServiceProviderTests.RequestMock.Result {
+            return RequestMock.Result()
+        }
+    }
+
+    class BankingRequestTranslatorMock: BankingRequestTranslator {
         var nextRequest: HTTPRequest?
 
-        func makeHTTPRequest<T>(from bankingRequest: T) -> HTTPRequest? where T: BankingRequest {
-            return nextRequest
+        func makeProcessor<T>(for bankingRequest: T) -> BankingRequestProcessor<T>? where T: BankingRequest {
+            guard let nextRequest = self.nextRequest else {
+                return nil
+            }
+
+            return BankingRequestProcessorMock(httpRequest: nextRequest) as? BankingRequestProcessor<T>
         }
 
-        func parseResponse<T>(of bankingRequest: T, response: Data) throws -> T.Result where T: BankingRequest {
-            guard let result = RequestMock.Result() as? T.Result else {
-                throw BankingRequestTranslatorMockError.invalidRequestType
-            }
-            return result
-        }
     }
 
     class BankServiceProviderConfigurationMock: OAuth2BankServiceConfiguration {

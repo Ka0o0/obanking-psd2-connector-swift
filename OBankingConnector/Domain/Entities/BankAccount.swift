@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct BankAccount {
+public struct BankAccount: Equatable {
 
     public let bankId: String
     public let id: String
@@ -25,5 +25,11 @@ public struct BankAccount {
         self.id = id
         self.accountNumber = accountNumber
         self.details = details
+    }
+
+    public static func == (lhs: BankAccount, rhs: BankAccount) -> Bool {
+        return lhs.bankId == rhs.bankId &&
+            lhs.id == rhs.id &&
+            lhs.accountNumber.equals(other: rhs.accountNumber)
     }
 }

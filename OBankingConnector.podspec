@@ -17,6 +17,7 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.10'
 
   s.source_files = 'OBankingConnector/**/*'
+  s.resources = 'OBankingConnector/**/*.crt'
 
   s.frameworks = 'Foundation'
   s.dependency 'RxSwift', '~> 4.0'
