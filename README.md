@@ -6,6 +6,8 @@
 
 *The easiest way of adding banking functionality to your app  💰💵 .* 
 
+[![Build Status](https://travis-ci.com/Ka0o0/obanking-psd2-connector-swift.svg?token=m9GYKUaLBZtp4LvQys1D&branch=develop)](https://travis-ci.com/Ka0o0/obanking-psd2-connector-swift)
+
 ## What is this repository about?
 
 The goal of this project is to provide developers the ability to create Apps that connect to various bank APIs in a straight forward manner.
