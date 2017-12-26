@@ -40,45 +40,8 @@ final class GustavGetBankAccountsRequest {
         let jsonDecoder = JSONDecoder()
         let apiResponse = try jsonDecoder.decode(GustavGetBankAccountsRequestResponse.self, from: response)
 
-        var bankAccounts = [BankAccount]()
-
-        try apiResponse.accounts.forEach { apiAccount in
-            let bankAccountType: BankAccountType
-
-            switch apiAccount.type {
-            case .current:
-                bankAccountType = .current
-            case .saving:
-                bankAccountType = .saving
-            case .loan:
-                bankAccountType = .loan
-            }
-
-            let balance = try apiAccount.balance.toAmount()
-            let disposeableBalance = try apiAccount.disposable?.toAmount()
-
-            let bankAccountDetails = BankAccountDetails(
-                balance: balance,
-                type: bankAccountType,
-                disposeableBalance: disposeableBalance,
-                alias: apiAccount.alias
-            )
-
-            guard let accountNumber = SepaAccountNumber(
-                iban: apiAccount.accountno.iban,
-                bic: apiAccount.accountno.bic
-            ) else {
-                throw GustavGetBankAccountsRequestParseError.invalidSepaAccountNumber
-            }
-
-            let bankAccount = BankAccount(
-                bankId: "csas",
-                id: apiAccount.id,
-                accountNumber: accountNumber,
-                details: bankAccountDetails
-            )
-
-            bankAccounts.append(bankAccount)
+        let bankAccounts: [BankAccount] = try apiResponse.accounts.map {
+            try $0.toBankAccount()
         }
 
         return bankAccounts

@@ -26,4 +26,19 @@ final class GustavGetBankAccountDetailsRequest {
             headers: nil
         )
     }
+
+    func parseResponse(_ data: Data) throws -> BankAccountDetails {
+        let decoder = JSONDecoder()
+        let account = try decoder.decode(GustavAccount.self, from: data)
+
+        guard let details = try account.toBankAccount().details else {
+            throw GustavGetBankAccountDetailsRequestError.insufficientInformationAvailable
+        }
+
+        return details
+    }
+}
+
+enum GustavGetBankAccountDetailsRequestError: Error {
+    case insufficientInformationAvailable
 }

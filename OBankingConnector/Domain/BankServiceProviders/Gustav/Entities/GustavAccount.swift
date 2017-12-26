@@ -16,4 +16,41 @@ struct GustavAccount: Codable {
     let disposable: GustavBalance?
     let type: GustavAccountType
     let subtype: String
+
+    func toBankAccount() throws -> BankAccount {
+        let bankAccountType: BankAccountType
+
+        switch type {
+        case .current:
+            bankAccountType = .current
+        case .saving:
+            bankAccountType = .saving
+        case .loan:
+            bankAccountType = .loan
+        }
+
+        let balance = try self.balance.toAmount()
+        let disposeableBalance = try disposable?.toAmount()
+
+        let bankAccountDetails = BankAccountDetails(
+            balance: balance,
+            type: bankAccountType,
+            disposeableBalance: disposeableBalance,
+            alias: alias
+        )
+
+        guard let accountNumber = SepaAccountNumber(
+            iban: accountno.iban,
+            bic: accountno.bic
+        ) else {
+            throw GustavGetBankAccountsRequestParseError.invalidSepaAccountNumber
+        }
+
+        return BankAccount(
+            bankId: "csas",
+            id: id,
+            accountNumber: accountNumber,
+            details: bankAccountDetails
+        )
+    }
 }

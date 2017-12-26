@@ -44,6 +44,11 @@ final class GustavBankingRequestTranslator: BankingRequestTranslator {
                 .parseResponse(response) as! T.Result
         }
 
+        if bankingRequest is GetBankAccountDetailsRequest {
+            return try GustavGetBankAccountDetailsRequest(baseURL: baseURL)
+                .parseResponse(response) as! T.Result
+        }
+
         throw BankingRequestTranslatorError.unsupportedRequestType
     }
     // swiftlint:enable force_cast

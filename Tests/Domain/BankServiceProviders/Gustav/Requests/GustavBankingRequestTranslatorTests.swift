@@ -143,5 +143,43 @@ class GustavBankingRequestTranslatorTests: XCTestCase {
         XCTAssertEqual(result.method, .get)
         XCTAssertEqual(result.url, getBankAccountDetailsRequestURL.appendingPathComponent(bankAccount.id))
     }
+
+    func test_ParseResponse_ParsesGetBankAccountDetailsRequestResponseCorrectly() {
+        let bankAccount = BankAccount(
+            bankId: "csas",
+            id: "asdf",
+            accountNumber: sepaAccountNumberMock
+        )
+
+        let bankingRequest = GetBankAccountDetailsRequest(bankAccount: bankAccount)
+
+        let testBundle = Bundle(for: type(of: self))
+        guard let apiResponseURL = testBundle
+            .url(forResource: "GetBankAccountDetailsRequestResponse", withExtension: "json") else {
+                XCTFail("Could not read GetBankAccountsRequestResponse")
+                return
+        }
+
+        do {
+            let apiResponseMock = try String(contentsOf: apiResponseURL)
+            guard let apiResponseMockData = apiResponseMock.data(using: .utf8) else {
+                XCTFail("Could not create data from string")
+                return
+            }
+
+            let expectedResult = BankAccountDetails(
+                balance: Amount(value: 8965200, precision: 2, currency: .CZK),
+                type: .current,
+                disposeableBalance: Amount(value: 0, precision: 2, currency: .EUR),
+                alias: "moj osobny ucet s kasickou"
+            )
+
+            let result = try sut.parseResponse(of: bankingRequest, response: apiResponseMockData)
+
+//            XCTAssertEqual(result, expectedResult)
+        } catch let error {
+            XCTFail(String(describing: error))
+        }
+    }
 }
 // swiftlint:enable function_body_length

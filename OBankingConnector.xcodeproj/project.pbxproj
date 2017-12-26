@@ -234,6 +234,8 @@
 		2A8B1F4B1FF2480A00482BF3 /* GustavBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F491FF2480900482BF3 /* GustavBalance.swift */; };
 		2A8B1F4D1FF2482400482BF3 /* GustavAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F4C1FF2482400482BF3 /* GustavAccount.swift */; };
 		2A8B1F4E1FF2482400482BF3 /* GustavAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F4C1FF2482400482BF3 /* GustavAccount.swift */; };
+		2A8B1F501FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F4F1FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json */; };
+		2A8B1F511FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F4F1FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json */; };
 		2AECE54E1FDDCF0000FEEC14 /* OBankingConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AECE5441FDDCF0000FEEC14 /* OBankingConnector.framework */; };
 		2AECE5551FDDCF0000FEEC14 /* OBankingConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AECE5471FDDCF0000FEEC14 /* OBankingConnector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2AECE5621FDDD04500FEEC14 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AECE5611FDDD04500FEEC14 /* Bank.swift */; };
@@ -392,6 +394,7 @@
 		2A8B1F461FF2474000482BF3 /* GustavAccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavAccountType.swift; sourceTree = "<group>"; };
 		2A8B1F491FF2480900482BF3 /* GustavBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavBalance.swift; sourceTree = "<group>"; };
 		2A8B1F4C1FF2482400482BF3 /* GustavAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavAccount.swift; sourceTree = "<group>"; };
+		2A8B1F4F1FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetBankAccountDetailsRequestResponse.json; sourceTree = "<group>"; };
 		2AECE5441FDDCF0000FEEC14 /* OBankingConnector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OBankingConnector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AECE5471FDDCF0000FEEC14 /* OBankingConnector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBankingConnector.h; sourceTree = "<group>"; };
 		2AECE5481FDDCF0000FEEC14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -867,6 +870,7 @@
 			isa = PBXGroup;
 			children = (
 				2A8B1F351FF10CA900482BF3 /* GetBankAccountsRequestResponse.json */,
+				2A8B1F4F1FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -1261,6 +1265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A8B1F511FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json in Resources */,
 				2A8B1F371FF10CA900482BF3 /* GetBankAccountsRequestResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1278,6 +1283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A8B1F501FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json in Resources */,
 				2A8B1F361FF10CA900482BF3 /* GetBankAccountsRequestResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
