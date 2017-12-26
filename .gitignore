@@ -1,12 +1,20 @@
 
-# Created by https://www.gitignore.io/api/xcode,fastlane,cocoapods
+# Created by https://www.gitignore.io/api/xcode,carthage,fastlane,cocoapods
+
+### Carthage ###
+# Carthage
+#
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
+Carthage/Checkouts
+
+Carthage/Build
 
 ### CocoaPods ###
 ## CocoaPods GitIgnore Template
 
 # CocoaPods - Only use to conserve bandwidth / Save time on Pushing
-#           - Also handy if you have a lage number of dependant pods
-#           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGONRE THE LOCK FILE
+#           - Also handy if you have a large number of dependant pods
+#           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGNORE THE LOCK FILE
 Pods/
 
 ### fastlane ###
@@ -61,5 +69,4 @@ xcuserdata/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 
-# End of https://www.gitignore.io/api/xcode,fastlane,cocoapods
-
+# End of https://www.gitignore.io/api/xcode,carthage,fastlane,cocoapods
