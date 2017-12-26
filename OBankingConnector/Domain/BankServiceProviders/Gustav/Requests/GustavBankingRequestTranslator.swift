@@ -28,6 +28,11 @@ final class GustavBankingRequestTranslator: BankingRequestTranslator {
                 .makeHTTPRequest(pageSize: request.itemsPerPage, page: request.page)
         }
 
+        if let request = bankingRequest as? GetBankAccountDetailsRequest {
+            return GustavGetBankAccountDetailsRequest(baseURL: baseURL)
+                .makeHTTPRequest(bankAccountId: request.bankAccount.id)
+        }
+
         return nil
     }
 

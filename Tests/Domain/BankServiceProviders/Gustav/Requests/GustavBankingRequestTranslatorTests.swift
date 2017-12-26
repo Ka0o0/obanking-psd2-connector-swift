@@ -15,6 +15,9 @@ class GustavBankingRequestTranslatorTests: XCTestCase {
     var baseURL: URL! = URL(string: "https://api.csas.cz/sandbox/webapi/api/v3")
     var getBankAccountsRequestURL: URL! =
         URL(string: "https://api.csas.cz/sandbox/webapi/api/v3/netbanking/my/accounts")
+    var getBankAccountDetailsRequestURL: URL! =
+        URL(string: "https://api.csas.cz/sandbox/webapi/api/v3/netbanking/my/accounts")
+    var sepaAccountNumberMock: SepaAccountNumber! = SepaAccountNumber(iban: "CZ6508000000003766862329", bic: "GIBACZPX")
 
     var sut: GustavBankingRequestTranslator!
 
@@ -122,5 +125,23 @@ class GustavBankingRequestTranslatorTests: XCTestCase {
         }
     }
 
+    func test_makeHTTPRequest_SupportsGetBankAccountDetailsRequest() {
+        let bankAccount = BankAccount(
+            bankId: "csas",
+            id: "asdf",
+            accountNumber: sepaAccountNumberMock
+        )
+
+        let bankingRequest = GetBankAccountDetailsRequest(bankAccount: bankAccount)
+
+        guard let result = sut.makeHTTPRequest(from: bankingRequest) else {
+            XCTFail("Request must not be nil")
+            return
+        }
+
+        XCTAssertEqual(result.encoding, .urlEncoding)
+        XCTAssertEqual(result.method, .get)
+        XCTAssertEqual(result.url, getBankAccountDetailsRequestURL.appendingPathComponent(bankAccount.id))
+    }
 }
 // swiftlint:enable function_body_length
