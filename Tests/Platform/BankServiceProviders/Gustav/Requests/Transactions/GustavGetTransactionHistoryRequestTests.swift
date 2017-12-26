@@ -27,7 +27,10 @@ class GustavGetTransactionHistoryRequestTests: GustavRequestTests {
     func test_makeHTTPRequest_ReturnsProperHTTPRequest() {
         let bankingRequest = GetTransactionHistoryRequest(bankAccount: bankAccountMock)
 
-        let result = sut.makeHTTPRequest(from: bankingRequest)
+        guard let result = try? sut.makeHTTPRequest(from: bankingRequest) else {
+            XCTFail("Should not fail")
+            return
+        }
 
         XCTAssertEqual(result.method, .get)
         XCTAssertEqual(result.url, url)
@@ -39,8 +42,8 @@ class GustavGetTransactionHistoryRequestTests: GustavRequestTests {
         let testBundle = Bundle(for: type(of: self))
         guard let apiResponseURL = testBundle
             .url(forResource: "GetTransactionHistoryRequestResponse", withExtension: "json") else {
-                XCTFail("Could not read GetBankAccountsRequestResponse")
-                return
+            XCTFail("Could not read GetBankAccountsRequestResponse")
+            return
         }
 
         do {

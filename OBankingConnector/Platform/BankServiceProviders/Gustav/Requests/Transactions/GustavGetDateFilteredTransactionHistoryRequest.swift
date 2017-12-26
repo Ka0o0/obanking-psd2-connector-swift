@@ -18,9 +18,9 @@ final class GustavGetDateFilteredTransactionHistoryRequest:
         self.baseURL = baseURL
     }
 
-    override func makeHTTPRequest(from bankingRequest: GetDateFilteredTransactionHistoryRequest) -> HTTPRequest {
+    override func makeHTTPRequest(from bankingRequest: GetDateFilteredTransactionHistoryRequest) throws -> HTTPRequest {
         guard let sepaAccountNumber = bankingRequest.bankAccount.accountNumber as? SepaAccountNumber else {
-            fatalError()
+            throw GustavRequestProcessorError.unsupportedAccount
         }
 
         let urlPathAppendix = String(format: "netbanking/cz/my/accounts/%@/transactions", sepaAccountNumber.iban)

@@ -33,7 +33,10 @@ class GustavGetDateFilteredTransactionHistoryRequestTests: GustavRequestTests {
             endDate: endDate
         )
 
-        let result = sut.makeHTTPRequest(from: bankingRequest)
+        guard let result = try? sut.makeHTTPRequest(from: bankingRequest) else {
+            XCTFail("Should not fail")
+            return
+        }
 
         XCTAssertEqual(result.method, .get)
         XCTAssertEqual(result.url, url)
