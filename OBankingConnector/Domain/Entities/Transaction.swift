@@ -13,6 +13,7 @@ public struct Transaction {
     public let id: String
     public let bankAccountNumberId: String
     public let partyAccount: AccountNumber
+    public let partyAccountHolderInformation: AccountHolderInformation
     public let amount: Amount
     public let text: String
     public let bookingDate: Date
@@ -24,6 +25,7 @@ public struct Transaction {
     init(id: String,
          bankAccountNumberId: String,
          partyAccount: AccountNumber,
+         partyAccountHolderInformation: AccountHolderInformation,
          amount: Amount,
          text: String,
          bookingDate: Date,
@@ -34,6 +36,7 @@ public struct Transaction {
         self.id = id
         self.bankAccountNumberId = bankAccountNumberId
         self.partyAccount = partyAccount
+        self.partyAccountHolderInformation = partyAccountHolderInformation
         self.amount = amount
         self.text = text
         self.bookingDate = bookingDate

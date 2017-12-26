@@ -236,6 +236,10 @@
 		2A8B1F4E1FF2482400482BF3 /* GustavAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F4C1FF2482400482BF3 /* GustavAccount.swift */; };
 		2A8B1F501FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F4F1FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json */; };
 		2A8B1F511FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F4F1FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json */; };
+		2A8B1F631FF25B6800482BF3 /* AccountHolderInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F5F1FF25B6500482BF3 /* AccountHolderInformation.swift */; };
+		2A8B1F641FF25B6900482BF3 /* AccountHolderInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F5F1FF25B6500482BF3 /* AccountHolderInformation.swift */; };
+		2A8B1F661FF25B7D00482BF3 /* AccountHolderInformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F651FF25B7D00482BF3 /* AccountHolderInformationTests.swift */; };
+		2A8B1F671FF25B7D00482BF3 /* AccountHolderInformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F651FF25B7D00482BF3 /* AccountHolderInformationTests.swift */; };
 		2AECE54E1FDDCF0000FEEC14 /* OBankingConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AECE5441FDDCF0000FEEC14 /* OBankingConnector.framework */; };
 		2AECE5551FDDCF0000FEEC14 /* OBankingConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AECE5471FDDCF0000FEEC14 /* OBankingConnector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2AECE5621FDDD04500FEEC14 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AECE5611FDDD04500FEEC14 /* Bank.swift */; };
@@ -395,6 +399,8 @@
 		2A8B1F491FF2480900482BF3 /* GustavBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavBalance.swift; sourceTree = "<group>"; };
 		2A8B1F4C1FF2482400482BF3 /* GustavAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavAccount.swift; sourceTree = "<group>"; };
 		2A8B1F4F1FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetBankAccountDetailsRequestResponse.json; sourceTree = "<group>"; };
+		2A8B1F5F1FF25B6500482BF3 /* AccountHolderInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountHolderInformation.swift; sourceTree = "<group>"; };
+		2A8B1F651FF25B7D00482BF3 /* AccountHolderInformationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountHolderInformationTests.swift; sourceTree = "<group>"; };
 		2AECE5441FDDCF0000FEEC14 /* OBankingConnector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OBankingConnector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AECE5471FDDCF0000FEEC14 /* OBankingConnector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBankingConnector.h; sourceTree = "<group>"; };
 		2AECE5481FDDCF0000FEEC14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -937,6 +943,7 @@
 		2AECE55E1FDDCF4200FEEC14 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				2A8B1F5F1FF25B6500482BF3 /* AccountHolderInformation.swift */,
 				2AECE58E1FDDDF2300FEEC14 /* AccountNumber.swift */,
 				2AECE5961FDDE0DE00FEEC14 /* Amount.swift */,
 				2AECE59C1FDDE48500FEEC14 /* AmountSample.swift */,
@@ -958,6 +965,7 @@
 		2AECE56A1FDDD39300FEEC14 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				2A8B1F651FF25B7D00482BF3 /* AccountHolderInformationTests.swift */,
 				2A58F0B81FE003F50024D33E /* AccountNumberTests.swift */,
 				2AECE59A1FDDE43F00FEEC14 /* AmountSampleTests.swift */,
 				2AECE5941FDDE07400FEEC14 /* AmountTests.swift */,
@@ -1550,6 +1558,7 @@
 				2A58F12A1FE078400024D33E /* MacOSExternalWebBrowserLauncher.swift in Sources */,
 				2A8B1F481FF2474000482BF3 /* GustavAccountType.swift in Sources */,
 				2A8B1F451FF2471A00482BF3 /* GustavAccountno.swift in Sources */,
+				2A8B1F631FF25B6800482BF3 /* AccountHolderInformation.swift in Sources */,
 				2A8B1F411FF18A3B00482BF3 /* GustavGetBankAccountDetailsRequest.swift in Sources */,
 				2A58F13B1FE07D0D0024D33E /* BankingRequest.swift in Sources */,
 				2A280A7F1FE405CD00B90104 /* GustavBankServiceProviderConfiguration.swift in Sources */,
@@ -1622,6 +1631,7 @@
 				2A58F1C11FE28A400024D33E /* DefaultOAuth2AccessTokenRequestorTests.swift in Sources */,
 				2A58F1F41FE30B970024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift in Sources */,
 				2A58F1771FE07F6F0024D33E /* DefaultDeepLinkServiceTests.swift in Sources */,
+				2A8B1F671FF25B7D00482BF3 /* AccountHolderInformationTests.swift in Sources */,
 				2A58F1C71FE2B6520024D33E /* OAuth2BankServiceConnectionInformationTests.swift in Sources */,
 				2A58F1671FE07F5B0024D33E /* BankServiceProviderTests.swift in Sources */,
 				2A58F1711FE07F600024D33E /* BankingRequestTests.swift in Sources */,
@@ -1683,6 +1693,7 @@
 				2A58F1901FE086550024D33E /* URLBuilder.swift in Sources */,
 				2A8B1F471FF2474000482BF3 /* GustavAccountType.swift in Sources */,
 				2A8B1F441FF2471A00482BF3 /* GustavAccountno.swift in Sources */,
+				2A8B1F641FF25B6900482BF3 /* AccountHolderInformation.swift in Sources */,
 				2A8B1F401FF18A3B00482BF3 /* GustavGetBankAccountDetailsRequest.swift in Sources */,
 				2AECE5931FDDDFE300FEEC14 /* SepaAccountNumber.swift in Sources */,
 				2A280A7E1FE403D200B90104 /* GustavBankServiceProviderConfiguration.swift in Sources */,
@@ -1755,6 +1766,7 @@
 				2A58F1F31FE30B970024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift in Sources */,
 				2AECE5A31FDDE90B00FEEC14 /* TransactionTests.swift in Sources */,
 				2A58F1C61FE2B6520024D33E /* OAuth2BankServiceConnectionInformationTests.swift in Sources */,
+				2A8B1F661FF25B7D00482BF3 /* AccountHolderInformationTests.swift in Sources */,
 				2A58F0BD1FE004A70024D33E /* CurrencyTests.swift in Sources */,
 				2A58F0B41FE003650024D33E /* ConnectedBankServiceProviderTests.swift in Sources */,
 				2A58F0B71FE003B10024D33E /* SupportedBankServicesProviderTests.swift in Sources */,
