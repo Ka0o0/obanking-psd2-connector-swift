@@ -6,11 +6,11 @@
 //  Copyright © 2017 Kai Takac. All rights reserved.
 //
 
+#if os(OSX)
+
 import Foundation
 import RxSwift
 import Cocoa
-
-#if os(OSX)
 
 final class MacOSExternalWebBrowserLauncher: ExternalWebBrowserLauncher {
 
