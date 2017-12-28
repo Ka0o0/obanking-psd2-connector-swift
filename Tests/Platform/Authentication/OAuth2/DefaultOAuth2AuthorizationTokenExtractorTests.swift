@@ -110,7 +110,7 @@ class DefaultOAuth2AuthorizationTokenExtractorTests: XCTestCase {
                 from: replaySubject.asObservable(),
                 considering: request,
                 and: nil
-            ).toBlocking().first()
+            ).toBlocking(timeout: 3).first()
 
             XCTAssertEqual(result, "thisonetoken")
         } catch let error {

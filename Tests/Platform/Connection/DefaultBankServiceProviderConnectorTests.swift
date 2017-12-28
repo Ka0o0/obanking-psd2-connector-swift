@@ -33,7 +33,9 @@ class DefaultBankServiceProviderConnectorTests: XCTestCase {
 
     func test_Connect_ErrorForUnknown() {
         do {
-            _ = try sut.connectToBankService(using: BankServiceConnectionInformationMock()).toBlocking().first()
+            _ = try sut.connectToBankService(using: BankServiceConnectionInformationMock())
+                .toBlocking(timeout: 3)
+                .first()
             XCTFail("Should fail")
         } catch let error {
             guard let error = error as? BankServiceProviderConnectorError else {
@@ -52,7 +54,7 @@ class DefaultBankServiceProviderConnectorTests: XCTestCase {
                 tokenType: "bearer"
             )
 
-            let result = try sut.connectToBankService(using: oAuth2ConnectionInformation).toBlocking().first()
+            let result = try sut.connectToBankService(using: oAuth2ConnectionInformation).toBlocking(timeout: 3).first()
 
             XCTAssertTrue(result is ConnectedOAuth2BankServiceProvider)
         } catch let error {

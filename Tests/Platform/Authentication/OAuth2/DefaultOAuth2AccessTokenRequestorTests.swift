@@ -147,7 +147,7 @@ class DefaultOAuth2AccessTokenRequestorTests: XCTestCase {
         webClient.responseData = exampleValidResponseData
         do {
             return try sut.requestAccessToken(for: request, authorizationToken: "thisonetoken")
-                .toBlocking()
+                .toBlocking(timeout: 3)
                 .first()
         } catch let error {
             XCTFail(String(describing: error))

@@ -54,7 +54,7 @@ class ConnectedOAuth2BankServiceProviderTests: XCTestCase {
         )
 
         do {
-            _ = try sut.perform(RequestMock()).toBlocking().first()
+            _ = try sut.perform(RequestMock()).toBlocking(timeout: 3).first()
 
             guard let request = webClient.lastRequest else {
                 XCTFail("Request must not be null")

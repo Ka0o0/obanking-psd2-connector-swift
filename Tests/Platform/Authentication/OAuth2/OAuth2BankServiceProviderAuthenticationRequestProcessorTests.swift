@@ -76,7 +76,9 @@ class OAuth2BankServiceProviderAuthenticationRequestProcessorTests: XCTestCase {
 
     func test_Authenticate_FailsForInvalidRequest() {
         do {
-            _ = try sut.authenticate(using: BankServiceProviderAuthenticationRequestMock()).toBlocking().single()
+            _ = try sut.authenticate(using: BankServiceProviderAuthenticationRequestMock())
+                .toBlocking(timeout: 3)
+                .single()
             XCTFail("Should fail")
         } catch let error {
             guard let processorError = error as? BankServiceProviderAuthenticationRequestProcessorError else {
@@ -90,7 +92,6 @@ class OAuth2BankServiceProviderAuthenticationRequestProcessorTests: XCTestCase {
 
     func test_Authenticate_SuccessfulFlow() {
         do {
-
             let authorizationRequestResponseString = "myapp://handleme?token=thisoneauthtoken"
             guard let authorizationRequestResponseURL = URL(string: authorizationRequestResponseString) else {
                 XCTFail("Shouldn't happen")
@@ -106,7 +107,7 @@ class OAuth2BankServiceProviderAuthenticationRequestProcessorTests: XCTestCase {
                     tokenType: "bearer"
                 )
 
-            guard let result = try sut.authenticate(using: oauth2Request).toBlocking().first() else {
+            guard let result = try sut.authenticate(using: oauth2Request).toBlocking(timeout: 3).first() else {
                 XCTFail("Result must not be nil")
                 return
             }

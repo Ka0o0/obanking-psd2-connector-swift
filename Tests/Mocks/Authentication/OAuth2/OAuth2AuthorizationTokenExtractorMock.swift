@@ -31,7 +31,7 @@ final class OAuth2AuthorizationTokenExtractorMock: OAuth2AuthorizationTokenExtra
             return Observable.error(OAuth2AuthorizationTokenExtractorMockError.noTokenProvided)
         }
 
-        return Observable.just(nextToken)
+        return BehaviorSubject<String>(value: nextToken).asObservable()
     }
 }
 
