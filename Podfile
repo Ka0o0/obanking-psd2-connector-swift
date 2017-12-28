@@ -1,11 +1,11 @@
 def global_deps
-	pod 'RxSwift',    	 :git => "https://github.com/Ka0o0/RxSwift.git", :branch => "feature/first-operator" # '~> 4.0'
+	pod 'RxSwift',    	 '~> 4.0'
 	pod 'RxAlamofire',   '~> 4.0'
 end
 
 def testing_deps
-	pod 'RxBlocking', :git => "https://github.com/Ka0o0/RxSwift.git", :branch => "feature/first-operator" # RxSwift Tests
-	pod 'RxTest',     :git => "https://github.com/Ka0o0/RxSwift.git", :branch => "feature/first-operator" #'~> 4.0' # RxSwift Tests
+	pod 'RxBlocking', '~> 4.0'
+	pod 'RxTest',     '~> 4.0'
 end
 
 target 'OBankingConnector-iOS' do

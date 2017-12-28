@@ -13,39 +13,17 @@ PODS:
 
 DEPENDENCIES:
   - RxAlamofire (~> 4.0)
-  - RxBlocking (from `https://github.com/Ka0o0/RxSwift.git`, branch `feature/first-operator`)
-  - RxSwift (from `https://github.com/Ka0o0/RxSwift.git`, branch `feature/first-operator`)
-  - RxTest (from `https://github.com/Ka0o0/RxSwift.git`, branch `feature/first-operator`)
-
-EXTERNAL SOURCES:
-  RxBlocking:
-    :branch: feature/first-operator
-    :git: https://github.com/Ka0o0/RxSwift.git
-  RxSwift:
-    :branch: feature/first-operator
-    :git: https://github.com/Ka0o0/RxSwift.git
-  RxTest:
-    :branch: feature/first-operator
-    :git: https://github.com/Ka0o0/RxSwift.git
-
-CHECKOUT OPTIONS:
-  RxBlocking:
-    :commit: 6166a86eff687e2243afff97492618603311a25d
-    :git: https://github.com/Ka0o0/RxSwift.git
-  RxSwift:
-    :commit: 6166a86eff687e2243afff97492618603311a25d
-    :git: https://github.com/Ka0o0/RxSwift.git
-  RxTest:
-    :commit: 6166a86eff687e2243afff97492618603311a25d
-    :git: https://github.com/Ka0o0/RxSwift.git
+  - RxBlocking (~> 4.0)
+  - RxSwift (~> 4.0)
+  - RxTest (~> 4.0)
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   RxAlamofire: 6ea579ac53bf14cb4bc7049a3866e5a769989b1d
-  RxBlocking: cd45dd903e40fab51738f5e8663893cdf7edb1a8
-  RxSwift: 3308580de63238d5a2ead3064c32af2cc97ba949
-  RxTest: 49eed89c967e35a09ebc85e139e71cc9bba90f17
+  RxBlocking: 923c2c8106d80d7c2d6b276afd66ce3b10824836
+  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
+  RxTest: 0041e792cede35e53e4749f378d21482af0e9d12
 
-PODFILE CHECKSUM: 91ff2100e815d5e3530dcb77a1345f9e35c7b0f8
+PODFILE CHECKSUM: 7e2ffe32b9a9084881f990b80f4116597ed8454a
 
 COCOAPODS: 1.3.1
