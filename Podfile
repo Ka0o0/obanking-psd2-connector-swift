@@ -1,11 +1,11 @@
 def global_deps
-	pod 'RxSwift',    	 '~> 4.0'
+	pod 'RxSwift',    	 '~> 4.1'
 	pod 'RxAlamofire',   '~> 4.0'
 end
 
 def testing_deps
-	pod 'RxBlocking', '~> 4.0'
-	pod 'RxTest',     '~> 4.0'
+	pod 'RxBlocking', '~> 4.1'
+	pod 'RxTest',     '~> 4.1'
 end
 
 target 'OBankingConnector-iOS' do

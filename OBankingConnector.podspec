@@ -20,6 +20,6 @@ Pod::Spec.new do |s|
   s.resources = 'OBankingConnector/**/*.crt'
 
   s.frameworks = 'Foundation'
-  s.dependency 'RxSwift', '~> 4.0'
+  s.dependency 'RxSwift', '~> 4.1'
   s.dependency 'RxAlamofire', '~> 4.0'
 end
