@@ -11,7 +11,8 @@ import Foundation
 public struct Transaction {
 
     public let id: String
-    public let bankAccountNumberId: String
+    public let bankId: String
+    public let bankAccountId: String
     public let partyAccount: AccountNumber
     public let partyAccountHolderInformation: AccountHolderInformation
     public let amount: Amount
@@ -23,7 +24,8 @@ public struct Transaction {
     public let exchangeRateInformation: ExchangeRateInformation?
 
     public init(id: String,
-                bankAccountNumberId: String,
+                bankId: String,
+                bankAccountId: String,
                 partyAccount: AccountNumber,
                 partyAccountHolderInformation: AccountHolderInformation,
                 amount: Amount,
@@ -34,7 +36,8 @@ public struct Transaction {
                 notes: String? = nil,
                 exchangeRateInformation: ExchangeRateInformation? = nil) {
         self.id = id
-        self.bankAccountNumberId = bankAccountNumberId
+        self.bankId = bankId
+        self.bankAccountId = bankAccountId
         self.partyAccount = partyAccount
         self.partyAccountHolderInformation = partyAccountHolderInformation
         self.amount = amount

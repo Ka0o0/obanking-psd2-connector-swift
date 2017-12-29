@@ -49,7 +49,8 @@ struct GustavTransaction: Codable {
 
         return Transaction(
             id: id,
-            bankAccountNumberId: bankAccount.id,
+            bankId: "csas",
+            bankAccountId: bankAccount.id,
             partyAccount: partyAccount,
             partyAccountHolderInformation: accountHolderInformation,
             amount: amount.value > 0 ? amount : amountSender,

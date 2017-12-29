@@ -19,7 +19,8 @@ class TransactionTests: XCTestCase {
 
         let sut = Transaction(
             id: "example_transaction",
-            bankAccountNumberId: "example_bank_account",
+            bankId: "test",
+            bankAccountId: "example_bank_account",
             partyAccount: mockedPartyAccountNumber,
             partyAccountHolderInformation: mockedPartyAccountHolderInformation,
             amount: mockedAmount,
@@ -28,7 +29,8 @@ class TransactionTests: XCTestCase {
         )
 
         XCTAssertEqual(sut.id, "example_transaction")
-        XCTAssertEqual(sut.bankAccountNumberId, "example_bank_account")
+        XCTAssertEqual(sut.bankId, "test")
+        XCTAssertEqual(sut.bankAccountId, "example_bank_account")
         XCTAssertTrue(sut.partyAccount.equals(other: mockedPartyAccountNumber))
         XCTAssertEqual(sut.amount, mockedAmount)
         XCTAssertEqual(sut.text, "Hello World!")
@@ -57,7 +59,8 @@ class TransactionTests: XCTestCase {
 
         let sut = Transaction(
             id: "example_transaction",
-            bankAccountNumberId: "example_bank_account",
+            bankId: "test",
+            bankAccountId: "example_bank_account",
             partyAccount: mockedPartyAccountNumber,
             partyAccountHolderInformation: mockedPartyAccountHolderInformation,
             amount: mockedAmount,

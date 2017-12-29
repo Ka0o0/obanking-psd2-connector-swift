@@ -48,7 +48,8 @@ class GustavTransactionTests: XCTestCase {
             let result = try sut.toTransaction(associating: bankAccountMock)
 
             XCTAssertEqual(result.id, "transaction01")
-            XCTAssertEqual(result.bankAccountNumberId, bankAccountMock.id)
+            XCTAssertEqual(result.bankId, "csas")
+            XCTAssertEqual(result.bankAccountId, bankAccountMock.id)
             XCTAssertEqual(result.amount, Amount(value: 100, precision: 2, currency: .CZK))
             XCTAssertEqual(result.bookingDate, bookingDate)
             XCTAssertEqual(result.processingDate, valuationDate)
