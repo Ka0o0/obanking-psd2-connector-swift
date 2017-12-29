@@ -22,17 +22,17 @@ public struct Transaction {
     public let notes: String?
     public let exchangeRateInformation: ExchangeRateInformation?
 
-    init(id: String,
-         bankAccountNumberId: String,
-         partyAccount: AccountNumber,
-         partyAccountHolderInformation: AccountHolderInformation,
-         amount: Amount,
-         text: String,
-         bookingDate: Date,
-         processingDate: Date? = nil,
-         textType: TransactionTextType = .unknown,
-         notes: String? = nil,
-         exchangeRateInformation: ExchangeRateInformation? = nil) {
+    public init(id: String,
+                bankAccountNumberId: String,
+                partyAccount: AccountNumber,
+                partyAccountHolderInformation: AccountHolderInformation,
+                amount: Amount,
+                text: String,
+                bookingDate: Date,
+                processingDate: Date? = nil,
+                textType: TransactionTextType = .unknown,
+                notes: String? = nil,
+                exchangeRateInformation: ExchangeRateInformation? = nil) {
         self.id = id
         self.bankAccountNumberId = bankAccountNumberId
         self.partyAccount = partyAccount

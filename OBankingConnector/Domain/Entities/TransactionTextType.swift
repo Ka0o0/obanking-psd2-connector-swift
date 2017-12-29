@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum TransactionTextType {
+public enum TransactionTextType: String {
     case unknown
     case paymentReference
     case paymentPurpose

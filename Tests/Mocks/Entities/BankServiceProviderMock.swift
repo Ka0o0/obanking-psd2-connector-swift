@@ -13,6 +13,7 @@ struct BankServiceProviderMock: BankServiceProvider {
 
     let id: String
     let name: String
+    let supportedBanks: [Bank] = []
 
     init(id: String, name: String) {
         self.id = id

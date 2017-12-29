@@ -16,10 +16,19 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.10'
 
-  s.source_files = 'OBankingConnector/**/*'
-  s.resources = 'OBankingConnector/**/*.crt'
-
   s.frameworks = 'Foundation'
   s.dependency 'RxSwift', '~> 4.1'
-  s.dependency 'RxAlamofire', '~> 4.0'
+
+
+  s.default_subspec = 'Domain','Platform'
+
+  s.subspec 'Domain' do |ps|
+    ps.source_files = 'OBankingConnector/Domain/**/*.swift'
+  end
+
+  s.subspec 'Platform' do |ps|
+    ps.source_files = 'OBankingConnector/Platform/**/*.swift'
+    ps.resources = 'OBankingConnector/Platform/**/*.crt'
+    ps.dependency 'RxAlamofire', '~> 4.0'
+  end
 end

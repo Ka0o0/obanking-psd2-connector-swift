@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Amount {
+public struct Amount: Codable {
 
     public let value: Int
     public let precision: Int

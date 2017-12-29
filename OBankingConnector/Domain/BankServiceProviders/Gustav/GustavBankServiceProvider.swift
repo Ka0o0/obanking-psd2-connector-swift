@@ -14,6 +14,9 @@ public struct GustavBankServiceProvider: BankServiceProvider {
 
     public let id: String
     public let name: String
+    public let supportedBanks: [Bank] = [
+        Bank(id: "cz.csas", name: "Česká spořitelna", bankServiceProviderId: GustavBankServiceProvider.id)
+    ]
 
     public init() {
         self.id = GustavBankServiceProvider.id

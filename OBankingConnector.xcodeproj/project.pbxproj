@@ -665,6 +665,21 @@
 			path = Gustav;
 			sourceTree = "<group>";
 		};
+		2A5620F51FF5782900ED9709 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2A58F0C41FE008E30024D33E /* IBANValidator.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		2A5621071FF5A19F00ED9709 /* Banks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Banks;
+			sourceTree = "<group>";
+		};
 		2A58F0951FDFDD370024D33E /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -743,7 +758,6 @@
 		2A58F0C31FE008DC0024D33E /* Utitlities */ = {
 			isa = PBXGroup;
 			children = (
-				2A58F0C41FE008E30024D33E /* IBANValidator.swift */,
 				2A58F18F1FE086550024D33E /* URLBuilder.swift */,
 				2A8B1F6B1FF2604700482BF3 /* ISO8601JSONDateDecodingStrategy.swift */,
 				2A8B1F721FF283A300482BF3 /* Date+ISO8601.swift */,
@@ -998,11 +1012,9 @@
 		2AECE5461FDDCF0000FEEC14 /* OBankingConnector */ = {
 			isa = PBXGroup;
 			children = (
-				2A58F0CA1FE00BD80024D33E /* OBankingConnector.swift */,
 				2AECE57C1FDDD9D100FEEC14 /* Domain */,
 				2AECE57B1FDDD9CA00FEEC14 /* Platform */,
 				2AECE56F1FDDD48000FEEC14 /* Supporting Files */,
-				2A58F0C31FE008DC0024D33E /* Utitlities */,
 			);
 			path = OBankingConnector;
 			sourceTree = "<group>";
@@ -1093,12 +1105,15 @@
 		2AECE57B1FDDD9CA00FEEC14 /* Platform */ = {
 			isa = PBXGroup;
 			children = (
+				2A58F0CA1FE00BD80024D33E /* OBankingConnector.swift */,
 				2A58F0CE1FE00FC50024D33E /* Authentication */,
+				2A5621071FF5A19F00ED9709 /* Banks */,
 				2AF5F8D51FF2BC9700C33ED5 /* BankServiceProviders */,
 				2A58F1DE1FE2D7690024D33E /* Configuration */,
 				2A220A9B1FE5D49C00397FBE /* Connection */,
 				2A58F0D01FE010030024D33E /* DeepLinkHandling */,
 				2A58F0F61FE070E90024D33E /* ExternalWebBrowserLauncher */,
+				2A58F0C31FE008DC0024D33E /* Utitlities */,
 				2A58F0F31FE0568C0024D33E /* WebClient */,
 			);
 			path = Platform;
@@ -1114,6 +1129,7 @@
 				2A58F0A41FDFE16D0024D33E /* Connection */,
 				2AECE57E1FDDD9FC00FEEC14 /* DeepLinkHandling */,
 				2AECE55E1FDDCF4200FEEC14 /* Entities */,
+				2A5620F51FF5782900ED9709 /* Utilities */,
 			);
 			path = Domain;
 			sourceTree = "<group>";

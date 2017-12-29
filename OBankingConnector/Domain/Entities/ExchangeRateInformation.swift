@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ExchangeRateInformation {
+public struct ExchangeRateInformation: Codable {
 
     public let source: Currency
     public let target: Currency

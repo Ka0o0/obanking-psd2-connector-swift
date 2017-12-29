@@ -87,7 +87,7 @@ private extension ConnectedOAuth2BankServiceProviderTests {
     }
 
     class SupportedBankServicesProviderMock: SupportedBankServicesProvider {
-        var supportedBankServices: [BankServiceProvider] = [BankServiceProviderMock()]
+        var supportedBankServices: [BankServiceProvider] = [BankServiceProviderMock(id: "test", name: "test")]
 
         func bankService(for id: String) -> BankServiceProvider? {
             let filtered = supportedBankServices.filter {
@@ -96,11 +96,6 @@ private extension ConnectedOAuth2BankServiceProviderTests {
 
             return filtered.first
         }
-    }
-
-    class BankServiceProviderMock: BankServiceProvider {
-        let id = "test"
-        let name = "test"
     }
 
     enum BankingRequestTranslatorMockError: Error {
@@ -154,7 +149,7 @@ private extension ConnectedOAuth2BankServiceProviderTests {
         let additionalTokenRequestParameters: [String: String]? = nil
         let additionalHeaders: [String: String]? = nil
         let bankingRequestTranslator: BankingRequestTranslator
-        let bankServiceProvider: BankServiceProvider = BankServiceProviderMock()
+        let bankServiceProvider: BankServiceProvider = BankServiceProviderMock(id: "test", name: "test")
         var authorizationServerCertificate: Data { fatalError() }
         var tokenServerCertificate: Data { fatalError() }
         var apiServerCertificate: Data {

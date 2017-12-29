@@ -12,4 +12,5 @@ public protocol BankServiceProvider {
 
     var id: String { get }
     var name: String { get }
+    var supportedBanks: [Bank] { get }
 }

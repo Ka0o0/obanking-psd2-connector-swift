@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct SepaAccountNumber: AccountNumber {
+public struct SepaAccountNumber: AccountNumber, Codable {
 
     public let iban: String
     public let bic: String
