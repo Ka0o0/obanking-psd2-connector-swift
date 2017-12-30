@@ -74,4 +74,8 @@ public final class OBankingConnector {
     public func makeBankServiceConnectionInformationDecoder() -> BankServiceConnectionInformationDecoder {
         return DefaultBankServiceConnectionInformationDecoder()
     }
+
+    public func makeBankServiceConnectionInformationEncoder() -> BankServiceConnectionInformationEncoder {
+        return DefaultBankServiceConnectionInformationEncoder()
+    }
 }

@@ -8,9 +8,12 @@
 
 import Foundation
 
-final class DefaultBankServiceConnectionInformationDecoder: BankServiceConnectionInformationDecoder {
+public final class DefaultBankServiceConnectionInformationDecoder: BankServiceConnectionInformationDecoder {
 
-    func decode(data: Data, using decoder: CodeableDecoder) -> BankServiceConnectionInformation? {
+    public init() {
+    }
+
+    public func decode(data: Data, using decoder: CodeableDecoder) -> BankServiceConnectionInformation? {
 
         if let connectionInformation = tryToDecode(
             OAuth2BankServiceConnectionInformation.self,
