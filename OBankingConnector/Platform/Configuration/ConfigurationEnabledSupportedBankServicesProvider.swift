@@ -12,7 +12,9 @@ final class ConfigurationEnabledSupportedBankServicesProvider: SupportedBankServ
 
     let supportedBankServices: [BankServiceProvider]
 
-    private let systemWideBankServiceProviders: [BankServiceProvider] = []
+    private let systemWideBankServiceProviders: [BankServiceProvider] = [
+        GustavBankServiceProvider()
+    ]
 
     init(configuration: OBankingConnectorConfiguration) {
         let configuredBankServices = systemWideBankServiceProviders.filter { bankServiceProvider -> Bool in
