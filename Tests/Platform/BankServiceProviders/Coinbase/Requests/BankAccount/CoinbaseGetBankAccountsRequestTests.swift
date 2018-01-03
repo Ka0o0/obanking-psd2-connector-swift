@@ -46,10 +46,9 @@ class CoinbaseGetBankAccountsRequestTests: CoinbaseRequestTests {
                 .single()
 
             assertProperRequest()
-            XCTAssertEqual(result.count, 2)
+            XCTAssertEqual(result.count, 1)
             XCTAssertEqual(result.map { $0.id }, [
-                "58542935-67b5-56e1-a3f9-42686e07fa40",
-                "2bbf394c-193b-5b2a-9155-3b4732659ede"
+                "8dad5865-5ab6-571b-9032-bfc5376c5eee"
             ])
         } catch let error {
             XCTFail(String(describing: error))

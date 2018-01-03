@@ -72,6 +72,8 @@
 		2A22FEAA1FFD4AD4001CE0E3 /* CoinbaseGetBankAccountDetailsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A22FEA81FFD4AD4001CE0E3 /* CoinbaseGetBankAccountDetailsRequest.swift */; };
 		2A22FEAC1FFD4B94001CE0E3 /* CoinbaseGetBankAccountDetailsRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A22FEAB1FFD4B94001CE0E3 /* CoinbaseGetBankAccountDetailsRequestResponse.swift */; };
 		2A22FEAD1FFD4B94001CE0E3 /* CoinbaseGetBankAccountDetailsRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A22FEAB1FFD4B94001CE0E3 /* CoinbaseGetBankAccountDetailsRequestResponse.swift */; };
+		2A22FEAF1FFD7BF7001CE0E3 /* apicoinbasecom.crt in Resources */ = {isa = PBXBuildFile; fileRef = 2A22FEAE1FFD7BF6001CE0E3 /* apicoinbasecom.crt */; };
+		2A22FEB01FFD7BF7001CE0E3 /* apicoinbasecom.crt in Resources */ = {isa = PBXBuildFile; fileRef = 2A22FEAE1FFD7BF6001CE0E3 /* apicoinbasecom.crt */; };
 		2A280A771FE400D400B90104 /* GustavBankServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A761FE400D400B90104 /* GustavBankServiceProvider.swift */; };
 		2A280A781FE4018B00B90104 /* GustavBankServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A761FE400D400B90104 /* GustavBankServiceProvider.swift */; };
 		2A280A7B1FE4025A00B90104 /* BankServiceProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A280A791FE4025800B90104 /* BankServiceProviderMock.swift */; };
@@ -418,6 +420,7 @@
 		2A22FEA51FFD4A56001CE0E3 /* CoinbaseGetBankAccountDetailsRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseGetBankAccountDetailsRequestTests.swift; sourceTree = "<group>"; };
 		2A22FEA81FFD4AD4001CE0E3 /* CoinbaseGetBankAccountDetailsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseGetBankAccountDetailsRequest.swift; sourceTree = "<group>"; };
 		2A22FEAB1FFD4B94001CE0E3 /* CoinbaseGetBankAccountDetailsRequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseGetBankAccountDetailsRequestResponse.swift; sourceTree = "<group>"; };
+		2A22FEAE1FFD7BF6001CE0E3 /* apicoinbasecom.crt */ = {isa = PBXFileReference; lastKnownFileType = file; path = apicoinbasecom.crt; sourceTree = "<group>"; };
 		2A280A761FE400D400B90104 /* GustavBankServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavBankServiceProvider.swift; sourceTree = "<group>"; };
 		2A280A791FE4025800B90104 /* BankServiceProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankServiceProviderMock.swift; sourceTree = "<group>"; };
 		2A280A7D1FE403D200B90104 /* GustavBankServiceProviderConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavBankServiceProviderConfiguration.swift; sourceTree = "<group>"; };
@@ -1081,6 +1084,7 @@
 		2A69BF2B1FFCE15400158C6B /* Certificates */ = {
 			isa = PBXGroup;
 			children = (
+				2A22FEAE1FFD7BF6001CE0E3 /* apicoinbasecom.crt */,
 				2A69BF2C1FFCE16A00158C6B /* wwwcoinbasecom.crt */,
 			);
 			path = Certificates;
@@ -1626,6 +1630,7 @@
 			files = (
 				2A1081E11FEC552A0053767C /* wwwcsascz.crt in Resources */,
 				2A1081DE1FEC53F80053767C /* wwwcsastcsascz.crt in Resources */,
+				2A22FEB01FFD7BF7001CE0E3 /* apicoinbasecom.crt in Resources */,
 				2A69BF2E1FFCE16A00158C6B /* wwwcoinbasecom.crt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1648,6 +1653,7 @@
 			files = (
 				2A1081E01FEC552A0053767C /* wwwcsascz.crt in Resources */,
 				2A1081DD1FEC53F80053767C /* wwwcsastcsascz.crt in Resources */,
+				2A22FEAF1FFD7BF7001CE0E3 /* apicoinbasecom.crt in Resources */,
 				2A69BF2D1FFCE16A00158C6B /* wwwcoinbasecom.crt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

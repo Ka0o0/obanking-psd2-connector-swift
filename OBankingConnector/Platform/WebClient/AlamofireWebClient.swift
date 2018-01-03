@@ -49,6 +49,7 @@ final class AlamofireWebClient: WebClient {
                 headers: headers
             )
             .map { DataResponse($0.0, $0.1) }
+                .debug()
             .do(
                 onNext: { [weak self] _ in
                     self?.release(requestId: requestId)
@@ -71,6 +72,10 @@ final class AlamofireWebClient: WebClient {
             headers: request.headers,
             certificate: certificate
         )
+    }
+
+    deinit {
+        print("whasdfs")
     }
 }
 // swiftlint:enable function_parameter_count

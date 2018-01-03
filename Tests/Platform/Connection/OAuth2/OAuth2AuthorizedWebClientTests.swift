@@ -17,11 +17,13 @@ class OAuth2AuthorizedWebClientTests: XCTestCase {
             accessToken: "test",
             tokenType: "othertype"
         )
+        let configuration = OAuth2BankServiceConfigurationMock()
         let webClient = WebClientMock()
         webClient.responseData = Data()
 
         let sut = OAuth2AuthorizedWebClient(
             oAuth2ConnectionInformation: connectionInformation,
+            oAuth2BankServiceConfiguration: configuration,
             webClient: webClient
         )
 
@@ -47,10 +49,46 @@ class OAuth2AuthorizedWebClientTests: XCTestCase {
                 return
             }
 
-            XCTAssertEqual(headers, ["Authorization": "Othertype test"])
+            XCTAssertEqual(headers, [
+                "Authorization": "Othertype test",
+                "test": "test"
+            ])
         } catch let error {
             XCTFail(String(describing: error))
         }
     }
 
+}
+
+private extension OAuth2AuthorizedWebClientTests {
+    class OAuth2BankServiceConfigurationMock: OAuth2BankServiceConfiguration {
+        var authorizationEndpointURL: URL { fatalError() }
+
+        var clientId: String { fatalError() }
+
+        var clientSecret: String? { fatalError() }
+
+        var tokenEndpointURL: URL? { fatalError() }
+
+        var redirectURI: String? { fatalError() }
+
+        var scope: String? { fatalError() }
+
+        var additionalAuthorizationRequestParameters: [String: String]? { fatalError() }
+
+        var additionalTokenRequestParameters: [String: String]? { fatalError() }
+
+        let additionalHeaders: [String: String]? = ["test": "test"]
+
+        var authorizationServerCertificate: Data { fatalError() }
+
+        var tokenServerCertificate: Data { fatalError() }
+
+        var apiServerCertificate: Data { fatalError() }
+
+        var bankingRequestTranslator: BankingRequestTranslator { fatalError() }
+
+        var bankServiceProvider: BankServiceProvider { fatalError() }
+
+    }
 }

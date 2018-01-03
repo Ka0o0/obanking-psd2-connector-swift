@@ -33,21 +33,28 @@ extension CoinbaseBankServiceProviderConfiguration: OAuth2BankServiceConfigurati
     }
 
     var additionalHeaders: [String: String]? {
-        return nil
-    }
-
-    var authorizationServerCertificate: Data {
-        return apiServerCertificate
-    }
-
-    var tokenServerCertificate: Data {
-        return apiServerCertificate
+        return [
+            "CB-Version": "2017-08-07"
+        ]
     }
 
     // swiftlint:disable force_try
-    var apiServerCertificate: Data {
+    var authorizationServerCertificate: Data {
         let bundle = OBankingConnector.bundle
         guard let certificateURL = bundle.url(forResource: "wwwcoinbasecom", withExtension: "crt") else {
+            fatalError("Could not read certificate")
+        }
+
+        return try! Data(contentsOf: certificateURL)
+    }
+
+    var tokenServerCertificate: Data {
+        return authorizationServerCertificate
+    }
+
+    var apiServerCertificate: Data {
+        let bundle = OBankingConnector.bundle
+        guard let certificateURL = bundle.url(forResource: "apicoinbasecom", withExtension: "crt") else {
             fatalError("Could not read certificate")
         }
 

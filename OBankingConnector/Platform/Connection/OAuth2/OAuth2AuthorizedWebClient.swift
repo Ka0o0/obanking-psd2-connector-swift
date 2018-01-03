@@ -12,13 +12,16 @@ import RxSwift
 final class OAuth2AuthorizedWebClient: WebClient {
 
     private let oAuth2ConnectionInformation: OAuth2BankServiceConnectionInformation
+    private let oAuth2BankServiceConfiguration: OAuth2BankServiceConfiguration
     private let webClient: WebClient
 
     init(
         oAuth2ConnectionInformation: OAuth2BankServiceConnectionInformation,
+        oAuth2BankServiceConfiguration: OAuth2BankServiceConfiguration,
         webClient: WebClient
     ) {
         self.oAuth2ConnectionInformation = oAuth2ConnectionInformation
+        self.oAuth2BankServiceConfiguration = oAuth2BankServiceConfiguration
         self.webClient = webClient
     }
 
@@ -37,6 +40,10 @@ final class OAuth2AuthorizedWebClient: WebClient {
             oAuth2ConnectionInformation.tokenType.capitalized,
             oAuth2ConnectionInformation.accessToken
         )
+
+        oAuth2BankServiceConfiguration.additionalHeaders?.forEach {
+            headersWithAuth[$0.key] = $0.value
+        }
 
         return webClient.request(
             method,

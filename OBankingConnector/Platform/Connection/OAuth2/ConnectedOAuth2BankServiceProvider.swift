@@ -24,10 +24,7 @@ final class ConnectedOAuth2BankServiceProvider: ConnectedBankServiceProvider {
     ) {
         self.oAuth2ConnectionInformation = oAuth2ConnectionInformation
         self.configurationParser = configurationParser
-        self.webClient = OAuth2AuthorizedWebClient(
-            oAuth2ConnectionInformation: oAuth2ConnectionInformation,
-            webClient: webClient
-        )
+        self.webClient = webClient
         self.supportedBankServicesProvider = supportedBankServicesProvider
     }
 
@@ -43,6 +40,7 @@ final class ConnectedOAuth2BankServiceProvider: ConnectedBankServiceProvider {
 
         let oAuth2AuthorizedWebClient = OAuth2AuthorizedWebClient(
             oAuth2ConnectionInformation: oAuth2ConnectionInformation,
+            oAuth2BankServiceConfiguration: configuration,
             webClient: webClient
         )
 

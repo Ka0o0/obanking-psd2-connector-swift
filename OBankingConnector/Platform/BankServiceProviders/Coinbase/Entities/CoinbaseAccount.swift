@@ -13,7 +13,6 @@ struct CoinbaseAccount: Codable {
     let id: String
     let name: String
     let type: CoinbaseAccountType
-    let currency: Currency
     let balance: CoinbaseBalance
 
     func toBankAccount() throws -> BankAccount {

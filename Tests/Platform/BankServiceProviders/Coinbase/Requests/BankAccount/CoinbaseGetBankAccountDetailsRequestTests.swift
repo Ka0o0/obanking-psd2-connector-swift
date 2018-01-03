@@ -53,9 +53,9 @@ class CoinbaseGetBankAccountDetailsRequestTests: CoinbaseRequestTests {
 
             assertProperRequest()
 
-            XCTAssertEqual(result.alias, "My Wallet")
+            XCTAssertEqual(result.alias, "BTC Wallet")
             XCTAssertEqual(result.type, .current)
-            XCTAssertEqual(result.balance, Amount(value: 3959000000, precision: 8, currency: .BTC))
+            XCTAssertEqual(result.balance, Amount(value: 0, precision: 8, currency: .BTC))
         } catch let error {
             XCTFail(String(describing: error))
         }
