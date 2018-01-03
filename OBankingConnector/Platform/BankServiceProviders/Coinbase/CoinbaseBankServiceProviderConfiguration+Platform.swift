@@ -13,10 +13,10 @@ extension CoinbaseBankServiceProviderConfiguration: OAuth2BankServiceConfigurati
 
     // swiftlint:disable force_unwrapping
     var authorizationEndpointURL: URL {
-        return URL(string: "https://www.csas.cz/widp/oauth2/auth")!
+        return URL(string: "https://www.coinbase.com/oauth/authorize")!
     }
     var tokenEndpointURL: URL? {
-        return URL(string: "https://www.csas.cz/widp/oauth2/token")!
+        return URL(string: "http://www.coinbase.com/oauth/token")!
     }
     // swiftlint:enable force_unwrapping
 
@@ -56,6 +56,10 @@ extension CoinbaseBankServiceProviderConfiguration: OAuth2BankServiceConfigurati
     // swiftlint:enable force_try
 
     var bankingRequestTranslator: BankingRequestTranslator {
-        return CoinbaseBankingRequestTranslator()
+        guard let baseURL = URL(string: "https://api.coinbase.com/v2/") else {
+            fatalError("Could not create base url")
+        }
+
+        return CoinbaseBankingRequestTranslator(baseURL: baseURL, certificate: apiServerCertificate)
     }
 }

@@ -13,7 +13,8 @@ final class ConfigurationEnabledSupportedBankServicesProvider: SupportedBankServ
     let supportedBankServices: [BankServiceProvider]
 
     private let systemWideBankServiceProviders: [BankServiceProvider] = [
-        GustavBankServiceProvider()
+        GustavBankServiceProvider(),
+        CoinbaseBankServiceProvider()
     ]
 
     init(configuration: OBankingConnectorConfiguration) {
