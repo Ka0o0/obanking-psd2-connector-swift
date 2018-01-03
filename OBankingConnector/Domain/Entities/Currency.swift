@@ -13,6 +13,8 @@ public enum Currency: String, Codable {
     case EUR
     case GBP
     case CZK
+    case BTC
+    case ETH
 
     public var name: String {
         switch self {
@@ -22,6 +24,10 @@ public enum Currency: String, Codable {
             return "Great British Pound"
         case .CZK:
             return "Koruna česká"
+        case .BTC:
+            return "Bitcoin"
+        case .ETH:
+            return "Ether"
         }
     }
 }

@@ -16,13 +16,17 @@ struct CoinbaseAccount: Codable {
     let currency: Currency
     let balance: CoinbaseBalance
 
-    func toBankAccount() -> BankAccount {
-
+    func toBankAccount() throws -> BankAccount {
         return BankAccount(
             bankId: "coinbase",
             id: id,
             accountNumber: CoinbaseAccountNumber(id: id),
-            details: nil
+            details: BankAccountDetails(
+                balance: try balance.toAmount(),
+                type: .current,
+                disposeableBalance: nil,
+                alias: name
+            )
         )
     }
 }

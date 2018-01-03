@@ -52,7 +52,7 @@ class GustavGetBankAccountsRequestTests: GustavRequestTests {
     var apiResponseMockData: Data? {
         let testBundle = Bundle(for: type(of: self))
         guard let apiResponseURL = testBundle
-            .url(forResource: "GetBankAccountsRequestResponse", withExtension: "json") else {
+            .url(forResource: "GustavGetBankAccountsRequestResponse", withExtension: "json") else {
             return nil
         }
 
