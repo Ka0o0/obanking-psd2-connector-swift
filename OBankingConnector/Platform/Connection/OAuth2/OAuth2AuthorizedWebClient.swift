@@ -34,7 +34,7 @@ final class OAuth2AuthorizedWebClient: WebClient {
         var headersWithAuth = headers ?? [:]
         headersWithAuth["Authorization"] = String(
             format: "%@ %@",
-            oAuth2ConnectionInformation.tokenType,
+            oAuth2ConnectionInformation.tokenType.capitalized,
             oAuth2ConnectionInformation.accessToken
         )
 
