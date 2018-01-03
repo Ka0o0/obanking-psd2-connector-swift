@@ -75,7 +75,7 @@ class GustavGetBankAccountsRequestTests: GustavRequestTests {
     func test_ParseResponse_ParsesResponseCorrectly() {
         let testBundle = Bundle(for: type(of: self))
         guard let apiResponseURL = testBundle
-            .url(forResource: "GetBankAccountsRequestResponse", withExtension: "json") else {
+            .url(forResource: "GustavGetBankAccountsRequestResponse", withExtension: "json") else {
                 XCTFail("Could not read GetBankAccountsRequestResponse")
                 return
         }

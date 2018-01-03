@@ -41,7 +41,7 @@ class GustavGetTransactionHistoryRequestTests: GustavRequestTests {
 
         let testBundle = Bundle(for: type(of: self))
         guard let apiResponseURL = testBundle
-            .url(forResource: "GetTransactionHistoryRequestResponse", withExtension: "json") else {
+            .url(forResource: "GustavGetTransactionHistoryRequestResponse", withExtension: "json") else {
             XCTFail("Could not read GetBankAccountsRequestResponse")
             return
         }

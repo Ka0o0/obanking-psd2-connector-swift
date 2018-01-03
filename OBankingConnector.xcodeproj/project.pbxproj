@@ -224,8 +224,42 @@
 		2A58F1F11FE30A560024D33E /* OAuth2BankServiceProviderAuthenticationRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F1EF1FE30A560024D33E /* OAuth2BankServiceProviderAuthenticationRequestFactory.swift */; };
 		2A58F1F31FE30B970024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F1F21FE30B970024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift */; };
 		2A58F1F41FE30B970024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58F1F21FE30B970024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift */; };
-		2A8B1F361FF10CA900482BF3 /* GetBankAccountsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F351FF10CA900482BF3 /* GetBankAccountsRequestResponse.json */; };
-		2A8B1F371FF10CA900482BF3 /* GetBankAccountsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F351FF10CA900482BF3 /* GetBankAccountsRequestResponse.json */; };
+		2A69BF101FFCD59A00158C6B /* CoinbaseBankServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF0F1FFCD59A00158C6B /* CoinbaseBankServiceProvider.swift */; };
+		2A69BF121FFCD76B00158C6B /* CoinbaseBankServiceProviderConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF111FFCD76B00158C6B /* CoinbaseBankServiceProviderConfiguration.swift */; };
+		2A69BF171FFCD90E00158C6B /* CoinbaseBankServiceProviderConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF161FFCD90E00158C6B /* CoinbaseBankServiceProviderConfigurationTests.swift */; };
+		2A69BF181FFCD93D00158C6B /* CoinbaseBankServiceProviderConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF161FFCD90E00158C6B /* CoinbaseBankServiceProviderConfigurationTests.swift */; };
+		2A69BF191FFCD94D00158C6B /* CoinbaseBankServiceProviderConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF111FFCD76B00158C6B /* CoinbaseBankServiceProviderConfiguration.swift */; };
+		2A69BF1A1FFCD97400158C6B /* CoinbaseBankServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF0F1FFCD59A00158C6B /* CoinbaseBankServiceProvider.swift */; };
+		2A69BF231FFCDAE800158C6B /* CoinbaseBankServiceProviderConfiguration+Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF221FFCDAE800158C6B /* CoinbaseBankServiceProviderConfiguration+Platform.swift */; };
+		2A69BF241FFCDAE800158C6B /* CoinbaseBankServiceProviderConfiguration+Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF221FFCDAE800158C6B /* CoinbaseBankServiceProviderConfiguration+Platform.swift */; };
+		2A69BF261FFCDB9A00158C6B /* CoinbaseAPIScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF251FFCDB9A00158C6B /* CoinbaseAPIScope.swift */; };
+		2A69BF271FFCDB9A00158C6B /* CoinbaseAPIScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF251FFCDB9A00158C6B /* CoinbaseAPIScope.swift */; };
+		2A69BF291FFCDC5D00158C6B /* CoinbaseAPIScope+Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF281FFCDC5D00158C6B /* CoinbaseAPIScope+Platform.swift */; };
+		2A69BF2A1FFCDC5D00158C6B /* CoinbaseAPIScope+Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF281FFCDC5D00158C6B /* CoinbaseAPIScope+Platform.swift */; };
+		2A69BF2D1FFCE16A00158C6B /* wwwcoinbasecom.crt in Resources */ = {isa = PBXBuildFile; fileRef = 2A69BF2C1FFCE16A00158C6B /* wwwcoinbasecom.crt */; };
+		2A69BF2E1FFCE16A00158C6B /* wwwcoinbasecom.crt in Resources */ = {isa = PBXBuildFile; fileRef = 2A69BF2C1FFCE16A00158C6B /* wwwcoinbasecom.crt */; };
+		2A69BF311FFCE1A100158C6B /* CoinbaseBankingRequestTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF301FFCE1A100158C6B /* CoinbaseBankingRequestTranslator.swift */; };
+		2A69BF321FFCE1A100158C6B /* CoinbaseBankingRequestTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF301FFCE1A100158C6B /* CoinbaseBankingRequestTranslator.swift */; };
+		2A69BF341FFCE27100158C6B /* CoinbaseBankingRequestTranslatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF331FFCE27100158C6B /* CoinbaseBankingRequestTranslatorTests.swift */; };
+		2A69BF351FFCE27100158C6B /* CoinbaseBankingRequestTranslatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF331FFCE27100158C6B /* CoinbaseBankingRequestTranslatorTests.swift */; };
+		2A69BF381FFCE2BD00158C6B /* CoinbaseGetBankAccountsRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF371FFCE2BD00158C6B /* CoinbaseGetBankAccountsRequestTests.swift */; };
+		2A69BF391FFCE2BD00158C6B /* CoinbaseGetBankAccountsRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF371FFCE2BD00158C6B /* CoinbaseGetBankAccountsRequestTests.swift */; };
+		2A69BF3B1FFCE33A00158C6B /* CoinbaseRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF3A1FFCE33A00158C6B /* CoinbaseRequestTests.swift */; };
+		2A69BF3C1FFCE33A00158C6B /* CoinbaseRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF3A1FFCE33A00158C6B /* CoinbaseRequestTests.swift */; };
+		2A69BF3F1FFCE39400158C6B /* CoinbaseGetBankAccountsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF3E1FFCE39400158C6B /* CoinbaseGetBankAccountsRequest.swift */; };
+		2A69BF401FFCE39400158C6B /* CoinbaseGetBankAccountsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF3E1FFCE39400158C6B /* CoinbaseGetBankAccountsRequest.swift */; };
+		2A69BF451FFCE4EE00158C6B /* CoinbaseGetBankAccountsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A69BF421FFCE4E500158C6B /* CoinbaseGetBankAccountsRequestResponse.json */; };
+		2A69BF461FFCE4EE00158C6B /* CoinbaseGetBankAccountsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A69BF421FFCE4E500158C6B /* CoinbaseGetBankAccountsRequestResponse.json */; };
+		2A69BF491FFCE58600158C6B /* CoinbaseAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF481FFCE58600158C6B /* CoinbaseAccount.swift */; };
+		2A69BF4A1FFCE58600158C6B /* CoinbaseAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF481FFCE58600158C6B /* CoinbaseAccount.swift */; };
+		2A69BF4C1FFCE63400158C6B /* CoinbaseBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF4B1FFCE63400158C6B /* CoinbaseBalance.swift */; };
+		2A69BF4D1FFCE63400158C6B /* CoinbaseBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF4B1FFCE63400158C6B /* CoinbaseBalance.swift */; };
+		2A69BF4F1FFCE6C600158C6B /* CoinbaseGetBankAccountsRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF4E1FFCE6C600158C6B /* CoinbaseGetBankAccountsRequestResponse.swift */; };
+		2A69BF501FFCE6C600158C6B /* CoinbaseGetBankAccountsRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF4E1FFCE6C600158C6B /* CoinbaseGetBankAccountsRequestResponse.swift */; };
+		2A69BF521FFCE75200158C6B /* CryptoCurrencyAccountNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF511FFCE75200158C6B /* CryptoCurrencyAccountNumber.swift */; };
+		2A69BF531FFCE75200158C6B /* CryptoCurrencyAccountNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF511FFCE75200158C6B /* CryptoCurrencyAccountNumber.swift */; };
+		2A8B1F361FF10CA900482BF3 /* GustavGetBankAccountsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F351FF10CA900482BF3 /* GustavGetBankAccountsRequestResponse.json */; };
+		2A8B1F371FF10CA900482BF3 /* GustavGetBankAccountsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F351FF10CA900482BF3 /* GustavGetBankAccountsRequestResponse.json */; };
 		2A8B1F3A1FF17D2F00482BF3 /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F391FF17D2F00482BF3 /* BankAccountTests.swift */; };
 		2A8B1F3B1FF17D2F00482BF3 /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F391FF17D2F00482BF3 /* BankAccountTests.swift */; };
 		2A8B1F3D1FF1895400482BF3 /* GustavGetBankAccountsRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F3C1FF1895400482BF3 /* GustavGetBankAccountsRequestResponse.swift */; };
@@ -240,14 +274,14 @@
 		2A8B1F4B1FF2480A00482BF3 /* GustavBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F491FF2480900482BF3 /* GustavBalance.swift */; };
 		2A8B1F4D1FF2482400482BF3 /* GustavAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F4C1FF2482400482BF3 /* GustavAccount.swift */; };
 		2A8B1F4E1FF2482400482BF3 /* GustavAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F4C1FF2482400482BF3 /* GustavAccount.swift */; };
-		2A8B1F501FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F4F1FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json */; };
-		2A8B1F511FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F4F1FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json */; };
+		2A8B1F501FF24CCD00482BF3 /* GustavGetBankAccountDetailsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F4F1FF24CCD00482BF3 /* GustavGetBankAccountDetailsRequestResponse.json */; };
+		2A8B1F511FF24CCD00482BF3 /* GustavGetBankAccountDetailsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F4F1FF24CCD00482BF3 /* GustavGetBankAccountDetailsRequestResponse.json */; };
 		2A8B1F561FF252B600482BF3 /* GustavTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F551FF252B600482BF3 /* GustavTransaction.swift */; };
 		2A8B1F571FF252B600482BF3 /* GustavTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F551FF252B600482BF3 /* GustavTransaction.swift */; };
 		2A8B1F5A1FF254EB00482BF3 /* GustavGetTransactionHistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F591FF254EB00482BF3 /* GustavGetTransactionHistoryRequest.swift */; };
 		2A8B1F5B1FF254EB00482BF3 /* GustavGetTransactionHistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F591FF254EB00482BF3 /* GustavGetTransactionHistoryRequest.swift */; };
-		2A8B1F5D1FF2576F00482BF3 /* GetTransactionHistoryRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F5C1FF2576F00482BF3 /* GetTransactionHistoryRequestResponse.json */; };
-		2A8B1F5E1FF2576F00482BF3 /* GetTransactionHistoryRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F5C1FF2576F00482BF3 /* GetTransactionHistoryRequestResponse.json */; };
+		2A8B1F5D1FF2576F00482BF3 /* GustavGetTransactionHistoryRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F5C1FF2576F00482BF3 /* GustavGetTransactionHistoryRequestResponse.json */; };
+		2A8B1F5E1FF2576F00482BF3 /* GustavGetTransactionHistoryRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F5C1FF2576F00482BF3 /* GustavGetTransactionHistoryRequestResponse.json */; };
 		2A8B1F631FF25B6800482BF3 /* AccountHolderInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F5F1FF25B6500482BF3 /* AccountHolderInformation.swift */; };
 		2A8B1F641FF25B6900482BF3 /* AccountHolderInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F5F1FF25B6500482BF3 /* AccountHolderInformation.swift */; };
 		2A8B1F661FF25B7D00482BF3 /* AccountHolderInformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F651FF25B7D00482BF3 /* AccountHolderInformationTests.swift */; };
@@ -440,7 +474,24 @@
 		2A58F1EC1FE308AF0024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationBankServiceProviderAuthenticationRequestFactoryProvider.swift; sourceTree = "<group>"; };
 		2A58F1EF1FE30A560024D33E /* OAuth2BankServiceProviderAuthenticationRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2BankServiceProviderAuthenticationRequestFactory.swift; sourceTree = "<group>"; };
 		2A58F1F21FE30B970024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift; sourceTree = "<group>"; };
-		2A8B1F351FF10CA900482BF3 /* GetBankAccountsRequestResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetBankAccountsRequestResponse.json; sourceTree = "<group>"; };
+		2A69BF0F1FFCD59A00158C6B /* CoinbaseBankServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseBankServiceProvider.swift; sourceTree = "<group>"; };
+		2A69BF111FFCD76B00158C6B /* CoinbaseBankServiceProviderConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseBankServiceProviderConfiguration.swift; sourceTree = "<group>"; };
+		2A69BF161FFCD90E00158C6B /* CoinbaseBankServiceProviderConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseBankServiceProviderConfigurationTests.swift; sourceTree = "<group>"; };
+		2A69BF221FFCDAE800158C6B /* CoinbaseBankServiceProviderConfiguration+Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoinbaseBankServiceProviderConfiguration+Platform.swift"; sourceTree = "<group>"; };
+		2A69BF251FFCDB9A00158C6B /* CoinbaseAPIScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseAPIScope.swift; sourceTree = "<group>"; };
+		2A69BF281FFCDC5D00158C6B /* CoinbaseAPIScope+Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoinbaseAPIScope+Platform.swift"; sourceTree = "<group>"; };
+		2A69BF2C1FFCE16A00158C6B /* wwwcoinbasecom.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wwwcoinbasecom.crt; sourceTree = "<group>"; };
+		2A69BF301FFCE1A100158C6B /* CoinbaseBankingRequestTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseBankingRequestTranslator.swift; sourceTree = "<group>"; };
+		2A69BF331FFCE27100158C6B /* CoinbaseBankingRequestTranslatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseBankingRequestTranslatorTests.swift; sourceTree = "<group>"; };
+		2A69BF371FFCE2BD00158C6B /* CoinbaseGetBankAccountsRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseGetBankAccountsRequestTests.swift; sourceTree = "<group>"; };
+		2A69BF3A1FFCE33A00158C6B /* CoinbaseRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseRequestTests.swift; sourceTree = "<group>"; };
+		2A69BF3E1FFCE39400158C6B /* CoinbaseGetBankAccountsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseGetBankAccountsRequest.swift; sourceTree = "<group>"; };
+		2A69BF421FFCE4E500158C6B /* CoinbaseGetBankAccountsRequestResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CoinbaseGetBankAccountsRequestResponse.json; sourceTree = "<group>"; };
+		2A69BF481FFCE58600158C6B /* CoinbaseAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseAccount.swift; sourceTree = "<group>"; };
+		2A69BF4B1FFCE63400158C6B /* CoinbaseBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseBalance.swift; sourceTree = "<group>"; };
+		2A69BF4E1FFCE6C600158C6B /* CoinbaseGetBankAccountsRequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseGetBankAccountsRequestResponse.swift; sourceTree = "<group>"; };
+		2A69BF511FFCE75200158C6B /* CryptoCurrencyAccountNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyAccountNumber.swift; sourceTree = "<group>"; };
+		2A8B1F351FF10CA900482BF3 /* GustavGetBankAccountsRequestResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GustavGetBankAccountsRequestResponse.json; sourceTree = "<group>"; };
 		2A8B1F391FF17D2F00482BF3 /* BankAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		2A8B1F3C1FF1895400482BF3 /* GustavGetBankAccountsRequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavGetBankAccountsRequestResponse.swift; sourceTree = "<group>"; };
 		2A8B1F3F1FF18A3B00482BF3 /* GustavGetBankAccountDetailsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavGetBankAccountDetailsRequest.swift; sourceTree = "<group>"; };
@@ -448,10 +499,10 @@
 		2A8B1F461FF2474000482BF3 /* GustavAccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavAccountType.swift; sourceTree = "<group>"; };
 		2A8B1F491FF2480900482BF3 /* GustavBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavBalance.swift; sourceTree = "<group>"; };
 		2A8B1F4C1FF2482400482BF3 /* GustavAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavAccount.swift; sourceTree = "<group>"; };
-		2A8B1F4F1FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetBankAccountDetailsRequestResponse.json; sourceTree = "<group>"; };
+		2A8B1F4F1FF24CCD00482BF3 /* GustavGetBankAccountDetailsRequestResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GustavGetBankAccountDetailsRequestResponse.json; sourceTree = "<group>"; };
 		2A8B1F551FF252B600482BF3 /* GustavTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavTransaction.swift; sourceTree = "<group>"; };
 		2A8B1F591FF254EB00482BF3 /* GustavGetTransactionHistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavGetTransactionHistoryRequest.swift; sourceTree = "<group>"; };
-		2A8B1F5C1FF2576F00482BF3 /* GetTransactionHistoryRequestResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetTransactionHistoryRequestResponse.json; sourceTree = "<group>"; };
+		2A8B1F5C1FF2576F00482BF3 /* GustavGetTransactionHistoryRequestResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GustavGetTransactionHistoryRequestResponse.json; sourceTree = "<group>"; };
 		2A8B1F5F1FF25B6500482BF3 /* AccountHolderInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountHolderInformation.swift; sourceTree = "<group>"; };
 		2A8B1F651FF25B7D00482BF3 /* AccountHolderInformationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountHolderInformationTests.swift; sourceTree = "<group>"; };
 		2A8B1F681FF25F8400482BF3 /* GustavGetTransactionHistoryRequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavGetTransactionHistoryRequestResponse.swift; sourceTree = "<group>"; };
@@ -563,15 +614,6 @@
 			path = BankAccount;
 			sourceTree = "<group>";
 		};
-		2A0FF77B1FEFA2E9006963A9 /* Requests */ = {
-			isa = PBXGroup;
-			children = (
-				2A0FF77C1FEFA2FF006963A9 /* GustavBankingRequestTranslatorTests.swift */,
-				2A8B1F381FF10CBC00482BF3 /* Responses */,
-			);
-			path = Requests;
-			sourceTree = "<group>";
-		};
 		2A1081D71FEC41190053767C /* Requests */ = {
 			isa = PBXGroup;
 			children = (
@@ -597,6 +639,7 @@
 		2A1081E21FEC55810053767C /* BankServiceProviders */ = {
 			isa = PBXGroup;
 			children = (
+				2A69BF151FFCD8F000158C6B /* Coinbase */,
 				2A1081E31FEC558B0053767C /* Gustav */,
 			);
 			path = BankServiceProviders;
@@ -607,8 +650,6 @@
 			children = (
 				2A1081E41FEC559D0053767C /* GustavBankServiceProviderConfigurationTests.swift */,
 				2A1081E71FEC56060053767C /* GustavSandboxBankServiceProviderConfigurationTests.swift */,
-				2A8B1F6E1FF263E800482BF3 /* Entities */,
-				2A0FF77B1FEFA2E9006963A9 /* Requests */,
 			);
 			path = Gustav;
 			sourceTree = "<group>";
@@ -961,12 +1002,112 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		2A69BF0E1FFCD58700158C6B /* Coinbase */ = {
+			isa = PBXGroup;
+			children = (
+				2A69BF251FFCDB9A00158C6B /* CoinbaseAPIScope.swift */,
+				2A69BF0F1FFCD59A00158C6B /* CoinbaseBankServiceProvider.swift */,
+				2A69BF111FFCD76B00158C6B /* CoinbaseBankServiceProviderConfiguration.swift */,
+			);
+			path = Coinbase;
+			sourceTree = "<group>";
+		};
+		2A69BF151FFCD8F000158C6B /* Coinbase */ = {
+			isa = PBXGroup;
+			children = (
+				2A69BF161FFCD90E00158C6B /* CoinbaseBankServiceProviderConfigurationTests.swift */,
+			);
+			path = Coinbase;
+			sourceTree = "<group>";
+		};
+		2A69BF1F1FFCDA0400158C6B /* Coinbase */ = {
+			isa = PBXGroup;
+			children = (
+				2A69BF201FFCDA8900158C6B /* Requests */,
+			);
+			path = Coinbase;
+			sourceTree = "<group>";
+		};
+		2A69BF201FFCDA8900158C6B /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				2A69BF331FFCE27100158C6B /* CoinbaseBankingRequestTranslatorTests.swift */,
+				2A69BF3A1FFCE33A00158C6B /* CoinbaseRequestTests.swift */,
+				2A69BF361FFCE2A700158C6B /* BankAccount */,
+				2A69BF411FFCE4C100158C6B /* Responses */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		2A69BF211FFCDACD00158C6B /* Coinbase */ = {
+			isa = PBXGroup;
+			children = (
+				2A69BF281FFCDC5D00158C6B /* CoinbaseAPIScope+Platform.swift */,
+				2A69BF221FFCDAE800158C6B /* CoinbaseBankServiceProviderConfiguration+Platform.swift */,
+				2A69BF2B1FFCE15400158C6B /* Certificates */,
+				2A69BF471FFCE57800158C6B /* Entities */,
+				2A69BF2F1FFCE19900158C6B /* Requests */,
+			);
+			path = Coinbase;
+			sourceTree = "<group>";
+		};
+		2A69BF2B1FFCE15400158C6B /* Certificates */ = {
+			isa = PBXGroup;
+			children = (
+				2A69BF2C1FFCE16A00158C6B /* wwwcoinbasecom.crt */,
+			);
+			path = Certificates;
+			sourceTree = "<group>";
+		};
+		2A69BF2F1FFCE19900158C6B /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				2A69BF301FFCE1A100158C6B /* CoinbaseBankingRequestTranslator.swift */,
+				2A69BF3D1FFCE38900158C6B /* BankAccount */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		2A69BF361FFCE2A700158C6B /* BankAccount */ = {
+			isa = PBXGroup;
+			children = (
+				2A69BF371FFCE2BD00158C6B /* CoinbaseGetBankAccountsRequestTests.swift */,
+			);
+			path = BankAccount;
+			sourceTree = "<group>";
+		};
+		2A69BF3D1FFCE38900158C6B /* BankAccount */ = {
+			isa = PBXGroup;
+			children = (
+				2A69BF3E1FFCE39400158C6B /* CoinbaseGetBankAccountsRequest.swift */,
+				2A69BF4E1FFCE6C600158C6B /* CoinbaseGetBankAccountsRequestResponse.swift */,
+			);
+			path = BankAccount;
+			sourceTree = "<group>";
+		};
+		2A69BF411FFCE4C100158C6B /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				2A69BF421FFCE4E500158C6B /* CoinbaseGetBankAccountsRequestResponse.json */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		2A69BF471FFCE57800158C6B /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				2A69BF481FFCE58600158C6B /* CoinbaseAccount.swift */,
+				2A69BF4B1FFCE63400158C6B /* CoinbaseBalance.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		2A8B1F381FF10CBC00482BF3 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
-				2A8B1F4F1FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json */,
-				2A8B1F351FF10CA900482BF3 /* GetBankAccountsRequestResponse.json */,
-				2A8B1F5C1FF2576F00482BF3 /* GetTransactionHistoryRequestResponse.json */,
+				2A8B1F4F1FF24CCD00482BF3 /* GustavGetBankAccountDetailsRequestResponse.json */,
+				2A8B1F351FF10CA900482BF3 /* GustavGetBankAccountsRequestResponse.json */,
+				2A8B1F5C1FF2576F00482BF3 /* GustavGetTransactionHistoryRequestResponse.json */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -1065,6 +1206,7 @@
 				2AECE5A41FDDE9B500FEEC14 /* Transaction.swift */,
 				2A220A921FE5CE1800397FBE /* TransactionHistory.swift */,
 				2AECE5A61FDDEA0700FEEC14 /* TransactionTextType.swift */,
+				2A69BF511FFCE75200158C6B /* CryptoCurrencyAccountNumber.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1113,6 +1255,7 @@
 			isa = PBXGroup;
 			children = (
 				2A58F1D71FE2D4650024D33E /* BankServiceProviderConfiguration.swift */,
+				2A69BF0E1FFCD58700158C6B /* Coinbase */,
 				2A280A751FE400C200B90104 /* Gustav */,
 			);
 			path = BankServiceProviders;
@@ -1189,6 +1332,7 @@
 				2AF5F8DE1FF2C2A600C33ED5 /* BankingRequestProcessor.swift */,
 				2A220AB11FE7060F00397FBE /* BankingRequestTranslator.swift */,
 				2A58F1DB1FE2D4930024D33E /* OAuth2BankServiceConfiguration.swift */,
+				2A69BF211FFCDACD00158C6B /* Coinbase */,
 				2AF5F8D61FF2BCA700C33ED5 /* Gustav */,
 			);
 			path = BankServiceProviders;
@@ -1209,6 +1353,7 @@
 		2AF5F8E11FF2C5D000C33ED5 /* BankServiceProviders */ = {
 			isa = PBXGroup;
 			children = (
+				2A69BF1F1FFCDA0400158C6B /* Coinbase */,
 				2AF5F8E21FF2C5D600C33ED5 /* Gustav */,
 			);
 			path = BankServiceProviders;
@@ -1217,6 +1362,7 @@
 		2AF5F8E21FF2C5D600C33ED5 /* Gustav */ = {
 			isa = PBXGroup;
 			children = (
+				2A8B1F6E1FF263E800482BF3 /* Entities */,
 				2AF5F8E31FF2C5DF00C33ED5 /* Requests */,
 			);
 			path = Gustav;
@@ -1225,9 +1371,11 @@
 		2AF5F8E31FF2C5DF00C33ED5 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				2A0FF77C1FEFA2FF006963A9 /* GustavBankingRequestTranslatorTests.swift */,
 				2AF5F8FE1FF2D34A00C33ED5 /* GustavPaginatedRequestTests.swift */,
 				2AF5F8E81FF2C6DC00C33ED5 /* GustavRequestTests.swift */,
 				2AF5F8E41FF2C5E600C33ED5 /* BankAccount */,
+				2A8B1F381FF10CBC00482BF3 /* Responses */,
 				2AF5F8EE1FF2CBBC00C33ED5 /* Transactions */,
 			);
 			path = Requests;
@@ -1446,6 +1594,7 @@
 			files = (
 				2A1081E11FEC552A0053767C /* wwwcsascz.crt in Resources */,
 				2A1081DE1FEC53F80053767C /* wwwcsastcsascz.crt in Resources */,
+				2A69BF2E1FFCE16A00158C6B /* wwwcoinbasecom.crt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1453,9 +1602,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A8B1F511FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json in Resources */,
-				2A8B1F371FF10CA900482BF3 /* GetBankAccountsRequestResponse.json in Resources */,
-				2A8B1F5E1FF2576F00482BF3 /* GetTransactionHistoryRequestResponse.json in Resources */,
+				2A8B1F511FF24CCD00482BF3 /* GustavGetBankAccountDetailsRequestResponse.json in Resources */,
+				2A8B1F371FF10CA900482BF3 /* GustavGetBankAccountsRequestResponse.json in Resources */,
+				2A8B1F5E1FF2576F00482BF3 /* GustavGetTransactionHistoryRequestResponse.json in Resources */,
+				2A69BF461FFCE4EE00158C6B /* CoinbaseGetBankAccountsRequestResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1465,6 +1615,7 @@
 			files = (
 				2A1081E01FEC552A0053767C /* wwwcsascz.crt in Resources */,
 				2A1081DD1FEC53F80053767C /* wwwcsastcsascz.crt in Resources */,
+				2A69BF2D1FFCE16A00158C6B /* wwwcoinbasecom.crt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1472,9 +1623,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A8B1F501FF24CCD00482BF3 /* GetBankAccountDetailsRequestResponse.json in Resources */,
-				2A8B1F361FF10CA900482BF3 /* GetBankAccountsRequestResponse.json in Resources */,
-				2A8B1F5D1FF2576F00482BF3 /* GetTransactionHistoryRequestResponse.json in Resources */,
+				2A8B1F501FF24CCD00482BF3 /* GustavGetBankAccountDetailsRequestResponse.json in Resources */,
+				2A8B1F361FF10CA900482BF3 /* GustavGetBankAccountsRequestResponse.json in Resources */,
+				2A8B1F5D1FF2576F00482BF3 /* GustavGetTransactionHistoryRequestResponse.json in Resources */,
+				2A69BF451FFCE4EE00158C6B /* CoinbaseGetBankAccountsRequestResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1707,6 +1859,7 @@
 				2A58F1351FE07D090024D33E /* Currency.swift in Sources */,
 				2A1081DA1FEC41C30053767C /* GustavBankingRequestTranslator.swift in Sources */,
 				2A8B1F5B1FF254EB00482BF3 /* GustavGetTransactionHistoryRequest.swift in Sources */,
+				2A69BF501FFCE6C600158C6B /* CoinbaseGetBankAccountsRequestResponse.swift in Sources */,
 				2A58F1391FE07D090024D33E /* TransactionTextType.swift in Sources */,
 				2A1081D31FEC2D5B0053767C /* DefaultBankServiceConnectionInformationDecoder.swift in Sources */,
 				2A58F1BE1FE289E60024D33E /* OAuth2AccessTokenRequestor.swift in Sources */,
@@ -1725,6 +1878,7 @@
 				2A58F1411FE07D110024D33E /* BankServiceProviderAuthenticationProviderError.swift in Sources */,
 				2A8B1F4B1FF2480A00482BF3 /* GustavBalance.swift in Sources */,
 				2A58F1451FE07D3B0024D33E /* ExternalWebBrowserLauncher.swift in Sources */,
+				2A69BF4D1FFCE63400158C6B /* CoinbaseBalance.swift in Sources */,
 				2A58F1E81FE2D9040024D33E /* ConfigurationParser.swift in Sources */,
 				2A58F1461FE07D3B0024D33E /* PlatformDependingWebBrowserLauncher.swift in Sources */,
 				2A58F1D91FE2D4650024D33E /* BankServiceProviderConfiguration.swift in Sources */,
@@ -1733,6 +1887,7 @@
 				2AF5F8DC1FF2BDD100C33ED5 /* GustavSandboxBankServiceProviderConfiguration+Platform.swift in Sources */,
 				2A58F1401FE07D110024D33E /* BankServiceProviderAuthenticationProvider.swift in Sources */,
 				2A58F12B1FE07CF90024D33E /* OBankingConnector.swift in Sources */,
+				2A69BF531FFCE75200158C6B /* CryptoCurrencyAccountNumber.swift in Sources */,
 				2A8B1F6A1FF25F8400482BF3 /* GustavGetTransactionHistoryRequestResponse.swift in Sources */,
 				2AF5F8E01FF2C2A600C33ED5 /* BankingRequestProcessor.swift in Sources */,
 				2A58F1A91FE13BC10024D33E /* OAuth2AuthorizationRequestURLBuilder.swift in Sources */,
@@ -1740,6 +1895,8 @@
 				2A8EE3B61FF2E09C00245CE8 /* GustavRequestProcessorError.swift in Sources */,
 				2A220A871FE5C8E000397FBE /* GetBankAccountDetailsRequest.swift in Sources */,
 				2A58F12D1FE07D090024D33E /* DeepLinkHandler.swift in Sources */,
+				2A69BF321FFCE1A100158C6B /* CoinbaseBankingRequestTranslator.swift in Sources */,
+				2A69BF1A1FFCD97400158C6B /* CoinbaseBankServiceProvider.swift in Sources */,
 				2AF5F8F41FF2CE4B00C33ED5 /* GustavGetDateFilteredTransactionHistoryRequest.swift in Sources */,
 				2A220A9E1FE5D4AF00397FBE /* DefaultBankServiceProviderConnector.swift in Sources */,
 				2A58F1361FE07D090024D33E /* ExchangeRateInformation.swift in Sources */,
@@ -1755,8 +1912,10 @@
 				2A8B1F411FF18A3B00482BF3 /* GustavGetBankAccountDetailsRequest.swift in Sources */,
 				2A58F13B1FE07D0D0024D33E /* BankingRequest.swift in Sources */,
 				2A280A7F1FE405CD00B90104 /* GustavBankServiceProviderConfiguration.swift in Sources */,
+				2A69BF271FFCDB9A00158C6B /* CoinbaseAPIScope.swift in Sources */,
 				2A220A971FE5CF9100397FBE /* GetDateFilteredTransactionHistoryRequest.swift in Sources */,
 				2A5621371FF684E300ED9709 /* DefaultBankServiceConnectionInformationEncoder.swift in Sources */,
+				2A69BF2A1FFCDC5D00158C6B /* CoinbaseAPIScope+Platform.swift in Sources */,
 				2A58F13D1FE07D0D0024D33E /* BankServiceConnectionInformation.swift in Sources */,
 				2A58F12E1FE07D090024D33E /* AccountNumber.swift in Sources */,
 				2A58F1D21FE2CEEB0024D33E /* DefaultOAuth2BankServiceAuthenticationRequestProcessorFactory.swift in Sources */,
@@ -1777,16 +1936,20 @@
 				2A58F1EB1FE308690024D33E /* BankServiceProviderAuthenticationRequestFactoryProvider.swift in Sources */,
 				2A58F1A11FE127500024D33E /* ParameterEncoding.swift in Sources */,
 				2A58F1501FE07D6F0024D33E /* BankServiceProviderAuthenticationRequestProcessorError.swift in Sources */,
+				2A69BF4A1FFCE58600158C6B /* CoinbaseAccount.swift in Sources */,
+				2A69BF191FFCD94D00158C6B /* CoinbaseBankServiceProviderConfiguration.swift in Sources */,
 				2A58F1A01FE127500024D33E /* HTTPMethod.swift in Sources */,
 				2A58F14E1FE07D6F0024D33E /* BankServiceProviderAuthenticationRequestFactory.swift in Sources */,
 				2A58F14D1FE07D6F0024D33E /* BankServiceProviderAuthenticationRequest.swift in Sources */,
 				2A58F1481FE07D3B0024D33E /* WebClient.swift in Sources */,
 				2A58F14C1FE07D6C0024D33E /* OAuth2BankServiceProviderAuthenticationRequestProcessor.swift in Sources */,
 				2A58F1301FE07D090024D33E /* AmountSample.swift in Sources */,
+				2A69BF241FFCDAE800158C6B /* CoinbaseBankServiceProviderConfiguration+Platform.swift in Sources */,
 				2A58F12F1FE07D090024D33E /* Amount.swift in Sources */,
 				2A58F1431FE07D1A0024D33E /* IBANValidator.swift in Sources */,
 				2A58F1D51FE2CFF00024D33E /* AlamofireWebClient.swift in Sources */,
 				2A58F14A1FE07D670024D33E /* DeepLinkService.swift in Sources */,
+				2A69BF401FFCE39400158C6B /* CoinbaseGetBankAccountsRequest.swift in Sources */,
 				2A58F1371FE07D090024D33E /* SepaAccountNumber.swift in Sources */,
 				2A220AB01FE661E600397FBE /* HTTPRequest.swift in Sources */,
 				2A58F1421FE07D110024D33E /* BankServiceProviderAuthenticationResult.swift in Sources */,
@@ -1817,6 +1980,7 @@
 				2A58F1631FE07F5B0024D33E /* AmountSampleTests.swift in Sources */,
 				2AF5F8EA1FF2C6DC00C33ED5 /* GustavRequestTests.swift in Sources */,
 				2A58F1CF1FE2C9080024D33E /* OAuth2AccessTokenRequestorMock.swift in Sources */,
+				2A69BF181FFCD93D00158C6B /* CoinbaseBankServiceProviderConfigurationTests.swift in Sources */,
 				2A58F1651FE07F5B0024D33E /* BankAccountDetailsTests.swift in Sources */,
 				2A58F1741FE07F6F0024D33E /* OAuth2BankServiceProviderAuthenticationRequestTests.swift in Sources */,
 				2A58F1611FE07F5B0024D33E /* DeepLinkHandlerTests.swift in Sources */,
@@ -1826,6 +1990,7 @@
 				2A220AAA1FE65BCA00397FBE /* ConnectedOAuth2BankServiceProviderTests.swift in Sources */,
 				2A58F19A1FE092220024D33E /* WebClientMock.swift in Sources */,
 				2A58F1761FE07F6F0024D33E /* DefaultBankServiceProviderAuthenticationProviderTests.swift in Sources */,
+				2A69BF391FFCE2BD00158C6B /* CoinbaseGetBankAccountsRequestTests.swift in Sources */,
 				2A58F1E21FE2D7950024D33E /* ConfigurationParserTests.swift in Sources */,
 				2A58F1B11FE13E4B0024D33E /* DefaultOAuth2AuthorizationRequestURLBuilderTests.swift in Sources */,
 				2A220A7F1FE57A8200397FBE /* OAuth2BankServiceProviderAuthenticationRequest+Init.swift in Sources */,
@@ -1834,8 +1999,10 @@
 				2A58F1C11FE28A400024D33E /* DefaultOAuth2AccessTokenRequestorTests.swift in Sources */,
 				2A58F1F41FE30B970024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift in Sources */,
 				2A58F1771FE07F6F0024D33E /* DefaultDeepLinkServiceTests.swift in Sources */,
+				2A69BF3C1FFCE33A00158C6B /* CoinbaseRequestTests.swift in Sources */,
 				2AF5F8FA1FF2CFF600C33ED5 /* GustavGetDateFilteredTransactionHistoryRequestTests.swift in Sources */,
 				2A8B1F671FF25B7D00482BF3 /* AccountHolderInformationTests.swift in Sources */,
+				2A69BF351FFCE27100158C6B /* CoinbaseBankingRequestTranslatorTests.swift in Sources */,
 				2A58F1C71FE2B6520024D33E /* OAuth2BankServiceConnectionInformationTests.swift in Sources */,
 				2A58F1671FE07F5B0024D33E /* BankServiceProviderTests.swift in Sources */,
 				2A58F1711FE07F600024D33E /* BankingRequestTests.swift in Sources */,
@@ -1865,6 +2032,7 @@
 				2AECE59D1FDDE48500FEEC14 /* AmountSample.swift in Sources */,
 				2A1081D91FEC412A0053767C /* GustavBankingRequestTranslator.swift in Sources */,
 				2A8B1F5A1FF254EB00482BF3 /* GustavGetTransactionHistoryRequest.swift in Sources */,
+				2A69BF4F1FFCE6C600158C6B /* CoinbaseGetBankAccountsRequestResponse.swift in Sources */,
 				2A58F0E21FE01C590024D33E /* DefaultBankServiceProviderAuthenticationProvider.swift in Sources */,
 				2A1081D21FEC2D5B0053767C /* DefaultBankServiceConnectionInformationDecoder.swift in Sources */,
 				2A58F1BD1FE289E50024D33E /* OAuth2AccessTokenRequestor.swift in Sources */,
@@ -1883,13 +2051,16 @@
 				2A58F1B61FE142DD0024D33E /* OAuth2AuthorizationTokenExtractor.swift in Sources */,
 				2A8B1F4A1FF2480A00482BF3 /* GustavBalance.swift in Sources */,
 				2AECE5801FDDDA3C00FEEC14 /* DeepLinkHandler.swift in Sources */,
+				2A69BF4C1FFCE63400158C6B /* CoinbaseBalance.swift in Sources */,
 				2A58F1E71FE2D9040024D33E /* ConfigurationParser.swift in Sources */,
 				2A58F0F01FE055DD0024D33E /* BankServiceProviderAuthenticationRequestProcessorError.swift in Sources */,
 				2A58F0C91FE00B5D0024D33E /* BankServiceProviderConnector.swift in Sources */,
 				2A280A811FE408DF00B90104 /* GustavSandboxBankServiceProviderConfiguration.swift in Sources */,
 				2A58F1D81FE2D4650024D33E /* BankServiceProviderConfiguration.swift in Sources */,
+				2A69BF101FFCD59A00158C6B /* CoinbaseBankServiceProvider.swift in Sources */,
 				2AF5F8DB1FF2BDD100C33ED5 /* GustavSandboxBankServiceProviderConfiguration+Platform.swift in Sources */,
 				2AECE5681FDDD28400FEEC14 /* Currency.swift in Sources */,
+				2A69BF521FFCE75200158C6B /* CryptoCurrencyAccountNumber.swift in Sources */,
 				2A58F0E61FE01D2F0024D33E /* BankServiceProviderAuthenticationRequestFactory.swift in Sources */,
 				2A8B1F691FF25F8400482BF3 /* GustavGetTransactionHistoryRequestResponse.swift in Sources */,
 				2AF5F8DF1FF2C2A600C33ED5 /* BankingRequestProcessor.swift in Sources */,
@@ -1897,11 +2068,13 @@
 				2A1081CF1FEC2D2E0053767C /* BankServiceConnectionInformationDecoder.swift in Sources */,
 				2A8EE3B51FF2E09C00245CE8 /* GustavRequestProcessorError.swift in Sources */,
 				2A220A861FE5C8E000397FBE /* GetBankAccountDetailsRequest.swift in Sources */,
+				2A69BF311FFCE1A100158C6B /* CoinbaseBankingRequestTranslator.swift in Sources */,
 				2A58F1A81FE13B170024D33E /* OAuth2AuthorizationRequestURLBuilder.swift in Sources */,
 				2AF5F8F31FF2CE4B00C33ED5 /* GustavGetDateFilteredTransactionHistoryRequest.swift in Sources */,
 				2A220A9D1FE5D4AF00397FBE /* DefaultBankServiceProviderConnector.swift in Sources */,
 				2AECE5641FDDD13900FEEC14 /* BankServiceProvider.swift in Sources */,
 				2A5621391FF6850100ED9709 /* BankServiceConnectionInformationEncoder.swift in Sources */,
+				2A69BF121FFCD76B00158C6B /* CoinbaseBankServiceProviderConfiguration.swift in Sources */,
 				2A58F0CB1FE00BD80024D33E /* OBankingConnector.swift in Sources */,
 				2AF5F8FC1FF2D1A000C33ED5 /* GustavPaginatedRequest.swift in Sources */,
 				2A220A8D1FE5CA5000397FBE /* GetBankAccountRequest.swift in Sources */,
@@ -1912,8 +2085,10 @@
 				2A8B1F641FF25B6900482BF3 /* AccountHolderInformation.swift in Sources */,
 				2A8B1F401FF18A3B00482BF3 /* GustavGetBankAccountDetailsRequest.swift in Sources */,
 				2AECE5931FDDDFE300FEEC14 /* SepaAccountNumber.swift in Sources */,
+				2A69BF261FFCDB9A00158C6B /* CoinbaseAPIScope.swift in Sources */,
 				2A280A7E1FE403D200B90104 /* GustavBankServiceProviderConfiguration.swift in Sources */,
 				2A220A961FE5CF9100397FBE /* GetDateFilteredTransactionHistoryRequest.swift in Sources */,
+				2A69BF291FFCDC5D00158C6B /* CoinbaseAPIScope+Platform.swift in Sources */,
 				2A5621361FF684E300ED9709 /* DefaultBankServiceConnectionInformationEncoder.swift in Sources */,
 				2A58F0A61FDFE1A70024D33E /* BankingRequest.swift in Sources */,
 				2A58F0F51FE056980024D33E /* WebClient.swift in Sources */,
@@ -1934,6 +2109,7 @@
 				2A58F1F01FE30A560024D33E /* OAuth2BankServiceProviderAuthenticationRequestFactory.swift in Sources */,
 				2A58F1EA1FE308690024D33E /* BankServiceProviderAuthenticationRequestFactoryProvider.swift in Sources */,
 				2A58F19F1FE125F30024D33E /* ParameterEncoding.swift in Sources */,
+				2A69BF491FFCE58600158C6B /* CoinbaseAccount.swift in Sources */,
 				2A58F0DE1FE018670024D33E /* OAuth2BankServiceProviderAuthenticationRequest.swift in Sources */,
 				2A58F19D1FE124FF0024D33E /* HTTPMethod.swift in Sources */,
 				2AECE5871FDDDDFA00FEEC14 /* BankAccountDetails.swift in Sources */,
@@ -1941,10 +2117,12 @@
 				2AECE5621FDDD04500FEEC14 /* Bank.swift in Sources */,
 				2AECE58F1FDDDF2300FEEC14 /* AccountNumber.swift in Sources */,
 				2A58F0D21FE0101B0024D33E /* DeepLinkService.swift in Sources */,
+				2A69BF231FFCDAE800158C6B /* CoinbaseBankServiceProviderConfiguration+Platform.swift in Sources */,
 				2A58F0FD1FE074D10024D33E /* IOSExternalWebBrowserLauncher.swift in Sources */,
 				2AECE5991FDDE19300FEEC14 /* BankAccountType.swift in Sources */,
 				2A58F1D41FE2CFF00024D33E /* AlamofireWebClient.swift in Sources */,
 				2A58F0F81FE070F50024D33E /* ExternalWebBrowserLauncher.swift in Sources */,
+				2A69BF3F1FFCE39400158C6B /* CoinbaseGetBankAccountsRequest.swift in Sources */,
 				2AECE5A51FDDE9B500FEEC14 /* Transaction.swift in Sources */,
 				2A220AAF1FE661E600397FBE /* HTTPRequest.swift in Sources */,
 				2A58F0D41FE012950024D33E /* DeepLinkProvider.swift in Sources */,
@@ -1975,6 +2153,7 @@
 				2A58F1CE1FE2C9080024D33E /* OAuth2AccessTokenRequestorMock.swift in Sources */,
 				2AF5F8E91FF2C6DC00C33ED5 /* GustavRequestTests.swift in Sources */,
 				2A58F0F21FE056320024D33E /* OAuth2BankServiceProviderAuthenticationRequestProcessorTests.swift in Sources */,
+				2A69BF171FFCD90E00158C6B /* CoinbaseBankServiceProviderConfigurationTests.swift in Sources */,
 				2A58F0C21FE007E70024D33E /* AccountNumberMock.swift in Sources */,
 				2A58F1A51FE12AFC0024D33E /* DeepLinkProviderMock.swift in Sources */,
 				2A58F0931FDFD1040024D33E /* BankServiceProviderTests.swift in Sources */,
@@ -1984,6 +2163,7 @@
 				2A58F0D81FE012D10024D33E /* DefaultDeepLinkServiceTests.swift in Sources */,
 				2A58F1B01FE13E4B0024D33E /* DefaultOAuth2AuthorizationRequestURLBuilderTests.swift in Sources */,
 				2A58F1E11FE2D7950024D33E /* ConfigurationParserTests.swift in Sources */,
+				2A69BF381FFCE2BD00158C6B /* CoinbaseGetBankAccountsRequestTests.swift in Sources */,
 				2A58F1CB1FE2C2A20024D33E /* OAuth2AuthorizationTokenExtractorMock.swift in Sources */,
 				2A220A7E1FE57A8200397FBE /* OAuth2BankServiceProviderAuthenticationRequest+Init.swift in Sources */,
 				2A58F1C01FE28A400024D33E /* DefaultOAuth2AccessTokenRequestorTests.swift in Sources */,
@@ -1992,8 +2172,10 @@
 				2A58F1F31FE30B970024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift in Sources */,
 				2AECE5A31FDDE90B00FEEC14 /* TransactionTests.swift in Sources */,
 				2A58F1C61FE2B6520024D33E /* OAuth2BankServiceConnectionInformationTests.swift in Sources */,
+				2A69BF3B1FFCE33A00158C6B /* CoinbaseRequestTests.swift in Sources */,
 				2AF5F8F91FF2CFF600C33ED5 /* GustavGetDateFilteredTransactionHistoryRequestTests.swift in Sources */,
 				2A8B1F661FF25B7D00482BF3 /* AccountHolderInformationTests.swift in Sources */,
+				2A69BF341FFCE27100158C6B /* CoinbaseBankingRequestTranslatorTests.swift in Sources */,
 				2A58F0BD1FE004A70024D33E /* CurrencyTests.swift in Sources */,
 				2A58F0B41FE003650024D33E /* ConnectedBankServiceProviderTests.swift in Sources */,
 				2A58F0B71FE003B10024D33E /* SupportedBankServicesProviderTests.swift in Sources */,
