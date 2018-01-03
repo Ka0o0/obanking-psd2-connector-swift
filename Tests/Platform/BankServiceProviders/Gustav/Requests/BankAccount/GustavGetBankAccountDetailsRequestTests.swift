@@ -12,61 +12,77 @@ import XCTest
 class GustavGetBankAccountDetailsRequestTests: GustavRequestTests {
 
     var sut: GustavGetBankAccountDetailsRequest!
+    var webClient: WebClientMock!
+    var apiResponseMockData: Data? {
+        let testBundle = Bundle(for: type(of: self))
+        guard let apiResponseURL = testBundle
+            .url(forResource: "GetBankAccountDetailsRequestResponse", withExtension: "json") else {
+            return nil
+        }
+
+        guard let apiResponseMock = try? String(contentsOf: apiResponseURL),
+            let apiResponseMockData = apiResponseMock.data(using: .utf8) else {
+            return nil
+        }
+
+        return apiResponseMockData
+    }
 
     override func setUp() {
         super.setUp()
 
-        sut = GustavGetBankAccountDetailsRequest(baseURL: baseURL)
+        sut = GustavGetBankAccountDetailsRequest(baseURL: baseURL, certificate: Data())
+        webClient = WebClientMock()
     }
 
-    func test_makeHTTPRequest_ReturnsProperHTTPRequest() {
-        guard let url =
-            URL(string: "https://api.csas.cz/sandbox/webapi/api/v3/netbanking/my/accounts") else {
-            XCTFail("Creating URL should not fail")
-            return
-        }
-
+    func test_performRequest() {
         let bankingRequest = GetBankAccountDetailsRequest(bankAccount: bankAccountMock)
 
-        let result = sut.makeHTTPRequest(from: bankingRequest)
-
-        XCTAssertEqual(result.encoding, .urlEncoding)
-        XCTAssertEqual(result.method, .get)
-        XCTAssertEqual(result.url, url.appendingPathComponent(bankAccountMock.id))
-    }
-
-    func test_ParseResponse_ParsesResponseCorrectly() {
-        let bankingRequest = GetBankAccountDetailsRequest(bankAccount: bankAccountMock)
-
-        let testBundle = Bundle(for: type(of: self))
-        guard let apiResponseURL = testBundle
-            .url(forResource: "GustavGetBankAccountDetailsRequestResponse", withExtension: "json") else {
-            XCTFail("Could not read GetBankAccountsRequestResponse")
+        guard let apiResponseMockData = self.apiResponseMockData else {
+            XCTFail("Could not create data from string")
             return
         }
+        webClient.responseData = apiResponseMockData
 
         do {
-            let apiResponseMock = try String(contentsOf: apiResponseURL)
-            guard let apiResponseMockData = apiResponseMock.data(using: .utf8) else {
-                XCTFail("Could not create data from string")
-                return
-            }
+            let result = try sut.perform(request: bankingRequest, using: webClient)
+                .toBlocking(timeout: 3)
+                .single()
 
-            let expectedResult = BankAccountDetails(
-                balance: Amount(value: 8965200, precision: 2, currency: .CZK),
-                type: .current,
-                disposeableBalance: Amount(value: 0, precision: 2, currency: .EUR),
-                alias: "moj osobny ucet s kasickou"
-            )
-
-            let result = try sut.parseResponse(of: bankingRequest, response: apiResponseMockData)
-
-            XCTAssertEqual(result.balance, expectedResult.balance)
-            XCTAssertEqual(result.type, expectedResult.type)
-            XCTAssertEqual(result.disposeableBalance, expectedResult.disposeableBalance)
-            XCTAssertEqual(result.alias, expectedResult.alias)
+            assertCreatesCorrectRequest()
+            assertParsesResponseCorrectly(result)
         } catch let error {
             XCTFail(String(describing: error))
         }
+    }
+
+    private func assertCreatesCorrectRequest() {
+        guard let url =
+            URL(string: "https://api.csas.cz/sandbox/webapi/api/v3/netbanking/my/accounts") else {
+                XCTFail("Creating URL should not fail")
+                return
+        }
+
+        guard let lastRequest = webClient.lastRequest else {
+            XCTFail("A request should have been made")
+            return
+        }
+        XCTAssertEqual(lastRequest.encoding, .urlEncoding)
+        XCTAssertEqual(lastRequest.method, .get)
+        XCTAssertEqual(lastRequest.url, url.appendingPathComponent(bankAccountMock.id))
+    }
+
+    private func assertParsesResponseCorrectly(_ result: BankAccountDetails) {
+        let expectedResult = BankAccountDetails(
+            balance: Amount(value: 8965200, precision: 2, currency: .CZK),
+            type: .current,
+            disposeableBalance: Amount(value: 0, precision: 2, currency: .EUR),
+            alias: "moj osobny ucet s kasickou"
+        )
+
+        XCTAssertEqual(result.balance, expectedResult.balance)
+        XCTAssertEqual(result.type, expectedResult.type)
+        XCTAssertEqual(result.disposeableBalance, expectedResult.disposeableBalance)
+        XCTAssertEqual(result.alias, expectedResult.alias)
     }
 }

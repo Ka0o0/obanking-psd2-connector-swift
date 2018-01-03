@@ -45,7 +45,7 @@ extension GustavBankServiceProviderConfiguration: OAuth2BankServiceConfiguration
             fatalError("Cannot create base URL")
         }
 
-        return GustavBankingRequestTranslator(baseURL: baseURL)
+        return GustavBankingRequestTranslator(baseURL: baseURL, certificate: apiServerCertificate)
     }
 
     var authorizationServerCertificate: Data {

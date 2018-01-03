@@ -7,18 +7,48 @@
 //
 
 import Foundation
+import RxSwift
 
 final class GustavGetTransactionHistoryRequest: BankingRequestProcessor<GetTransactionHistoryRequest> {
 
-    private var baseURL: URL
+    private let baseURL: URL
+    private let certificate: Data
 
-    init(baseURL: URL) {
+    init(baseURL: URL, certificate: Data) {
         self.baseURL = baseURL
+        self.certificate = certificate
     }
 
-    override func makeHTTPRequest(from bankingRequest: GetTransactionHistoryRequest) throws -> HTTPRequest {
+    override func perform(
+        request: GetTransactionHistoryRequest,
+        using webClient: WebClient
+    ) -> Single<TransactionHistory> {
+        guard let httpRequest = makeHTTPRequest(from: request) else {
+            return Single.error(GustavRequestProcessorError.unsupportedAccount)
+        }
+
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .custom(ISO8601JSONDateDecodingStrategy)
+
+        return webClient.request(httpRequest, certificate: certificate)
+            .filterSuccessfulStatusCodes()
+            .map(GustavGetTransactionHistoryRequestResponse.self, using: jsonDecoder)
+            .map { apiTransactions -> [Transaction] in
+                try apiTransactions.transactions.map {
+                    try $0.toTransaction(associating: request.bankAccount)
+                }
+            }
+            .map {
+                TransactionHistory(date: Date(), transactions: $0)
+            }
+            .asSingle()
+    }
+}
+
+private extension GustavGetTransactionHistoryRequest {
+    func makeHTTPRequest(from bankingRequest: GetTransactionHistoryRequest) -> HTTPRequest? {
         guard let sepaAccountNumber = bankingRequest.bankAccount.accountNumber as? SepaAccountNumber else {
-            throw GustavRequestProcessorError.unsupportedAccount
+            return nil
         }
 
         let urlPathAppendix = String(format: "netbanking/cz/my/accounts/%@/transactions", sepaAccountNumber.iban)
@@ -30,19 +60,5 @@ final class GustavGetTransactionHistoryRequest: BankingRequestProcessor<GetTrans
             encoding: .urlEncoding,
             headers: nil
         )
-    }
-
-    override func parseResponse(
-        of bankingRequest: GetTransactionHistoryRequest,
-        response: Data
-    ) throws -> TransactionHistory {
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .custom(ISO8601JSONDateDecodingStrategy)
-        let apiTransactions = try jsonDecoder.decode(GustavGetTransactionHistoryRequestResponse.self, from: response)
-        let transactions: [Transaction] = try apiTransactions.transactions.map {
-            try $0.toTransaction(associating: bankingRequest.bankAccount)
-        }
-
-        return TransactionHistory(date: Date(), transactions: transactions)
     }
 }

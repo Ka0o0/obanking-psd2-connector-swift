@@ -260,6 +260,16 @@
 		2A69BF531FFCE75200158C6B /* CryptoCurrencyAccountNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF511FFCE75200158C6B /* CryptoCurrencyAccountNumber.swift */; };
 		2A8B1F361FF10CA900482BF3 /* GustavGetBankAccountsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F351FF10CA900482BF3 /* GustavGetBankAccountsRequestResponse.json */; };
 		2A8B1F371FF10CA900482BF3 /* GustavGetBankAccountsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F351FF10CA900482BF3 /* GustavGetBankAccountsRequestResponse.json */; };
+		2A69BF581FFD063300158C6B /* OAuth2AuthorizedWebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF571FFD063300158C6B /* OAuth2AuthorizedWebClient.swift */; };
+		2A69BF591FFD06A600158C6B /* OAuth2AuthorizedWebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF571FFD063300158C6B /* OAuth2AuthorizedWebClient.swift */; };
+		2A69BF5B1FFD073600158C6B /* OAuth2AuthorizedWebClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF5A1FFD073600158C6B /* OAuth2AuthorizedWebClientTests.swift */; };
+		2A69BF5C1FFD075100158C6B /* OAuth2AuthorizedWebClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF5A1FFD073600158C6B /* OAuth2AuthorizedWebClientTests.swift */; };
+		2A69BF5E1FFD0A7C00158C6B /* RequestResponse+SuccessFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF5D1FFD0A7C00158C6B /* RequestResponse+SuccessFilter.swift */; };
+		2A69BF5F1FFD0A8500158C6B /* RequestResponse+SuccessFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF5D1FFD0A7C00158C6B /* RequestResponse+SuccessFilter.swift */; };
+		2A69BF611FFD23B500158C6B /* GustavPaginatedRequestProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF601FFD23B500158C6B /* GustavPaginatedRequestProcessor.swift */; };
+		2A69BF621FFD23B500158C6B /* GustavPaginatedRequestProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A69BF601FFD23B500158C6B /* GustavPaginatedRequestProcessor.swift */; };
+		2A8B1F361FF10CA900482BF3 /* GetBankAccountsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F351FF10CA900482BF3 /* GetBankAccountsRequestResponse.json */; };
+		2A8B1F371FF10CA900482BF3 /* GetBankAccountsRequestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A8B1F351FF10CA900482BF3 /* GetBankAccountsRequestResponse.json */; };
 		2A8B1F3A1FF17D2F00482BF3 /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F391FF17D2F00482BF3 /* BankAccountTests.swift */; };
 		2A8B1F3B1FF17D2F00482BF3 /* BankAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F391FF17D2F00482BF3 /* BankAccountTests.swift */; };
 		2A8B1F3D1FF1895400482BF3 /* GustavGetBankAccountsRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B1F3C1FF1895400482BF3 /* GustavGetBankAccountsRequestResponse.swift */; };
@@ -340,8 +350,6 @@
 		2AF5F8F41FF2CE4B00C33ED5 /* GustavGetDateFilteredTransactionHistoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF5F8F21FF2CE4B00C33ED5 /* GustavGetDateFilteredTransactionHistoryRequest.swift */; };
 		2AF5F8F91FF2CFF600C33ED5 /* GustavGetDateFilteredTransactionHistoryRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF5F8F81FF2CFF600C33ED5 /* GustavGetDateFilteredTransactionHistoryRequestTests.swift */; };
 		2AF5F8FA1FF2CFF600C33ED5 /* GustavGetDateFilteredTransactionHistoryRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF5F8F81FF2CFF600C33ED5 /* GustavGetDateFilteredTransactionHistoryRequestTests.swift */; };
-		2AF5F8FC1FF2D1A000C33ED5 /* GustavPaginatedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF5F8FB1FF2D1A000C33ED5 /* GustavPaginatedRequest.swift */; };
-		2AF5F8FD1FF2D1A000C33ED5 /* GustavPaginatedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF5F8FB1FF2D1A000C33ED5 /* GustavPaginatedRequest.swift */; };
 		2AF5F8FF1FF2D34A00C33ED5 /* GustavPaginatedRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF5F8FE1FF2D34A00C33ED5 /* GustavPaginatedRequestTests.swift */; };
 		2AF5F9001FF2D34A00C33ED5 /* GustavPaginatedRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF5F8FE1FF2D34A00C33ED5 /* GustavPaginatedRequestTests.swift */; };
 		3993EEADAC6A1E11B72A1348 /* Pods_OBankingConnectorTests_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B0B04F3043EFD76F57E994 /* Pods_OBankingConnectorTests_macOS.framework */; };
@@ -492,6 +500,11 @@
 		2A69BF4E1FFCE6C600158C6B /* CoinbaseGetBankAccountsRequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseGetBankAccountsRequestResponse.swift; sourceTree = "<group>"; };
 		2A69BF511FFCE75200158C6B /* CryptoCurrencyAccountNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyAccountNumber.swift; sourceTree = "<group>"; };
 		2A8B1F351FF10CA900482BF3 /* GustavGetBankAccountsRequestResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GustavGetBankAccountsRequestResponse.json; sourceTree = "<group>"; };
+		2A69BF571FFD063300158C6B /* OAuth2AuthorizedWebClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2AuthorizedWebClient.swift; sourceTree = "<group>"; };
+		2A69BF5A1FFD073600158C6B /* OAuth2AuthorizedWebClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2AuthorizedWebClientTests.swift; sourceTree = "<group>"; };
+		2A69BF5D1FFD0A7C00158C6B /* RequestResponse+SuccessFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RequestResponse+SuccessFilter.swift"; sourceTree = "<group>"; };
+		2A69BF601FFD23B500158C6B /* GustavPaginatedRequestProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavPaginatedRequestProcessor.swift; sourceTree = "<group>"; };
+		2A8B1F351FF10CA900482BF3 /* GetBankAccountsRequestResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GetBankAccountsRequestResponse.json; sourceTree = "<group>"; };
 		2A8B1F391FF17D2F00482BF3 /* BankAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountTests.swift; sourceTree = "<group>"; };
 		2A8B1F3C1FF1895400482BF3 /* GustavGetBankAccountsRequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavGetBankAccountsRequestResponse.swift; sourceTree = "<group>"; };
 		2A8B1F3F1FF18A3B00482BF3 /* GustavGetBankAccountDetailsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavGetBankAccountDetailsRequest.swift; sourceTree = "<group>"; };
@@ -548,7 +561,6 @@
 		2AF5F8EF1FF2CBCB00C33ED5 /* GustavGetTransactionHistoryRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavGetTransactionHistoryRequestTests.swift; sourceTree = "<group>"; };
 		2AF5F8F21FF2CE4B00C33ED5 /* GustavGetDateFilteredTransactionHistoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavGetDateFilteredTransactionHistoryRequest.swift; sourceTree = "<group>"; };
 		2AF5F8F81FF2CFF600C33ED5 /* GustavGetDateFilteredTransactionHistoryRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavGetDateFilteredTransactionHistoryRequestTests.swift; sourceTree = "<group>"; };
-		2AF5F8FB1FF2D1A000C33ED5 /* GustavPaginatedRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavPaginatedRequest.swift; sourceTree = "<group>"; };
 		2AF5F8FE1FF2D34A00C33ED5 /* GustavPaginatedRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavPaginatedRequestTests.swift; sourceTree = "<group>"; };
 		2B0559B6D012B841B1F27C39 /* Pods_OBankingConnector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OBankingConnector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E730EB8A52B89D35AB39571 /* Pods-OBankingConnectorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OBankingConnectorTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OBankingConnectorTests/Pods-OBankingConnectorTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -618,7 +630,7 @@
 			isa = PBXGroup;
 			children = (
 				2A1081D81FEC412A0053767C /* GustavBankingRequestTranslator.swift */,
-				2AF5F8FB1FF2D1A000C33ED5 /* GustavPaginatedRequest.swift */,
+				2A69BF601FFD23B500158C6B /* GustavPaginatedRequestProcessor.swift */,
 				2A8B1F751FF28A6D00482BF3 /* GustavPaginatedRequestResponse.swift */,
 				2A8EE3B41FF2E09C00245CE8 /* GustavRequestProcessorError.swift */,
 				2A0FF7771FEEE234006963A9 /* BankAccount */,
@@ -698,6 +710,7 @@
 			isa = PBXGroup;
 			children = (
 				2A220AA41FE5D68A00397FBE /* ConnectedOAuth2BankServiceProvider.swift */,
+				2A69BF571FFD063300158C6B /* OAuth2AuthorizedWebClient.swift */,
 			);
 			path = OAuth2;
 			sourceTree = "<group>";
@@ -706,6 +719,7 @@
 			isa = PBXGroup;
 			children = (
 				2A220AA81FE65BCA00397FBE /* ConnectedOAuth2BankServiceProviderTests.swift */,
+				2A69BF5A1FFD073600158C6B /* OAuth2AuthorizedWebClientTests.swift */,
 			);
 			path = OAuth2;
 			sourceTree = "<group>";
@@ -911,6 +925,7 @@
 				2A220AAE1FE661E600397FBE /* HTTPRequest.swift */,
 				2A58F19E1FE125F30024D33E /* ParameterEncoding.swift */,
 				2A58F0F41FE056980024D33E /* WebClient.swift */,
+				2A69BF5D1FFD0A7C00158C6B /* RequestResponse+SuccessFilter.swift */,
 			);
 			path = WebClient;
 			sourceTree = "<group>";
@@ -1902,7 +1917,6 @@
 				2A58F1361FE07D090024D33E /* ExchangeRateInformation.swift in Sources */,
 				2A56213A1FF6850100ED9709 /* BankServiceConnectionInformationEncoder.swift in Sources */,
 				2A58F1321FE07D090024D33E /* BankAccountDetails.swift in Sources */,
-				2AF5F8FD1FF2D1A000C33ED5 /* GustavPaginatedRequest.swift in Sources */,
 				2A220A8E1FE5CA5000397FBE /* GetBankAccountRequest.swift in Sources */,
 				2A58F1911FE088C30024D33E /* URLBuilder.swift in Sources */,
 				2A58F12A1FE078400024D33E /* MacOSExternalWebBrowserLauncher.swift in Sources */,
@@ -1913,6 +1927,7 @@
 				2A58F13B1FE07D0D0024D33E /* BankingRequest.swift in Sources */,
 				2A280A7F1FE405CD00B90104 /* GustavBankServiceProviderConfiguration.swift in Sources */,
 				2A69BF271FFCDB9A00158C6B /* CoinbaseAPIScope.swift in Sources */,
+				2A69BF591FFD06A600158C6B /* OAuth2AuthorizedWebClient.swift in Sources */,
 				2A220A971FE5CF9100397FBE /* GetDateFilteredTransactionHistoryRequest.swift in Sources */,
 				2A5621371FF684E300ED9709 /* DefaultBankServiceConnectionInformationEncoder.swift in Sources */,
 				2A69BF2A1FFCDC5D00158C6B /* CoinbaseAPIScope+Platform.swift in Sources */,
@@ -1924,6 +1939,7 @@
 				2A220AA61FE5D68A00397FBE /* ConnectedOAuth2BankServiceProvider.swift in Sources */,
 				2A8B1F6D1FF2604700482BF3 /* ISO8601JSONDateDecodingStrategy.swift in Sources */,
 				2A58F13A1FE07D0D0024D33E /* SupportedBankServicesProvider.swift in Sources */,
+				2A69BF5F1FFD0A8500158C6B /* RequestResponse+SuccessFilter.swift in Sources */,
 				2A220A911FE5CBD800397FBE /* BankAccount.swift in Sources */,
 				2A220AB91FE7181300397FBE /* ConfigurationEnabledSupportedBankServicesProvider.swift in Sources */,
 				2A58F1331FE07D090024D33E /* BankAccountType.swift in Sources */,
@@ -1933,6 +1949,7 @@
 				2A58F1E51FE2D86C0024D33E /* OBankingConnectorConfiguration.swift in Sources */,
 				2A58F1511FE07D6F0024D33E /* DefaultBankServiceProviderAuthenticationProvider.swift in Sources */,
 				2A58F1F11FE30A560024D33E /* OAuth2BankServiceProviderAuthenticationRequestFactory.swift in Sources */,
+				2A69BF621FFD23B500158C6B /* GustavPaginatedRequestProcessor.swift in Sources */,
 				2A58F1EB1FE308690024D33E /* BankServiceProviderAuthenticationRequestFactoryProvider.swift in Sources */,
 				2A58F1A11FE127500024D33E /* ParameterEncoding.swift in Sources */,
 				2A58F1501FE07D6F0024D33E /* BankServiceProviderAuthenticationRequestProcessorError.swift in Sources */,
@@ -1998,6 +2015,7 @@
 				2A58F1CC1FE2C2A20024D33E /* OAuth2AuthorizationTokenExtractorMock.swift in Sources */,
 				2A58F1C11FE28A400024D33E /* DefaultOAuth2AccessTokenRequestorTests.swift in Sources */,
 				2A58F1F41FE30B970024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift in Sources */,
+				2A69BF5C1FFD075100158C6B /* OAuth2AuthorizedWebClientTests.swift in Sources */,
 				2A58F1771FE07F6F0024D33E /* DefaultDeepLinkServiceTests.swift in Sources */,
 				2A69BF3C1FFCE33A00158C6B /* CoinbaseRequestTests.swift in Sources */,
 				2AF5F8FA1FF2CFF600C33ED5 /* GustavGetDateFilteredTransactionHistoryRequestTests.swift in Sources */,
@@ -2076,7 +2094,6 @@
 				2A5621391FF6850100ED9709 /* BankServiceConnectionInformationEncoder.swift in Sources */,
 				2A69BF121FFCD76B00158C6B /* CoinbaseBankServiceProviderConfiguration.swift in Sources */,
 				2A58F0CB1FE00BD80024D33E /* OBankingConnector.swift in Sources */,
-				2AF5F8FC1FF2D1A000C33ED5 /* GustavPaginatedRequest.swift in Sources */,
 				2A220A8D1FE5CA5000397FBE /* GetBankAccountRequest.swift in Sources */,
 				2A58F0991FDFDDA10024D33E /* SupportedBankServicesProvider.swift in Sources */,
 				2A58F1901FE086550024D33E /* URLBuilder.swift in Sources */,
@@ -2087,6 +2104,7 @@
 				2AECE5931FDDDFE300FEEC14 /* SepaAccountNumber.swift in Sources */,
 				2A69BF261FFCDB9A00158C6B /* CoinbaseAPIScope.swift in Sources */,
 				2A280A7E1FE403D200B90104 /* GustavBankServiceProviderConfiguration.swift in Sources */,
+				2A69BF581FFD063300158C6B /* OAuth2AuthorizedWebClient.swift in Sources */,
 				2A220A961FE5CF9100397FBE /* GetDateFilteredTransactionHistoryRequest.swift in Sources */,
 				2A69BF291FFCDC5D00158C6B /* CoinbaseAPIScope+Platform.swift in Sources */,
 				2A5621361FF684E300ED9709 /* DefaultBankServiceConnectionInformationEncoder.swift in Sources */,
@@ -2098,6 +2116,7 @@
 				2A220AA51FE5D68A00397FBE /* ConnectedOAuth2BankServiceProvider.swift in Sources */,
 				2A8B1F6C1FF2604700482BF3 /* ISO8601JSONDateDecodingStrategy.swift in Sources */,
 				2AECE5A11FDDE74C00FEEC14 /* ExchangeRateInformation.swift in Sources */,
+				2A69BF5E1FFD0A7C00158C6B /* RequestResponse+SuccessFilter.swift in Sources */,
 				2A220A901FE5CBD800397FBE /* BankAccount.swift in Sources */,
 				2A220AB81FE7181300397FBE /* ConfigurationEnabledSupportedBankServicesProvider.swift in Sources */,
 				2A58F0EA1FE04D780024D33E /* BankServiceProviderAuthenticationRequestProcessor.swift in Sources */,
@@ -2107,6 +2126,7 @@
 				2A58F1E41FE2D86C0024D33E /* OBankingConnectorConfiguration.swift in Sources */,
 				2AECE5971FDDE0DE00FEEC14 /* Amount.swift in Sources */,
 				2A58F1F01FE30A560024D33E /* OAuth2BankServiceProviderAuthenticationRequestFactory.swift in Sources */,
+				2A69BF611FFD23B500158C6B /* GustavPaginatedRequestProcessor.swift in Sources */,
 				2A58F1EA1FE308690024D33E /* BankServiceProviderAuthenticationRequestFactoryProvider.swift in Sources */,
 				2A58F19F1FE125F30024D33E /* ParameterEncoding.swift in Sources */,
 				2A69BF491FFCE58600158C6B /* CoinbaseAccount.swift in Sources */,
@@ -2171,6 +2191,7 @@
 				2A58F0E41FE01C950024D33E /* DefaultBankServiceProviderAuthenticationProviderTests.swift in Sources */,
 				2A58F1F31FE30B970024D33E /* ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests.swift in Sources */,
 				2AECE5A31FDDE90B00FEEC14 /* TransactionTests.swift in Sources */,
+				2A69BF5B1FFD073600158C6B /* OAuth2AuthorizedWebClientTests.swift in Sources */,
 				2A58F1C61FE2B6520024D33E /* OAuth2BankServiceConnectionInformationTests.swift in Sources */,
 				2A69BF3B1FFCE33A00158C6B /* CoinbaseRequestTests.swift in Sources */,
 				2AF5F8F91FF2CFF600C33ED5 /* GustavGetDateFilteredTransactionHistoryRequestTests.swift in Sources */,

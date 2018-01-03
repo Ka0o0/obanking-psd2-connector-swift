@@ -49,49 +49,64 @@ class GustavGetBankAccountsRequestTests: GustavRequestTests {
     ]
     // swiftlint:enable force_unwrapping
 
+    var apiResponseMockData: Data? {
+        let testBundle = Bundle(for: type(of: self))
+        guard let apiResponseURL = testBundle
+            .url(forResource: "GetBankAccountsRequestResponse", withExtension: "json") else {
+            return nil
+        }
+
+        guard let apiResponseMock = try? String(contentsOf: apiResponseURL),
+            let apiResponseMockData = apiResponseMock.data(using: .utf8) else {
+            return nil
+        }
+
+        return apiResponseMockData
+    }
+
+    var webClient: WebClientMock!
     var sut: GustavGetBankAccountsRequest!
 
     override func setUp() {
         super.setUp()
 
-        sut = GustavGetBankAccountsRequest(baseURL: baseURL)
+        sut = GustavGetBankAccountsRequest(baseURL: baseURL, certificate: Data())
+        webClient = WebClientMock()
     }
 
     func test_makeHTTPRequest_ReturnsProperHTTPRequest() {
-        guard let url =
-            URL(string: "https://api.csas.cz/sandbox/webapi/api/v3/netbanking/my/accounts") else {
-                XCTFail("Creating URL should not fail")
-                return
-        }
-
         let bankingRequest = GetBankAccountRequest(bankId: "csas")
-        let result = sut.makeHTTPRequest(from: bankingRequest)
 
-        XCTAssertEqual(result.encoding, .urlEncoding)
-        XCTAssertEqual(result.method, .get)
-        XCTAssertEqual(result.url, url)
-    }
-
-    func test_ParseResponse_ParsesResponseCorrectly() {
-        let testBundle = Bundle(for: type(of: self))
-        guard let apiResponseURL = testBundle
-            .url(forResource: "GustavGetBankAccountsRequestResponse", withExtension: "json") else {
-                XCTFail("Could not read GetBankAccountsRequestResponse")
-                return
+        guard let apiResponseMockData = self.apiResponseMockData else {
+            XCTFail("Could not create data from string")
+            return
         }
+        webClient.responseData = apiResponseMockData
 
         do {
-            let apiResponseMock = try String(contentsOf: apiResponseURL)
-            guard let apiResponseMockData = apiResponseMock.data(using: .utf8) else {
-                XCTFail("Could not create data from string")
-                return
-            }
+            let result = try sut.perform(request: bankingRequest, using: webClient).toBlocking(timeout: 3).single()
 
-            let result = try sut.parseResponse(of: GetBankAccountRequest(bankId: ""), response: apiResponseMockData)
-
+            assertProperRequest()
             XCTAssertEqual(result, mockedBankAccounts)
         } catch let error {
             XCTFail(String(describing: error))
         }
+    }
+
+    private func assertProperRequest() {
+        guard let result = webClient.lastRequest else {
+            XCTFail("No request")
+            return
+        }
+
+        guard let url =
+            URL(string: "https://api.csas.cz/sandbox/webapi/api/v3/netbanking/my/accounts") else {
+            XCTFail("Creating URL should not fail")
+            return
+        }
+
+        XCTAssertEqual(result.encoding, .urlEncoding)
+        XCTAssertEqual(result.method, .get)
+        XCTAssertEqual(result.url, url)
     }
 }

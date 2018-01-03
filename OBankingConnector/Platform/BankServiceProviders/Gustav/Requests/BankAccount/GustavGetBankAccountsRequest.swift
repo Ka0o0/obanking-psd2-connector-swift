@@ -7,16 +7,38 @@
 //
 
 import Foundation
+import RxSwift
 
 final class GustavGetBankAccountsRequest: BankingRequestProcessor<GetBankAccountRequest> {
 
     private var url: URL
+    private var certificate: Data
 
-    init(baseURL: URL) {
+    init(baseURL: URL, certificate: Data) {
         url = baseURL.appendingPathComponent("netbanking/my/accounts")
+        self.certificate = certificate
     }
 
-    override func makeHTTPRequest(from bankingRequest: GetBankAccountRequest) -> HTTPRequest {
+    override func perform(
+        request: GetBankAccountRequest,
+        using webClient: WebClient
+    ) -> Single<[BankAccount]> {
+        let httpRequest = makeHTTPRequest(from: request)
+
+        return webClient.request(httpRequest, certificate: certificate)
+            .filterSuccessfulStatusCodes()
+            .map(GustavGetBankAccountsRequestResponse.self)
+            .map {
+                try $0.accounts.map {
+                    try $0.toBankAccount()
+                }
+            }
+            .asSingle()
+    }
+}
+
+private extension GustavGetBankAccountsRequest {
+    func makeHTTPRequest(from bankingRequest: GetBankAccountRequest) -> HTTPRequest {
         return HTTPRequest(
             method: .get,
             url: url,
@@ -24,17 +46,6 @@ final class GustavGetBankAccountsRequest: BankingRequestProcessor<GetBankAccount
             encoding: .urlEncoding,
             headers: nil
         )
-    }
-
-    override func parseResponse(of bankingRequest: GetBankAccountRequest, response: Data) throws -> [BankAccount] {
-        let jsonDecoder = JSONDecoder()
-        let apiResponse = try jsonDecoder.decode(GustavGetBankAccountsRequestResponse.self, from: response)
-
-        let bankAccounts: [BankAccount] = try apiResponse.accounts.map {
-            try $0.toBankAccount()
-        }
-
-        return bankAccounts
     }
 }
 

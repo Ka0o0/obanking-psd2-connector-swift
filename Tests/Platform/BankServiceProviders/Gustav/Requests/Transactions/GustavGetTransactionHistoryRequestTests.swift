@@ -16,45 +16,42 @@ class GustavGetTransactionHistoryRequestTests: GustavRequestTests {
         URL(string: "https://api.csas.cz/sandbox/webapi/api/v3/netbanking/cz/my/accounts/CZ6508000000003766862329/transactions")
     // swiftlint:enable: line_length
 
+    var apiResponseMockData: Data? {
+        let testBundle = Bundle(for: type(of: self))
+        guard let apiResponseURL = testBundle
+            .url(forResource: "GetTransactionHistoryRequestResponse", withExtension: "json") else {
+            return nil
+        }
+
+        let apiResponseMock = try? String(contentsOf: apiResponseURL)
+        return apiResponseMock?.data(using: .utf8)
+    }
+
     var sut: GustavGetTransactionHistoryRequest!
+    var webClient: WebClientMock!
 
     override func setUp() {
         super.setUp()
 
-        sut = GustavGetTransactionHistoryRequest(baseURL: baseURL)
+        sut = GustavGetTransactionHistoryRequest(baseURL: baseURL, certificate: Data())
+        webClient = WebClientMock()
     }
 
-    func test_makeHTTPRequest_ReturnsProperHTTPRequest() {
+    func test_PerformRequest() {
         let bankingRequest = GetTransactionHistoryRequest(bankAccount: bankAccountMock)
 
-        guard let result = try? sut.makeHTTPRequest(from: bankingRequest) else {
-            XCTFail("Should not fail")
+        guard let apiResponseMockData = self.apiResponseMockData else {
+            XCTFail("Failed to read response mock")
             return
         }
-
-        XCTAssertEqual(result.method, .get)
-        XCTAssertEqual(result.url, url)
-    }
-
-    func test_ParseResponse_ParsesResponseCorrectly() {
-        let bankingRequest = GetTransactionHistoryRequest(bankAccount: bankAccountMock)
-
-        let testBundle = Bundle(for: type(of: self))
-        guard let apiResponseURL = testBundle
-            .url(forResource: "GustavGetTransactionHistoryRequestResponse", withExtension: "json") else {
-            XCTFail("Could not read GetBankAccountsRequestResponse")
-            return
-        }
+        webClient.responseData = apiResponseMockData
 
         do {
-            let apiResponseMock = try String(contentsOf: apiResponseURL)
-            guard let apiResponseMockData = apiResponseMock.data(using: .utf8) else {
-                XCTFail("Could not create data from string")
-                return
-            }
+            let result = try sut.perform(request: bankingRequest, using: webClient)
+                .toBlocking(timeout: 3)
+                .single()
 
-            let result = try sut.parseResponse(of: bankingRequest, response: apiResponseMockData)
-
+            assertProperRequest()
             XCTAssertEqual(result.transactions.count, 1)
             if let first = result.transactions.first {
                 XCTAssertEqual(first.id, "I141126DXHZ3T")
@@ -62,5 +59,15 @@ class GustavGetTransactionHistoryRequestTests: GustavRequestTests {
         } catch let error {
             XCTFail(String(describing: error))
         }
+    }
+
+    private func assertProperRequest() {
+        guard let result = webClient.lastRequest else {
+            XCTFail("Not request was made")
+            return
+        }
+
+        XCTAssertEqual(result.method, .get)
+        XCTAssertEqual(result.url, url)
     }
 }

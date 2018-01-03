@@ -46,10 +46,21 @@ final class WebClientMock: WebClient {
             let responseData = self.responseData,
             let urlResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: "1.1", headerFields: nil) {
 
-            return Observable.just(WebClient.DataResponse(urlResponse, responseData))
+            return Observable.just(DataResponse(urlResponse, responseData))
         }
 
         return Observable.error(WebClientMockError.failed)
+    }
+
+    func request(_ request: HTTPRequest, certificate: Data) -> Observable<DataResponse> {
+        return self.request(
+            request.method,
+            request.url,
+            parameters: request.parameters,
+            encoding: request.encoding,
+            headers: request.headers,
+            certificate: certificate
+        )
     }
 }
 // swiftlint:enable function_parameter_count

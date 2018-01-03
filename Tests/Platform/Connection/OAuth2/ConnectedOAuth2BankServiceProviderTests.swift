@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import RxSwift
 @testable import OBankingConnector
 
 class ConnectedOAuth2BankServiceProviderTests: XCTestCase {
@@ -26,18 +27,7 @@ class ConnectedOAuth2BankServiceProviderTests: XCTestCase {
             tokenType: "bearer"
         )
 
-        let expectedURL = URL(fileURLWithPath: "examplerequest")
-
         let bankingRequestTranslator = BankingRequestTranslatorMock()
-        bankingRequestTranslator.nextRequest = HTTPRequest(
-            method: .put,
-            url: expectedURL,
-            parameters: [:],
-            encoding: .json,
-            headers: nil
-        )
-
-        webClient.responseData = "".data(using: .utf8)
 
         let configuration = OBankingConnectorConfiguration(
             bankServiceProviderConfigurations: [
@@ -54,23 +44,10 @@ class ConnectedOAuth2BankServiceProviderTests: XCTestCase {
         )
 
         do {
-            _ = try sut.perform(RequestMock()).toBlocking(timeout: 3).first()
+            let result = try sut.perform(RequestMock()).toBlocking(timeout: 3).single()
 
-            guard let request = webClient.lastRequest else {
-                XCTFail("Request must not be null")
-                return
-            }
-
-            if let headers = request.headers {
-                XCTAssertEqual(headers, ["Authorization": "bearer asdf"])
-            } else {
-                XCTFail("Headers must be set")
-            }
-
-            guard let certificate = "apiServerCertificate".data(using: .utf8) else {
-                fatalError()
-            }
-            XCTAssertEqual(request.certificate, certificate)
+            XCTAssertTrue((result as Any) is RequestMock.Result)
+            XCTAssertTrue(bankingRequestTranslator.processor.wasCalled)
         } catch let error {
             XCTFail(String(describing: error))
         }
@@ -104,37 +81,24 @@ private extension ConnectedOAuth2BankServiceProviderTests {
 
     class BankingRequestProcessorMock: BankingRequestProcessor<RequestMock> {
 
-        private let httpRequest: HTTPRequest
+        var wasCalled = false
 
-        init(httpRequest: HTTPRequest) {
-            self.httpRequest = httpRequest
-        }
-
-        override func makeHTTPRequest(
-            from bankingRequest: ConnectedOAuth2BankServiceProviderTests.RequestMock
-        ) -> HTTPRequest {
-            return httpRequest
-        }
-
-        override func parseResponse(
-            of bankingRequest: ConnectedOAuth2BankServiceProviderTests.RequestMock,
-            response: Data
-        ) throws -> ConnectedOAuth2BankServiceProviderTests.RequestMock.Result {
-            return RequestMock.Result()
+        override func perform(
+            request: ConnectedOAuth2BankServiceProviderTests.RequestMock,
+            using webClient: WebClient
+        ) -> Single<ConnectedOAuth2BankServiceProviderTests.RequestMock.Result> {
+            wasCalled = true
+            return Single.just(ConnectedOAuth2BankServiceProviderTests.RequestMock.Result())
         }
     }
 
     class BankingRequestTranslatorMock: BankingRequestTranslator {
-        var nextRequest: HTTPRequest?
+
+        let processor = BankingRequestProcessorMock()
 
         func makeProcessor<T>(for bankingRequest: T) -> BankingRequestProcessor<T>? where T: BankingRequest {
-            guard let nextRequest = self.nextRequest else {
-                return nil
-            }
-
-            return BankingRequestProcessorMock(httpRequest: nextRequest) as? BankingRequestProcessor<T>
+            return processor as? BankingRequestProcessor<T>
         }
-
     }
 
     class BankServiceProviderConfigurationMock: OAuth2BankServiceConfiguration {

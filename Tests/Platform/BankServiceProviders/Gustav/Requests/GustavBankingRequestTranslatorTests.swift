@@ -17,7 +17,7 @@ class GustavBankingRequestTranslatorTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        sut = GustavBankingRequestTranslator(baseURL: URL(fileURLWithPath: "test"))
+        sut = GustavBankingRequestTranslator(baseURL: URL(fileURLWithPath: "test"), certificate: Data())
     }
 
     func test_makeProcessor_GetBankAccountRequest() {
@@ -54,7 +54,7 @@ class GustavBankingRequestTranslatorTests: XCTestCase {
                 request: GetBankAccountRequest(bankId: "")
             )
         )
-        XCTAssertTrue(result is GustavPaginatedRequest<GetBankAccountRequest>)
+        XCTAssertTrue(result is GustavPaginatedRequestProcessor<GetBankAccountRequest>)
     }
 
     func test_makeProcessor_GetPaginatedTransactionHistoryRequest() {
@@ -65,7 +65,7 @@ class GustavBankingRequestTranslatorTests: XCTestCase {
                 request: GetTransactionHistoryRequest(bankAccount: bankAccount)
             )
         )
-        XCTAssertTrue(result is GustavPaginatedRequest<GetTransactionHistoryRequest>)
+        XCTAssertTrue(result is GustavPaginatedRequestProcessor<GetTransactionHistoryRequest>)
     }
 
     func test_makeProcessor_GetPaginatedDateFilteredTransactionHistoryRequest() {
@@ -80,6 +80,6 @@ class GustavBankingRequestTranslatorTests: XCTestCase {
                 )
             )
         )
-        XCTAssertTrue(result is GustavPaginatedRequest<GetDateFilteredTransactionHistoryRequest>)
+        XCTAssertTrue(result is GustavPaginatedRequestProcessor<GetDateFilteredTransactionHistoryRequest>)
     }
 }
