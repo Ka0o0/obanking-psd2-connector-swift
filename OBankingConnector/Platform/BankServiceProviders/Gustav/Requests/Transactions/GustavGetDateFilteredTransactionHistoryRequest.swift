@@ -7,20 +7,51 @@
 //
 
 import Foundation
+import RxSwift
 
 // swiftlint:disable colon
 final class GustavGetDateFilteredTransactionHistoryRequest:
     BankingRequestProcessor<GetDateFilteredTransactionHistoryRequest> {
 
     private var baseURL: URL
+    private var certificate: Data
 
-    init(baseURL: URL) {
+    init(baseURL: URL, certificate: Data) {
         self.baseURL = baseURL
+        self.certificate = certificate
     }
 
-    override func makeHTTPRequest(from bankingRequest: GetDateFilteredTransactionHistoryRequest) throws -> HTTPRequest {
+    override func perform(
+        request: GetDateFilteredTransactionHistoryRequest,
+        using webClient: WebClient
+    ) -> Single<TransactionHistory> {
+        guard let httpRequest = makeHTTPRequest(from: request) else {
+            return Single.error(GustavRequestProcessorError.unsupportedAccount)
+        }
+
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .custom(ISO8601JSONDateDecodingStrategy)
+
+        return webClient.request(httpRequest, certificate: certificate)
+            .filterSuccessfulStatusCodes()
+            .map(GustavGetTransactionHistoryRequestResponse.self, using: jsonDecoder)
+            .map { apiTransactions -> [Transaction] in
+                try apiTransactions.transactions.map {
+                    try $0.toTransaction(associating: request.bankAccount)
+                }
+            }
+            .map {
+                TransactionHistory(date: Date(), transactions: $0)
+            }
+            .asSingle()
+    }
+}
+// swiftlint:enable colon
+
+private extension GustavGetDateFilteredTransactionHistoryRequest {
+    func makeHTTPRequest(from bankingRequest: GetDateFilteredTransactionHistoryRequest) -> HTTPRequest? {
         guard let sepaAccountNumber = bankingRequest.bankAccount.accountNumber as? SepaAccountNumber else {
-            throw GustavRequestProcessorError.unsupportedAccount
+            return nil
         }
 
         let urlPathAppendix = String(format: "netbanking/cz/my/accounts/%@/transactions", sepaAccountNumber.iban)
@@ -38,19 +69,4 @@ final class GustavGetDateFilteredTransactionHistoryRequest:
             headers: nil
         )
     }
-
-    override func parseResponse(
-        of bankingRequest: GetDateFilteredTransactionHistoryRequest,
-        response: Data
-        ) throws -> TransactionHistory {
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .custom(ISO8601JSONDateDecodingStrategy)
-        let apiTransactions = try jsonDecoder.decode(GustavGetTransactionHistoryRequestResponse.self, from: response)
-        let transactions: [Transaction] = try apiTransactions.transactions.map {
-            try $0.toTransaction(associating: bankingRequest.bankAccount)
-        }
-
-        return TransactionHistory(date: Date(), transactions: transactions)
-    }
 }
-// swiftlint:enable colon

@@ -12,8 +12,6 @@ import RxSwift
 // swiftlint:disable function_parameter_count
 protocol WebClient {
 
-    typealias DataResponse = (HTTPURLResponse, Data)
-
     func request(_ method: HTTPMethod,
                  _ url: URL,
                  parameters: [String: Any]?,
@@ -21,9 +19,13 @@ protocol WebClient {
                  headers: [String: String]?,
                  certificate: Data)
         -> Observable<DataResponse>
+
+    func request(_ request: HTTPRequest, certificate: Data) -> Observable<DataResponse>
 }
 // swiftlint:enable function_parameter_count
 
 enum WebClientError: Error {
     case invalidStatusCode
 }
+
+typealias DataResponse = (HTTPURLResponse, Data)

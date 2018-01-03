@@ -14,29 +14,42 @@ final class GustavBankingRequestTranslator: BankingRequestTranslator {
 
     private var supportedBankServiceProcessorMap: [String: ProcessorFactory]
 
-    init(baseURL: URL) {
+    init(baseURL: URL, certificate: Data) {
         supportedBankServiceProcessorMap = [
             String(describing: GetBankAccountRequest.self): {
-                GustavGetBankAccountsRequest(baseURL: baseURL)
+                GustavGetBankAccountsRequest(baseURL: baseURL, certificate: certificate)
             },
             String(describing: GetBankAccountDetailsRequest.self): {
-                GustavGetBankAccountDetailsRequest(baseURL: baseURL)
+                GustavGetBankAccountDetailsRequest(baseURL: baseURL, certificate: certificate)
             },
             String(describing: GetTransactionHistoryRequest.self): {
-                GustavGetTransactionHistoryRequest(baseURL: baseURL)
+                GustavGetTransactionHistoryRequest(baseURL: baseURL, certificate: certificate)
             },
             String(describing: GetDateFilteredTransactionHistoryRequest.self): {
-                GustavGetDateFilteredTransactionHistoryRequest(baseURL: baseURL)
+                GustavGetDateFilteredTransactionHistoryRequest(baseURL: baseURL, certificate: certificate)
             },
             String(describing: PaginatedBankingRequest<GetBankAccountRequest>.self): {
-                GustavPaginatedRequest(actualRequestProcessor: GustavGetBankAccountsRequest(baseURL: baseURL))
+                GustavPaginatedRequestProcessor(
+                    actualRequestProcessor: GustavGetBankAccountsRequest(
+                        baseURL: baseURL,
+                        certificate: certificate
+                    )
+                )
             },
             String(describing: PaginatedBankingRequest<GetTransactionHistoryRequest>.self): {
-                GustavPaginatedRequest(actualRequestProcessor: GustavGetTransactionHistoryRequest(baseURL: baseURL))
+                GustavPaginatedRequestProcessor(
+                    actualRequestProcessor: GustavGetTransactionHistoryRequest(
+                        baseURL: baseURL,
+                        certificate: certificate
+                    )
+                )
             },
             String(describing: PaginatedBankingRequest<GetDateFilteredTransactionHistoryRequest>.self): {
-                GustavPaginatedRequest(
-                    actualRequestProcessor: GustavGetDateFilteredTransactionHistoryRequest(baseURL: baseURL)
+                GustavPaginatedRequestProcessor(
+                    actualRequestProcessor: GustavGetDateFilteredTransactionHistoryRequest(
+                        baseURL: baseURL,
+                        certificate: certificate
+                    )
                 )
             }
         ]

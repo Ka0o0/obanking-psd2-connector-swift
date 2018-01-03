@@ -23,7 +23,7 @@ final class AlamofireWebClient: WebClient {
         encoding: ParameterEncoding,
         headers: [String: String]?,
         certificate: Data
-    ) -> Observable<WebClient.DataResponse> {
+    ) -> Observable<DataResponse> {
 
         guard let alamofireMethod = Alamofire.HTTPMethod(rawValue: method.rawValue) else {
             return Observable.error(AlamofireWebClientError.invalidMethod)
@@ -48,7 +48,7 @@ final class AlamofireWebClient: WebClient {
                 encoding: parameterEncoding,
                 headers: headers
             )
-            .map { WebClient.DataResponse($0.0, $0.1) }
+            .map { DataResponse($0.0, $0.1) }
             .do(
                 onNext: { [weak self] _ in
                     self?.release(requestId: requestId)
@@ -60,6 +60,17 @@ final class AlamofireWebClient: WebClient {
         } catch let error {
             return Observable.error(error)
         }
+    }
+
+    func request(_ request: HTTPRequest, certificate: Data) -> Observable<DataResponse> {
+        return self.request(
+            request.method,
+            request.url,
+            parameters: request.parameters,
+            encoding: request.encoding,
+            headers: request.headers,
+            certificate: certificate
+        )
     }
 }
 // swiftlint:enable function_parameter_count

@@ -24,7 +24,10 @@ final class ConnectedOAuth2BankServiceProvider: ConnectedBankServiceProvider {
     ) {
         self.oAuth2ConnectionInformation = oAuth2ConnectionInformation
         self.configurationParser = configurationParser
-        self.webClient = webClient
+        self.webClient = OAuth2AuthorizedWebClient(
+            oAuth2ConnectionInformation: oAuth2ConnectionInformation,
+            webClient: webClient
+        )
         self.supportedBankServicesProvider = supportedBankServicesProvider
     }
 
@@ -34,31 +37,18 @@ final class ConnectedOAuth2BankServiceProvider: ConnectedBankServiceProvider {
             return Single.error(ConnectedBankServiceProviderError.unsupportedRequest)
         }
 
-        guard let translator = configuration.bankingRequestTranslator.makeProcessor(for: request) else {
+        guard let processor = configuration.bankingRequestTranslator.makeProcessor(for: request) else {
             return Single.error(ConnectedBankServiceProviderError.unsupportedRequest)
         }
 
-        guard let httpRequest = try? makeRequestAndAppendAuthorizationHeader(for: request, using: translator) else {
-            return Single.error(ConnectedBankServiceProviderError.unsupportedRequest)
-        }
-
-        return webClient.request(
-            httpRequest.method,
-            httpRequest.url,
-            parameters: httpRequest.parameters,
-            encoding: httpRequest.encoding,
-            headers: httpRequest.headers,
-            certificate: configuration.apiServerCertificate
+        let oAuth2AuthorizedWebClient = OAuth2AuthorizedWebClient(
+            oAuth2ConnectionInformation: oAuth2ConnectionInformation,
+            webClient: webClient
         )
-        .map { response, data -> T.Result in
-            guard 200..<300 ~= response.statusCode else {
-                throw WebClientError.invalidStatusCode
-            }
 
-            return try translator.parseResponse(of: request, response: data)
-        }
-        .asSingle()
+        return processor.perform(request: request, using: oAuth2AuthorizedWebClient)
     }
+
 }
 
 private extension ConnectedOAuth2BankServiceProvider {
@@ -66,29 +56,11 @@ private extension ConnectedOAuth2BankServiceProvider {
     func getConfiguration() -> OAuth2BankServiceConfiguration? {
         guard let bankServiceProvider = supportedBankServicesProvider.bankService(
             for: oAuth2ConnectionInformation.bankServiceProviderId
-            ) else {
-                return nil
+        ) else {
+            return nil
         }
 
         return configurationParser.getBankServiceConfiguration(for: bankServiceProvider)
             as? OAuth2BankServiceConfiguration
-    }
-
-    func makeRequestAndAppendAuthorizationHeader<T>(
-        for bankingRequest: T,
-        using translator: BankingRequestProcessor<T>
-    ) throws -> HTTPRequest {
-
-        let request = try translator.makeHTTPRequest(from: bankingRequest)
-        var headers = request.headers ?? [:]
-        headers["Authorization"] = String(format: "bearer %@", oAuth2ConnectionInformation.accessToken)
-
-        return HTTPRequest(
-            method: request.method,
-            url: request.url,
-            parameters: request.parameters,
-            encoding: request.encoding,
-            headers: headers
-        )
     }
 }

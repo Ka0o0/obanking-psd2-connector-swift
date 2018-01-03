@@ -16,25 +16,62 @@ class GustavGetDateFilteredTransactionHistoryRequestTests: GustavRequestTests {
         URL(string: "https://api.csas.cz/sandbox/webapi/api/v3/netbanking/cz/my/accounts/CZ6508000000003766862329/transactions")
     // swiftlint:enable: line_length
 
+    var webClient: WebClientMock!
     var sut: GustavGetDateFilteredTransactionHistoryRequest!
 
-    override func setUp() {
-        super.setUp()
-
-        sut = GustavGetDateFilteredTransactionHistoryRequest(baseURL: baseURL)
-    }
-
-    func test_makeHTTPRequest_ReturnsProperHTTPRequest() {
+    var bankingRequest: GetDateFilteredTransactionHistoryRequest {
         let startDate = Date(timeIntervalSince1970: 1401580800) // 2014-06-01T00:00:00+00:00
         let endDate = Date(timeIntervalSince1970: 1404172800) // 2014-07-01T00:00:00+00:00
-        let bankingRequest = GetDateFilteredTransactionHistoryRequest(
+        return GetDateFilteredTransactionHistoryRequest(
             bankAccount: bankAccountMock,
             startDate: startDate,
             endDate: endDate
         )
+    }
 
-        guard let result = try? sut.makeHTTPRequest(from: bankingRequest) else {
-            XCTFail("Should not fail")
+    var apiResponseMockData: Data? {
+        let testBundle = Bundle(for: type(of: self))
+        guard let apiResponseURL = testBundle
+            .url(forResource: "GetTransactionHistoryRequestResponse", withExtension: "json") else {
+            return nil
+        }
+
+        return (try? String(contentsOf: apiResponseURL))?.data(using: .utf8)
+    }
+
+    override func setUp() {
+        super.setUp()
+
+        sut = GustavGetDateFilteredTransactionHistoryRequest(baseURL: baseURL, certificate: Data())
+        webClient = WebClientMock()
+    }
+
+    func test_PerformRequest() {
+        guard let apiResponseMockData = self.apiResponseMockData else {
+            XCTFail("Could not create data from string")
+            return
+        }
+        webClient.responseData = apiResponseMockData
+
+        do {
+            let result = try sut.perform(request: bankingRequest, using: webClient)
+                .toBlocking(timeout: 3)
+                .single()
+
+            assertProperRequest()
+
+            XCTAssertEqual(result.transactions.count, 1)
+            if let first = result.transactions.first {
+                XCTAssertEqual(first.id, "I141126DXHZ3T")
+            }
+        } catch let error {
+            XCTFail(String(describing: error))
+        }
+    }
+
+    private func assertProperRequest() {
+        guard let result = webClient.lastRequest else {
+            XCTFail("No request")
             return
         }
 
@@ -50,39 +87,5 @@ class GustavGetDateFilteredTransactionHistoryRequestTests: GustavRequestTests {
             "dateEnd": "2014-07-01T00:00:00.000Z"
         ]
         XCTAssertEqual(parameters, expectedParameters)
-    }
-
-    func test_ParseResponse_ParsesResponseCorrectly() {
-        let startDate = Date(timeIntervalSince1970: 1401580800) // 2014-06-01T00:00:00+00:00
-        let endDate = Date(timeIntervalSince1970: 1404172800) // 2014-07-01T00:00:00+00:00
-        let bankingRequest = GetDateFilteredTransactionHistoryRequest(
-            bankAccount: bankAccountMock,
-            startDate: startDate,
-            endDate: endDate
-        )
-
-        let testBundle = Bundle(for: type(of: self))
-        guard let apiResponseURL = testBundle
-            .url(forResource: "GetTransactionHistoryRequestResponse", withExtension: "json") else {
-            XCTFail("Could not read GetBankAccountsRequestResponse")
-            return
-        }
-
-        do {
-            let apiResponseMock = try String(contentsOf: apiResponseURL)
-            guard let apiResponseMockData = apiResponseMock.data(using: .utf8) else {
-                XCTFail("Could not create data from string")
-                return
-            }
-
-            let result = try sut.parseResponse(of: bankingRequest, response: apiResponseMockData)
-
-            XCTAssertEqual(result.transactions.count, 1)
-            if let first = result.transactions.first {
-                XCTAssertEqual(first.id, "I141126DXHZ3T")
-            }
-        } catch let error {
-            XCTFail(String(describing: error))
-        }
     }
 }

@@ -7,14 +7,11 @@
 //
 
 import Foundation
+import RxSwift
 
 class BankingRequestProcessor<T> where T: BankingRequest {
 
-    func makeHTTPRequest(from bankingRequest: T) throws -> HTTPRequest {
-        fatalError("Not implemented")
-    }
-
-    func parseResponse(of bankingRequest: T, response: Data) throws -> T.Result {
+    func perform(request: T, using webClient: WebClient) -> Single<T.Result> {
         fatalError("Not implemented")
     }
 }
