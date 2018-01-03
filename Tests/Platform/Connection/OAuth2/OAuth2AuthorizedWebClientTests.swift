@@ -47,7 +47,7 @@ class OAuth2AuthorizedWebClientTests: XCTestCase {
                 return
             }
 
-            XCTAssertEqual(headers, ["Authorization": "othertype test"])
+            XCTAssertEqual(headers, ["Authorization": "Othertype test"])
         } catch let error {
             XCTFail(String(describing: error))
         }
