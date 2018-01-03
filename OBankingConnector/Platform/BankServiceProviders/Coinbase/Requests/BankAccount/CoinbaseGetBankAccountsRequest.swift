@@ -26,6 +26,7 @@ final class CoinbaseGetBankAccountsRequest: BankingRequestProcessor<GetBankAccou
         let httpAccountsRequest = makeAccountsHTTPRequest()
 
         return webClient.request(httpAccountsRequest, certificate: certificate)
+            .filterSuccessfulStatusCodes()
             .map(CoinbaseGetBankAccountsRequestResponse.self)
             .map { response -> [BankAccount] in
                 try response.data.map { try $0.toBankAccount() }
