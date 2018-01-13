@@ -1,5 +1,5 @@
 //
-//  OAuth2BankServiceProviderAuthenticationRequestProcessor.swift
+//  OAuth2AuthorizationRequestProcessor.swift
 //  OBankingConnector
 //
 //  Created by Kai Takac on 12.12.17.
@@ -10,7 +10,12 @@ import Foundation
 import RxSwift
 import Alamofire
 
-final class OAuth2BankServiceProviderAuthenticationRequestProcessor: BankServiceProviderAuthenticationRequestProcessor {
+protocol OAuth2AuthorizationRequestProcessor {
+    func process(_ request: OAuth2AuthorizationRequest)
+        -> Single<AuthorizationResult>
+}
+
+final class DefaultOAuth2AuthorizationRequestProcessor: OAuth2AuthorizationRequestProcessor {
 
     private let externalWebBrowserLauncher: ExternalWebBrowserLauncher
     private let deepLinkProvider: DeepLinkProvider
@@ -32,21 +37,13 @@ final class OAuth2BankServiceProviderAuthenticationRequestProcessor: BankService
         self.accessTokenRequestor = accessTokenRequestor
     }
 
-    func canProcess(request: BankServiceProviderAuthenticationRequest) -> Bool {
-        return request is OAuth2BankServiceProviderAuthenticationRequest
-    }
-
-    func authenticate(using request: BankServiceProviderAuthenticationRequest) ->
-        Single<BankServiceProviderAuthenticationResult> {
-
-        guard let request = request as? OAuth2BankServiceProviderAuthenticationRequest else {
-            return Single.error(BankServiceProviderAuthenticationRequestProcessorError.unsupportedRequest)
-        }
+    func process(_ request: OAuth2AuthorizationRequest)
+        -> Single<AuthorizationResult> {
 
         let state = UUID()
         guard let authorizationRequestURL =
             authorizationRequestURLBuilder.makeAuthorizationCodeRequestURL(for: request, adding: state) else {
-            return Single.error(BankServiceProviderAuthenticationRequestProcessorError.invalidAuthorizationURL)
+            return Single.error(OAuth2AuthorizationError.invalidAuthorizationURL)
         }
 
         return self.externalWebBrowserLauncher.open(url: authorizationRequestURL)
@@ -59,7 +56,7 @@ final class OAuth2BankServiceProviderAuthenticationRequestProcessor: BankService
                 .take(1)
                 .asSingle()
             }
-            .flatMap { authorizationToken -> Single<BankServiceProviderAuthenticationResult> in
+            .flatMap { authorizationToken -> Single<AuthorizationResult> in
                 self.accessTokenRequestor.requestAccessToken(
                     for: request,
                     authorizationToken: authorizationToken

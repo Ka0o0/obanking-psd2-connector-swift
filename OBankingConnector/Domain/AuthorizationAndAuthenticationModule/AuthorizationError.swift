@@ -1,5 +1,5 @@
 //
-//  BankServiceProviderAuthenticationProviderError.swift
+//  AuthorizationError.swift
 //  OBankingConnector
 //
 //  Created by Kai Takac on 12.12.17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum BankServiceProviderAuthenticationProviderError: Error {
+public enum AuthorizationError: Error {
     case unsupportedBankServiceProvider
     case noProperProcessorFound
 }

@@ -16,7 +16,7 @@ class DefaultOAuth2AuthorizationTokenExtractorTests: XCTestCase {
     private var authorizationEndpointURL: URL! = URL(string: "https://authorization-server.com/auth")
 
     func test_ExtractFromURL_NilForInvalidURL() {
-        let request = OAuth2BankServiceProviderAuthenticationRequest(
+        let request = OAuth2AuthorizationRequest(
             bankingServiceProviderId: "test",
             authorizationEndpointURL: authorizationEndpointURL,
             clientId: "example"
@@ -34,7 +34,7 @@ class DefaultOAuth2AuthorizationTokenExtractorTests: XCTestCase {
     }
 
     func test_ExtractFromURL_ConsidersTokenWhenNoOtherInformationProvided() {
-        let request = OAuth2BankServiceProviderAuthenticationRequest(
+        let request = OAuth2AuthorizationRequest(
             bankingServiceProviderId: "test",
             authorizationEndpointURL: authorizationEndpointURL,
             clientId: "example"
@@ -52,7 +52,7 @@ class DefaultOAuth2AuthorizationTokenExtractorTests: XCTestCase {
     }
 
     func test_ExtractFromURL_NilWhenStateMismatch() {
-        let request = OAuth2BankServiceProviderAuthenticationRequest(
+        let request = OAuth2AuthorizationRequest(
             bankingServiceProviderId: "test",
             authorizationEndpointURL: authorizationEndpointURL,
             clientId: "example"
@@ -70,7 +70,7 @@ class DefaultOAuth2AuthorizationTokenExtractorTests: XCTestCase {
     }
 
     func test_ExtractFromURL_StateMatch() {
-        let request = OAuth2BankServiceProviderAuthenticationRequest(
+        let request = OAuth2AuthorizationRequest(
             bankingServiceProviderId: "test",
             authorizationEndpointURL: authorizationEndpointURL,
             clientId: "example"
@@ -89,7 +89,7 @@ class DefaultOAuth2AuthorizationTokenExtractorTests: XCTestCase {
     }
 
     func test_ExtractFromStream_FiltersCorrectly() {
-        let request = OAuth2BankServiceProviderAuthenticationRequest(
+        let request = OAuth2AuthorizationRequest(
             bankingServiceProviderId: "test",
             authorizationEndpointURL: authorizationEndpointURL,
             clientId: "example"

@@ -16,7 +16,7 @@ final class OAuth2AuthorizationTokenExtractorMock: OAuth2AuthorizationTokenExtra
 
     func exctract(
         from url: URL,
-        considering request: OAuth2BankServiceProviderAuthenticationRequest,
+        considering request: OAuth2AuthorizationRequest,
         and state: String?
     ) -> String? {
         return nextToken
@@ -24,7 +24,7 @@ final class OAuth2AuthorizationTokenExtractorMock: OAuth2AuthorizationTokenExtra
 
     func extract(
         from stream: Observable<URL>,
-        considering request: OAuth2BankServiceProviderAuthenticationRequest,
+        considering request: OAuth2AuthorizationRequest,
         and state: String?
     ) -> Observable<String> {
         guard let nextToken = self.nextToken else {

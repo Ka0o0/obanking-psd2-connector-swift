@@ -14,7 +14,7 @@ final class OAuth2AuthorizationRequestURLBuilderMock: OAuth2AuthorizationRequest
     var shouldSucceed = true
     let requestURL: URL
 
-    var lastRequest: OAuth2BankServiceProviderAuthenticationRequest?
+    var lastRequest: OAuth2AuthorizationRequest?
     var lastState: UUID?
 
     init() {
@@ -33,7 +33,7 @@ final class OAuth2AuthorizationRequestURLBuilderMock: OAuth2AuthorizationRequest
     }
 
     func makeAuthorizationCodeRequestURL(
-        for request: OAuth2BankServiceProviderAuthenticationRequest,
+        for request: OAuth2AuthorizationRequest,
         adding state: UUID?
     ) -> URL? {
         lastRequest = request

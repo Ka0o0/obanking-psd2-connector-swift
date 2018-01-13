@@ -1,5 +1,5 @@
 //
-//  DefaultBankServiceProviderAuthenticationProvider.swift
+//  DefaultAuthorizationModule.swift
 //  OBankingConnector
 //
 //  Created by Kai Takac on 12.12.17.
@@ -9,32 +9,32 @@
 import Foundation
 import RxSwift
 
-final class DefaultBankServiceProviderAuthenticationProvider: BankServiceProviderAuthenticationProvider {
+final class DefaultAuthorizationModule: AuthorizationModule {
 
-    private let authorizationProcessorFactory: BankServiceProviderAuthorizationProcessorFactory
+    private let authorizationProcessorFactory: AuthorizationProviderFactory
     private let configurationParser: ConfigurationParser
 
     init(
-        authorizationProcessorFactory: BankServiceProviderAuthorizationProcessorFactory,
+        authorizationProcessorFactory: AuthorizationProviderFactory,
         configurationParser: ConfigurationParser
     ) {
         self.authorizationProcessorFactory = authorizationProcessorFactory
         self.configurationParser = configurationParser
     }
 
-    func authenticate(against bankServiceProvider: BankServiceProvider)
-        -> Single<BankServiceProviderAuthenticationResult> {
+    func authorize(against bankServiceProvider: BankServiceProvider)
+        -> Single<AuthorizationResult> {
 
         guard let configuration = configurationParser.getBankServiceConfiguration(
             for: bankServiceProvider
         ) else {
-            return Single.error(BankServiceProviderAuthenticationProviderError.unsupportedBankServiceProvider)
+            return Single.error(AuthorizationError.unsupportedBankServiceProvider)
         }
 
         guard let processor = authorizationProcessorFactory.makeAuthorizationProcessor(
             for: configuration
         ) else {
-            return Single.error(BankServiceProviderAuthenticationProviderError.noProperProcessorFound)
+            return Single.error(AuthorizationError.noProperProcessorFound)
         }
 
         return processor.authorize()

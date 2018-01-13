@@ -1,5 +1,5 @@
 //
-//  BankServiceProviderAuthenticationResult.swift
+//  AuthorizationResult.swift
 //  OBankingConnector
 //
 //  Created by Kai Takac on 12.12.17.
@@ -8,4 +8,4 @@
 
 import Foundation
 
-public typealias BankServiceProviderAuthenticationResult = BankServiceConnectionInformation
+public typealias AuthorizationResult = BankServiceConnectionInformation

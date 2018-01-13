@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum BankServiceProviderAuthenticationRequestProcessorError: Error {
+enum OAuth2AuthorizationError: Error {
     case unsupportedRequest
     case invalidAuthorizationURL
     case invalidAuthorizationToken

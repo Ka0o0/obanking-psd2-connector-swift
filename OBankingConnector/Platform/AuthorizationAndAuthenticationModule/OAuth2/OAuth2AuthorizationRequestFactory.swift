@@ -1,5 +1,5 @@
 //
-//  ConfigurationBankServiceProviderAuthenticationRequestFactory.swift
+//  OAuth2AuthorizationRequestFactory.swift
 //  OBankingConnector
 //
 //  Created by Kai Takac on 14.12.17.
@@ -8,16 +8,18 @@
 
 import Foundation
 
-final class OAuth2BankServiceProviderAuthenticationRequestFactory: BankServiceProviderAuthenticationRequestFactory {
+protocol OAuth2AuthorizationRequestFactory {
+    func makeAuthorizationRequest(
+        for configuration: OAuth2BankServiceConfiguration
+    ) -> OAuth2AuthorizationRequest
+}
 
-    private let configuration: OAuth2BankServiceConfiguration
+final class DefaultOAuth2AuthorizationRequestFactory: OAuth2AuthorizationRequestFactory {
 
-    init(configuration: OAuth2BankServiceConfiguration) {
-        self.configuration = configuration
-    }
-
-    func makeBankServiceProviderAuthenticationRequest() -> BankServiceProviderAuthenticationRequest {
-        return OAuth2BankServiceProviderAuthenticationRequest(
+    func makeAuthorizationRequest(
+        for configuration: OAuth2BankServiceConfiguration
+    ) -> OAuth2AuthorizationRequest {
+        return OAuth2AuthorizationRequest(
             bankingServiceProviderId: configuration.bankServiceProvider.id,
             authorizationEndpointURL: configuration.authorizationEndpointURL,
             clientId: configuration.clientId,

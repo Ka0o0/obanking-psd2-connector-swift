@@ -11,14 +11,14 @@ import Foundation
 protocol OAuth2AuthorizationRequestURLBuilder {
 
     func makeAuthorizationCodeRequestURL(
-        for request: OAuth2BankServiceProviderAuthenticationRequest,
+        for request: OAuth2AuthorizationRequest,
         adding state: UUID?
     ) -> URL?
 }
 
 final class DefaultOAuth2AuthorizationRequestURLBuilder: OAuth2AuthorizationRequestURLBuilder {
     func makeAuthorizationCodeRequestURL(
-        for request: OAuth2BankServiceProviderAuthenticationRequest,
+        for request: OAuth2AuthorizationRequest,
         adding state: UUID?
     ) -> URL? {
         let urlBuilder = URLBuilder(from: request.authorizationEndpointURL)

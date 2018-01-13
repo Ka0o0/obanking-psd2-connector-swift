@@ -1,5 +1,5 @@
 //
-//  OAuth2BankServiceProviderAuthenticationRequestProcessorTests.swift
+//  DefaultOAuth2AuthorizationRequestProcessorTests.swift
 //  OBankingConnectorTests
 //
 //  Created by Kai Takac on 12.12.17.
@@ -10,11 +10,11 @@ import XCTest
 import RxSwift
 @testable import OBankingConnector
 
-class OAuth2BankServiceProviderAuthenticationRequestProcessorTests: XCTestCase {
+class DefaultOAuth2AuthorizationRequestProcessorTests: XCTestCase {
 
-    private var sut: OAuth2BankServiceProviderAuthenticationRequestProcessor!
+    private var sut: DefaultOAuth2AuthorizationRequestProcessor!
     private var browserLauncher: ExternalWebBrowserLauncherMock!
-    private var oauth2Request: OAuth2BankServiceProviderAuthenticationRequest!
+    private var oauth2Request: OAuth2AuthorizationRequest!
     private var deepLinkProvider: DeepLinkProviderMock!
     private var tokenExtractorMock: OAuth2AuthorizationTokenExtractorMock!
     private var accessTokenRequestorMock: OAuth2AccessTokenRequestorMock!
@@ -33,7 +33,7 @@ class OAuth2BankServiceProviderAuthenticationRequestProcessorTests: XCTestCase {
             return
         }
 
-        oauth2Request = OAuth2BankServiceProviderAuthenticationRequest(
+        oauth2Request = OAuth2AuthorizationRequest(
             bankingServiceProviderId: "test",
             authorizationEndpointURL: baseURL,
             clientId: "example",
@@ -48,46 +48,13 @@ class OAuth2BankServiceProviderAuthenticationRequestProcessorTests: XCTestCase {
         tokenExtractorMock = OAuth2AuthorizationTokenExtractorMock()
         accessTokenRequestorMock = OAuth2AccessTokenRequestorMock()
 
-        sut = OAuth2BankServiceProviderAuthenticationRequestProcessor(
+        sut = DefaultOAuth2AuthorizationRequestProcessor(
             externalWebBrowserLauncher: browserLauncher,
             deepLinkProvider: deepLinkProvider,
             authorizationRequestURLBuilder: authorizationRequestURLBuilder,
             authorizationTokenExtractor: tokenExtractorMock,
             accessTokenRequestor: accessTokenRequestorMock
         )
-    }
-
-    func test_CanProcess_TrueForOAuthRequest() {
-        let request = OAuth2BankServiceProviderAuthenticationRequest(
-            bankingServiceProviderId: "test",
-            authorizationEndpointURL: URL(fileURLWithPath: "asdf"),
-            clientId: "asdf"
-        )
-        let result = sut.canProcess(request: request)
-
-        XCTAssertTrue(result)
-    }
-
-    func test_CanProcess_FalseForOtherRequest() {
-        let result = sut.canProcess(request: BankServiceProviderAuthenticationRequestMock())
-
-        XCTAssertFalse(result)
-    }
-
-    func test_Authenticate_FailsForInvalidRequest() {
-        do {
-            _ = try sut.authenticate(using: BankServiceProviderAuthenticationRequestMock())
-                .toBlocking(timeout: 3)
-                .single()
-            XCTFail("Should fail")
-        } catch let error {
-            guard let processorError = error as? BankServiceProviderAuthenticationRequestProcessorError else {
-                XCTFail("Invalid error type")
-                return
-            }
-
-            XCTAssertEqual(processorError, BankServiceProviderAuthenticationRequestProcessorError.unsupportedRequest)
-        }
     }
 
     func test_Authenticate_SuccessfulFlow() {
@@ -107,7 +74,7 @@ class OAuth2BankServiceProviderAuthenticationRequestProcessorTests: XCTestCase {
                     tokenType: "bearer"
                 )
 
-            guard let result = try sut.authenticate(using: oauth2Request).toBlocking(timeout: 3).first() else {
+            guard let result = try sut.process(oauth2Request).toBlocking(timeout: 3).first() else {
                 XCTFail("Result must not be nil")
                 return
             }
@@ -127,10 +94,7 @@ class OAuth2BankServiceProviderAuthenticationRequestProcessorTests: XCTestCase {
     }
 }
 
-private extension OAuth2BankServiceProviderAuthenticationRequestProcessorTests {
-
-    class BankServiceProviderAuthenticationRequestMock: BankServiceProviderAuthenticationRequest {
-    }
+private extension DefaultOAuth2AuthorizationRequestProcessorTests {
 
     class ExternalWebBrowserLauncherMock: ExternalWebBrowserLauncher {
 

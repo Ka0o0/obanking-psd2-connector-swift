@@ -36,18 +36,28 @@ public final class OBankingConnector {
         )
     }
 
-    public func makeBankServiceProviderAuthenticationProvider() -> BankServiceProviderAuthenticationProvider {
-        let oAuth2Processors = DefaultOAuth2BankServiceAuthenticationRequestProcessorFactory()
-            .makeProcessor(
-                externalWebBrowserLauncher: externalWebBrowserLauncher,
-                deepLinkProvider: deepLinkService,
-                webClient: webClient
-            )
+    public func makeBankServiceProviderAuthenticationProvider() -> AuthorizationModule {
+        let oAuth2AuthorizationRequestProcessor = DefaultOAuth2AuthorizationRequestProcessor(
+            externalWebBrowserLauncher: externalWebBrowserLauncher,
+            deepLinkProvider: deepLinkService,
+            authorizationRequestURLBuilder: DefaultOAuth2AuthorizationRequestURLBuilder(),
+            authorizationTokenExtractor: DefaultOAuth2AuthorizationTokenExtractor(),
+            accessTokenRequestor: DefaultOAuth2AccessTokenRequestor(webClient: webClient)
+        )
 
-        let authenticationRequestFactoryProvider = ConfigurationBankServiceProviderAuthenticationRequestFactoryProvider(
+        let oAuth2AuthorizationProcessorFactory = DefaultOAuth2AuthorizationProviderFactory(
+            oAuth2AuthorizationRequestFactory: DefaultOAuth2AuthorizationRequestFactory(),
+            oAuth2AuthorizationRequestProcessor: oAuth2AuthorizationRequestProcessor
+        )
+        let authorizationProcessorFactory = DefaultAuthorizationProviderFactory(
+            oAuth2AuthorizationProcessorFactory: oAuth2AuthorizationProcessorFactory
+        )
+        let authorizationModule = DefaultAuthorizationModule(
+            authorizationProcessorFactory: authorizationProcessorFactory,
             configurationParser: configurationParser
         )
-        fatalError()
+
+        return authorizationModule
     }
 
     public func makeBankServiceProviderConnector() -> BankServiceProviderConnector {

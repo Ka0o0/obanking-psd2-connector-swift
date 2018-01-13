@@ -12,7 +12,7 @@ import RxSwift
 protocol OAuth2AccessTokenRequestor {
 
     func requestAccessToken(
-        for request: OAuth2BankServiceProviderAuthenticationRequest,
+        for request: OAuth2AuthorizationRequest,
         authorizationToken: String
     ) -> Single<OAuth2BankServiceConnectionInformation>
 }
@@ -26,7 +26,7 @@ final class DefaultOAuth2AccessTokenRequestor: OAuth2AccessTokenRequestor {
     }
 
     func requestAccessToken(
-        for request: OAuth2BankServiceProviderAuthenticationRequest,
+        for request: OAuth2AuthorizationRequest,
         authorizationToken: String
     ) -> Single<OAuth2BankServiceConnectionInformation> {
 
@@ -63,7 +63,7 @@ final class DefaultOAuth2AccessTokenRequestor: OAuth2AccessTokenRequestor {
     }
 
     private func makeParameters(
-        for request: OAuth2BankServiceProviderAuthenticationRequest,
+        for request: OAuth2AuthorizationRequest,
         authorizationToken: String
     ) -> [String: String] {
         var parameters = [String: String]()

@@ -12,9 +12,9 @@ import RxSwift
 
 class BankServiceProviderAuthenticationProviderTests: XCTestCase {
 
-    private class BankServiceProviderAuthenticationProviderMock: BankServiceProviderAuthenticationProvider {
-        func authenticate(against bankServiceProvider: BankServiceProvider)
-            -> Single<BankServiceProviderAuthenticationResult> {
+    private class BankServiceProviderAuthenticationProviderMock: AuthorizationModule {
+        func authorize(against bankServiceProvider: BankServiceProvider)
+            -> Single<AuthorizationResult> {
             fatalError()
         }
     }

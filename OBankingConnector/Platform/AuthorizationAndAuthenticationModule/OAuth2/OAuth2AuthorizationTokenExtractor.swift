@@ -13,13 +13,13 @@ protocol OAuth2AuthorizationTokenExtractor {
 
     func exctract(
         from url: URL,
-        considering request: OAuth2BankServiceProviderAuthenticationRequest,
+        considering request: OAuth2AuthorizationRequest,
         and state: String?
     ) -> String?
 
     func extract(
         from stream: Observable<URL>,
-        considering request: OAuth2BankServiceProviderAuthenticationRequest,
+        considering request: OAuth2AuthorizationRequest,
         and state: String?
     ) -> Observable<String>
 }
@@ -27,7 +27,7 @@ protocol OAuth2AuthorizationTokenExtractor {
 final class DefaultOAuth2AuthorizationTokenExtractor: OAuth2AuthorizationTokenExtractor {
     func exctract(
         from url: URL,
-        considering request: OAuth2BankServiceProviderAuthenticationRequest,
+        considering request: OAuth2AuthorizationRequest,
         and state: String?
     ) -> String? {
 
@@ -51,7 +51,7 @@ final class DefaultOAuth2AuthorizationTokenExtractor: OAuth2AuthorizationTokenEx
 
     func extract(
         from stream: Observable<URL>,
-        considering request: OAuth2BankServiceProviderAuthenticationRequest,
+        considering request: OAuth2AuthorizationRequest,
         and state: String?
     ) -> Observable<String> {
         return stream

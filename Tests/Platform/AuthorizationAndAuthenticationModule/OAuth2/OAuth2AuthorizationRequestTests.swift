@@ -1,5 +1,5 @@
 //
-//  OAuth2BankServiceProviderAuthenticationRequestTests.swift
+//  OAuth2AuthorizationRequestTests.swift
 //  OBankingConnectorTests
 //
 //  Created by Kai Takac on 12.12.17.
@@ -9,13 +9,13 @@
 import XCTest
 @testable import OBankingConnector
 
-class OAuth2BankServiceProviderAuthenticationRequestTests: XCTestCase {
+class OAuth2AuthorizationRequestTests: XCTestCase {
 
     func test_Init_TakesRequired() {
         let authorizationEndpointURL = URL(fileURLWithPath: "temp")
         let tokenEndpointURL = URL(fileURLWithPath: "another")
 
-        let sut = OAuth2BankServiceProviderAuthenticationRequest(
+        let sut = OAuth2AuthorizationRequest(
             bankingServiceProviderId: "test",
             authorizationEndpointURL: authorizationEndpointURL,
             clientId: "johns_app",

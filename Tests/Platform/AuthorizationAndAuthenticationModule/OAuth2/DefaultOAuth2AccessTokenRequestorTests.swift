@@ -46,7 +46,7 @@ class DefaultOAuth2AccessTokenRequestorTests: XCTestCase {
     }
 
     func test_ClaimAccessTokenForAuthorizationToken_UsesAuthUrlIfNoTokenURLSpecified() {
-        let request = OAuth2BankServiceProviderAuthenticationRequest(
+        let request = OAuth2AuthorizationRequest(
             bankingServiceProviderId: "test",
             authorizationEndpointURL: authorizationEndpointURL,
             clientId: "example"
@@ -75,7 +75,7 @@ class DefaultOAuth2AccessTokenRequestorTests: XCTestCase {
     }
 
     func test_ClaimAccessTokenForAuthorizationToken_UsesTokenURLIfSpecified() {
-        let request = OAuth2BankServiceProviderAuthenticationRequest(
+        let request = OAuth2AuthorizationRequest(
             bankingServiceProviderId: "test",
             authorizationEndpointURL: authorizationEndpointURL,
             clientId: "example",
@@ -116,7 +116,7 @@ class DefaultOAuth2AccessTokenRequestorTests: XCTestCase {
     }
 
     func test_ClaimAccessTokenForAuthorizationToken_ParsesResponseCorrectly() {
-        let request = OAuth2BankServiceProviderAuthenticationRequest(
+        let request = OAuth2AuthorizationRequest(
             bankingServiceProviderId: "test",
             authorizationEndpointURL: authorizationEndpointURL,
             clientId: "example"
@@ -141,7 +141,7 @@ class DefaultOAuth2AccessTokenRequestorTests: XCTestCase {
         }
     }
 
-    private func testRequest(request: OAuth2BankServiceProviderAuthenticationRequest) ->
+    private func testRequest(request: OAuth2AuthorizationRequest) ->
         OAuth2BankServiceConnectionInformation? {
 
         webClient.responseData = exampleValidResponseData
@@ -156,7 +156,7 @@ class DefaultOAuth2AccessTokenRequestorTests: XCTestCase {
     }
 
     func test_ClaimAccessTokenForAuthorizationToken_ChecksProperCertificate() {
-        let request = OAuth2BankServiceProviderAuthenticationRequest(
+        let request = OAuth2AuthorizationRequest(
             bankingServiceProviderId: "test",
             authorizationEndpointURL: authorizationEndpointURL,
             clientId: "example"

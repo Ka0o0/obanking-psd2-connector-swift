@@ -1,5 +1,5 @@
 //
-//  DefaultBankServiceProviderAuthenticationProviderTests.swift
+//  DefaultAuthorizationModuleTests.swift
 //  OBankingConnectorTests
 //
 //  Created by Kai Takac on 12.12.17.
@@ -11,7 +11,7 @@ import RxSwift
 import RxBlocking
 @testable import OBankingConnector
 
-class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
+class DefaultAuthorizationModuleTests: XCTestCase {
 
     func test_AuthenticateAgainst() {
         let configuration = OBankingConnectorConfiguration(
@@ -20,13 +20,13 @@ class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
             ]
         )
         let configurationParser = ConfigurationParser(configuration: configuration)
-        let sut = DefaultBankServiceProviderAuthenticationProvider(
+        let sut = DefaultAuthorizationModule(
             authorizationProcessorFactory: BankServiceProviderAuthorizationProcessorFactoryMock(),
             configurationParser: configurationParser
         )
 
         do {
-            let result = try sut.authenticate(against: BankServiceProviderMock(
+            let result = try sut.authorize(against: BankServiceProviderMock(
                 id: "BankServiceProviderAuthorizationProcessorMock",
                 name: ""
             )).toBlocking(timeout: 3).single()
@@ -38,7 +38,7 @@ class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
     }
 }
 
-private extension DefaultBankServiceProviderAuthenticationProviderTests {
+private extension DefaultAuthorizationModuleTests {
 
     class BankServiceProviderConfigurationMock: BankServiceProviderConfiguration {
         let bankServiceProvider: BankServiceProvider = BankServiceProviderMock(
@@ -51,18 +51,18 @@ private extension DefaultBankServiceProviderAuthenticationProviderTests {
         let bankServiceProviderId = "BankServiceProviderAuthorizationProcessorMock"
     }
 
-    class BankServiceProviderAuthorizationProcessorMock: BankServiceProviderAuthorizationProcessor {
-        func authorize() -> Single<BankServiceProviderAuthenticationResult> {
+    class BankServiceProviderAuthorizationProcessorMock: AuthorizationProvider {
+        func authorize() -> Single<AuthorizationResult> {
             return Single.just(BankServiceConnectionInformationMock())
         }
     }
 
-    class BankServiceProviderAuthorizationProcessorFactoryMock: BankServiceProviderAuthorizationProcessorFactory {
+    class BankServiceProviderAuthorizationProcessorFactoryMock: AuthorizationProviderFactory {
 
         var lastConfiguration: BankServiceProviderConfiguration?
 
         func makeAuthorizationProcessor(for configuration: BankServiceProviderConfiguration)
-            -> BankServiceProviderAuthorizationProcessor? {
+            -> AuthorizationProvider? {
             lastConfiguration = configuration
             return BankServiceProviderAuthorizationProcessorMock()
         }
