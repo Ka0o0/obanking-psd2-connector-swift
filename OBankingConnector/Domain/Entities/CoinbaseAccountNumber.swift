@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CoinbaseAccountNumber: AccountNumber {
+public struct CoinbaseAccountNumber: AccountNumber, Codable {
 
     public let id: String
 
