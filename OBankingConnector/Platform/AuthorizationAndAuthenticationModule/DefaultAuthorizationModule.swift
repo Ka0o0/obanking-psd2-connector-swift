@@ -11,14 +11,14 @@ import RxSwift
 
 final class DefaultAuthorizationModule: AuthorizationModule {
 
-    private let authorizationProcessorFactory: AuthorizationProviderFactory
+    private let authorizationProviderFactory: AuthorizationProviderFactory
     private let configurationParser: ConfigurationParser
 
     init(
-        authorizationProcessorFactory: AuthorizationProviderFactory,
+        authorizationProviderFactory: AuthorizationProviderFactory,
         configurationParser: ConfigurationParser
     ) {
-        self.authorizationProcessorFactory = authorizationProcessorFactory
+        self.authorizationProviderFactory = authorizationProviderFactory
         self.configurationParser = configurationParser
     }
 
@@ -31,7 +31,7 @@ final class DefaultAuthorizationModule: AuthorizationModule {
             return Single.error(AuthorizationError.unsupportedBankServiceProvider)
         }
 
-        guard let processor = authorizationProcessorFactory.makeAuthorizationProcessor(
+        guard let processor = authorizationProviderFactory.makeAuthorizationProvider(
             for: configuration
         ) else {
             return Single.error(AuthorizationError.noProperProcessorFound)

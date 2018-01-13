@@ -9,24 +9,25 @@
 import Foundation
 
 protocol AuthorizationProviderFactory {
-    func makeAuthorizationProcessor(for configuration: BankServiceProviderConfiguration)
+    func makeAuthorizationProvider(for configuration: BankServiceProviderConfiguration)
         -> AuthorizationProvider?
 }
 
 final class DefaultAuthorizationProviderFactory: AuthorizationProviderFactory {
 
-    private let oAuth2AuthorizationProcessorFactory: OAuth2AuthorizationProviderFactory
+    private let oAuth2AuthorizationProviderFactory: OAuth2AuthorizationProviderFactory
+
     init(
-        oAuth2AuthorizationProcessorFactory: OAuth2AuthorizationProviderFactory
+        oAuth2AuthorizationProviderFactory: OAuth2AuthorizationProviderFactory
     ) {
-        self.oAuth2AuthorizationProcessorFactory = oAuth2AuthorizationProcessorFactory
+        self.oAuth2AuthorizationProviderFactory = oAuth2AuthorizationProviderFactory
     }
 
-    func makeAuthorizationProcessor(for configuration: BankServiceProviderConfiguration)
+    func makeAuthorizationProvider(for configuration: BankServiceProviderConfiguration)
         -> AuthorizationProvider? {
 
         if let oAuth2Configuration = configuration  as? OAuth2BankServiceConfiguration {
-            return oAuth2AuthorizationProcessorFactory.makeOAuth2BankServiceProviderAuthorizationProcessor(
+            return oAuth2AuthorizationProviderFactory.makeOAuth2BankServiceProviderAuthorizationProcessor(
                 for: oAuth2Configuration
             )
         }

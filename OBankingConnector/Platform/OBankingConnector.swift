@@ -45,15 +45,15 @@ public final class OBankingConnector {
             accessTokenRequestor: DefaultOAuth2AccessTokenRequestor(webClient: webClient)
         )
 
-        let oAuth2AuthorizationProcessorFactory = DefaultOAuth2AuthorizationProviderFactory(
+        let oAuth2AuthorizationProviderFactory = DefaultOAuth2AuthorizationProviderFactory(
             oAuth2AuthorizationRequestFactory: DefaultOAuth2AuthorizationRequestFactory(),
             oAuth2AuthorizationRequestProcessor: oAuth2AuthorizationRequestProcessor
         )
         let authorizationProcessorFactory = DefaultAuthorizationProviderFactory(
-            oAuth2AuthorizationProcessorFactory: oAuth2AuthorizationProcessorFactory
+            oAuth2AuthorizationProviderFactory: oAuth2AuthorizationProviderFactory
         )
         let authorizationModule = DefaultAuthorizationModule(
-            authorizationProcessorFactory: authorizationProcessorFactory,
+            authorizationProviderFactory: authorizationProcessorFactory,
             configurationParser: configurationParser
         )
 

@@ -21,7 +21,7 @@ class DefaultAuthorizationModuleTests: XCTestCase {
         )
         let configurationParser = ConfigurationParser(configuration: configuration)
         let sut = DefaultAuthorizationModule(
-            authorizationProcessorFactory: BankServiceProviderAuthorizationProcessorFactoryMock(),
+            authorizationProviderFactory: BankServiceProviderAuthorizationProcessorFactoryMock(),
             configurationParser: configurationParser
         )
 
@@ -61,7 +61,7 @@ private extension DefaultAuthorizationModuleTests {
 
         var lastConfiguration: BankServiceProviderConfiguration?
 
-        func makeAuthorizationProcessor(for configuration: BankServiceProviderConfiguration)
+        func makeAuthorizationProvider(for configuration: BankServiceProviderConfiguration)
             -> AuthorizationProvider? {
             lastConfiguration = configuration
             return BankServiceProviderAuthorizationProcessorMock()

@@ -770,6 +770,7 @@
 				2A58F0E11FE01C590024D33E /* DefaultAuthorizationModule.swift */,
 				2A58F0D01FE010030024D33E /* DeepLinkHandling */,
 				2A58F0F61FE070E90024D33E /* ExternalWebBrowserLauncher */,
+				2A604EC8200A6FDD005F3F1C /* OAuth1 */,
 				2A58F0CF1FE00FCC0024D33E /* OAuth2 */,
 			);
 			path = AuthorizationAndAuthenticationModule;
@@ -1008,6 +1009,13 @@
 				2A604EB9200A4BA2005F3F1C /* OAuth2BankServiceConfigurationMock.swift */,
 			);
 			path = BankServiceProvider;
+			sourceTree = "<group>";
+		};
+		2A604EC8200A6FDD005F3F1C /* OAuth1 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OAuth1;
 			sourceTree = "<group>";
 		};
 		2A8B1F381FF10CBC00482BF3 /* Responses */ = {

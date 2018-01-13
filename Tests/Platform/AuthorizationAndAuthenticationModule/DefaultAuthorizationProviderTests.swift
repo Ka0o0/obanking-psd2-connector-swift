@@ -18,18 +18,18 @@ class DefaultAuthorizationProviderTests: XCTestCase {
         super.setUp()
 
         sut = DefaultAuthorizationProviderFactory(
-            oAuth2AuthorizationProcessorFactory: OAuth2ProcessorFactoryMock()
+            oAuth2AuthorizationProviderFactory: OAuth2ProcessorFactoryMock()
         )
     }
     func test_MakeAuthorizationProvider_ReturnsNilForUnknownBankServiceProviderConfiguration() {
         let configuration = UnknownBankServiceProviderConfiguration()
-        let result = sut.makeAuthorizationProcessor(for: configuration)
+        let result = sut.makeAuthorizationProvider(for: configuration)
         XCTAssertNil(result)
     }
 
     func test_MakeAuthorizationProvider_ReturnsOAuth2BankServiceProviderAuthenticationProvider() {
         let configuration = OAuth2BankServiceConfigurationMock()
-        let result = sut.makeAuthorizationProcessor(for: configuration)
+        let result = sut.makeAuthorizationProvider(for: configuration)
         XCTAssertTrue(result is OAuth2AuthorizationProvider)
     }
 }
