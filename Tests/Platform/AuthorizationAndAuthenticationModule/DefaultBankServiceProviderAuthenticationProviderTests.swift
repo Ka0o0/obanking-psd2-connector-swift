@@ -11,117 +11,25 @@ import RxSwift
 import RxBlocking
 @testable import OBankingConnector
 
-// swiftlint:disable colon
 class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
 
-    private class BankServiceProviderAuthenticationRequestMock: BankServiceProviderAuthenticationRequest {
-    }
-
-    private class BankServiceProviderAuthenticationRequestFactoryMock: BankServiceProviderAuthenticationRequestFactory {
-
-        func makeBankServiceProviderAuthenticationRequest() -> BankServiceProviderAuthenticationRequest {
-            return BankServiceProviderAuthenticationRequestMock()
-        }
-    }
-
-    private class BankServiceConnectionInformationMock: BankServiceConnectionInformation {
-        let bankServiceProviderId: String = "test"
-    }
-
-    private class BankServiceProviderAuthenticationRequestFactoryProviderMock:
-        BankServiceProviderAuthenticationRequestFactoryProvider {
-
-        func makeAuthenticationRequestFactory(for bankServiceProvider: BankServiceProvider)
-            -> BankServiceProviderAuthenticationRequestFactory? {
-            guard bankServiceProvider.id == "test" else {
-                return nil
-            }
-            return BankServiceProviderAuthenticationRequestFactoryMock()
-        }
-    }
-
-    // swiftlint:disable colon
-    private class BankServiceProviderAuthenticationRequestMockProcessor:
-        BankServiceProviderAuthenticationRequestProcessor {
-
-        func canProcess(request: BankServiceProviderAuthenticationRequest) -> Bool {
-            return request is BankServiceProviderAuthenticationRequestMock
-        }
-
-        func authenticate(using request: BankServiceProviderAuthenticationRequest) ->
-            Single<BankServiceProviderAuthenticationResult> {
-
-            guard canProcess(request: request) else {
-                fatalError("We should never come here")
-            }
-
-            return Single.just(BankServiceConnectionInformationMock())
-        }
-    }
-    // swiftlint:enable colon
-
-    func test_Authenticate_FailsForInvalidBankService() {
-        let factoryProvider = BankServiceProviderAuthenticationRequestFactoryProviderMock()
-
+    func test_AuthenticateAgainst() {
+        let configuration = OBankingConnectorConfiguration(
+            bankServiceProviderConfigurations: [
+                BankServiceProviderConfigurationMock()
+            ]
+        )
+        let configurationParser = ConfigurationParser(configuration: configuration)
         let sut = DefaultBankServiceProviderAuthenticationProvider(
-            authenticationRequestFactoryProvider: factoryProvider,
-            bankServiceProviderRequestProcessors: []
+            authorizationProcessorFactory: BankServiceProviderAuthorizationProcessorFactoryMock(),
+            configurationParser: configurationParser
         )
 
         do {
-            _ = try sut.authenticate(against: BankServiceProviderMock(id: "aaa", name: ""))
-                .toBlocking(timeout: 3)
-                .single()
-            XCTFail("Shouldn't come here")
-        } catch let error {
-            guard let providerError = error as? BankServiceProviderAuthenticationProviderError else {
-                XCTFail("Invalid error type")
-                return
-            }
-
-            XCTAssertEqual(providerError, .unsupportedBankServiceProvider)
-        }
-    }
-
-    func test_Authenticate_FailsForMissingProcessor() {
-        let factoryProvider = BankServiceProviderAuthenticationRequestFactoryProviderMock()
-
-        let sut = DefaultBankServiceProviderAuthenticationProvider(
-            authenticationRequestFactoryProvider: factoryProvider,
-            bankServiceProviderRequestProcessors: []
-        )
-
-        do {
-            _ = try sut.authenticate(against: BankServiceProviderMock(id: "test", name: ""))
-                .toBlocking(timeout: 3)
-                .single()
-            XCTFail("Shouldn't come here")
-        } catch let error {
-            guard let providerError = error as? BankServiceProviderAuthenticationProviderError else {
-                XCTFail("Invalid error type")
-                return
-            }
-
-            XCTAssertEqual(providerError, .noProperProcessorFound)
-        }
-    }
-
-    func test_Authenticate_Success() {
-        let processors = [BankServiceProviderAuthenticationRequestMockProcessor()]
-        let factoryProvider = BankServiceProviderAuthenticationRequestFactoryProviderMock()
-
-        let sut = DefaultBankServiceProviderAuthenticationProvider(
-            authenticationRequestFactoryProvider: factoryProvider,
-            bankServiceProviderRequestProcessors: processors
-        )
-
-        do {
-            guard let result = try sut.authenticate(against: BankServiceProviderMock(id: "test", name: ""))
-                .toBlocking(timeout: 3)
-                .first() else {
-                XCTFail("Should not be nil")
-                return
-            }
+            let result = try sut.authenticate(against: BankServiceProviderMock(
+                id: "BankServiceProviderAuthorizationProcessorMock",
+                name: ""
+            )).toBlocking(timeout: 3).single()
 
             XCTAssertTrue(result is BankServiceConnectionInformationMock)
         } catch let error {
@@ -130,4 +38,33 @@ class DefaultBankServiceProviderAuthenticationProviderTests: XCTestCase {
     }
 }
 
-// swiftlint:enable colon
+private extension DefaultBankServiceProviderAuthenticationProviderTests {
+
+    class BankServiceProviderConfigurationMock: BankServiceProviderConfiguration {
+        let bankServiceProvider: BankServiceProvider = BankServiceProviderMock(
+            id: "BankServiceProviderAuthorizationProcessorMock",
+            name: ""
+        )
+    }
+
+    class BankServiceConnectionInformationMock: BankServiceConnectionInformation {
+        let bankServiceProviderId = "BankServiceProviderAuthorizationProcessorMock"
+    }
+
+    class BankServiceProviderAuthorizationProcessorMock: BankServiceProviderAuthorizationProcessor {
+        func authorize() -> Single<BankServiceProviderAuthenticationResult> {
+            return Single.just(BankServiceConnectionInformationMock())
+        }
+    }
+
+    class BankServiceProviderAuthorizationProcessorFactoryMock: BankServiceProviderAuthorizationProcessorFactory {
+
+        var lastConfiguration: BankServiceProviderConfiguration?
+
+        func makeAuthorizationProcessor(for configuration: BankServiceProviderConfiguration)
+            -> BankServiceProviderAuthorizationProcessor? {
+            lastConfiguration = configuration
+            return BankServiceProviderAuthorizationProcessorMock()
+        }
+    }
+}

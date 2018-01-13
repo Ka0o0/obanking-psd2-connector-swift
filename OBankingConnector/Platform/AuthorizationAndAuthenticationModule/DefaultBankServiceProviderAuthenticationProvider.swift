@@ -11,32 +11,32 @@ import RxSwift
 
 final class DefaultBankServiceProviderAuthenticationProvider: BankServiceProviderAuthenticationProvider {
 
-    private let authenticationRequestFactoryProvider: BankServiceProviderAuthenticationRequestFactoryProvider
-    private let bankServiceProviderRequestProcessors: [BankServiceProviderAuthenticationRequestProcessor]
+    private let authorizationProcessorFactory: BankServiceProviderAuthorizationProcessorFactory
+    private let configurationParser: ConfigurationParser
 
     init(
-        authenticationRequestFactoryProvider: BankServiceProviderAuthenticationRequestFactoryProvider,
-        bankServiceProviderRequestProcessors: [BankServiceProviderAuthenticationRequestProcessor]
+        authorizationProcessorFactory: BankServiceProviderAuthorizationProcessorFactory,
+        configurationParser: ConfigurationParser
     ) {
-        self.authenticationRequestFactoryProvider = authenticationRequestFactoryProvider
-        self.bankServiceProviderRequestProcessors = bankServiceProviderRequestProcessors
+        self.authorizationProcessorFactory = authorizationProcessorFactory
+        self.configurationParser = configurationParser
     }
 
     func authenticate(against bankServiceProvider: BankServiceProvider)
         -> Single<BankServiceProviderAuthenticationResult> {
 
-        guard let requestFactory = authenticationRequestFactoryProvider
-            .makeAuthenticationRequestFactory(for: bankServiceProvider) else {
+        guard let configuration = configurationParser.getBankServiceConfiguration(
+            for: bankServiceProvider
+        ) else {
             return Single.error(BankServiceProviderAuthenticationProviderError.unsupportedBankServiceProvider)
         }
 
-        let request = requestFactory.makeBankServiceProviderAuthenticationRequest()
-
-        let supportedProcessors = bankServiceProviderRequestProcessors.filter { $0.canProcess(request: request) }
-        guard let processor = supportedProcessors.first else {
+        guard let processor = authorizationProcessorFactory.makeAuthorizationProcessor(
+            for: configuration
+        ) else {
             return Single.error(BankServiceProviderAuthenticationProviderError.noProperProcessorFound)
         }
 
-        return processor.authenticate(using: request)
+        return processor.authorize()
     }
 }

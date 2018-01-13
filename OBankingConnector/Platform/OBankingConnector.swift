@@ -47,12 +47,7 @@ public final class OBankingConnector {
         let authenticationRequestFactoryProvider = ConfigurationBankServiceProviderAuthenticationRequestFactoryProvider(
             configurationParser: configurationParser
         )
-        return DefaultBankServiceProviderAuthenticationProvider(
-            authenticationRequestFactoryProvider: authenticationRequestFactoryProvider,
-            bankServiceProviderRequestProcessors: [
-                oAuth2Processors
-            ]
-        )
+        fatalError()
     }
 
     public func makeBankServiceProviderConnector() -> BankServiceProviderConnector {

@@ -25,7 +25,7 @@ class ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests:
     func test_make_ReturnsOAuth2RequestFactory() {
         let configuration = OBankingConnectorConfiguration(
             bankServiceProviderConfigurations: [
-                BankServiceConfigurationMock()
+                OAuth2BankServiceConfigurationMock()
             ]
         )
         let sut = ConfigurationBankServiceProviderAuthenticationRequestFactoryProvider(
@@ -46,40 +46,4 @@ class ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests:
         XCTAssertEqual(oAuth2Request.authorizationEndpointURL, URL(fileURLWithPath: "test"))
     }
 
-}
-
-private extension ConfigurationBankServiceProviderAuthenticationRequestFactoryProviderTests {
-
-    class BankingRequestTranslatorMock: BankingRequestTranslator {
-        func makeProcessor<T>(for bankingRequest: T) -> BankingRequestProcessor<T>? where T: BankingRequest {
-            return nil
-        }
-    }
-
-    class BankServiceConfigurationMock: OAuth2BankServiceConfiguration {
-        let authorizationEndpointURL: URL = URL(fileURLWithPath: "test")
-        let clientId: String = "client"
-        let clientSecret: String? = nil
-        let tokenEndpointURL: URL? = nil
-        let redirectURI: String? = nil
-        let scope: String? = nil
-        let bankServiceProvider: BankServiceProvider = BankServiceProviderMock(id: "test", name: "test")
-        let additionalAuthorizationRequestParameters: [String: String]? = nil
-        let additionalTokenRequestParameters: [String: String]? = nil
-        let additionalHeaders: [String: String]? = nil
-        let bankingRequestTranslator: BankingRequestTranslator = BankingRequestTranslatorMock()
-        var authorizationServerCertificate: Data {
-            guard let certificate = "authorizationServerCertificate".data(using: .utf8) else {
-                fatalError()
-            }
-            return certificate
-        }
-        var tokenServerCertificate: Data {
-            guard let certificate = "tokenServerCertificate".data(using: .utf8) else {
-                fatalError()
-            }
-            return certificate
-        }
-        var apiServerCertificate: Data { fatalError() }
-    }
 }
