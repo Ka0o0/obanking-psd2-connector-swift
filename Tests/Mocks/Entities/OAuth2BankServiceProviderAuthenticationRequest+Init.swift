@@ -9,7 +9,7 @@
 import Foundation
 @testable import OBankingConnector
 
-extension OAuth2BankServiceProviderAuthenticationRequest {
+extension OAuth2AuthorizationRequest {
 
     init(
         bankingServiceProviderId: String,

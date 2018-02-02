@@ -15,7 +15,7 @@ final class OAuth2AccessTokenRequestorMock: OAuth2AccessTokenRequestor {
     var nextConnectionInformation: OAuth2BankServiceConnectionInformation?
 
     func requestAccessToken(
-        for request: OAuth2BankServiceProviderAuthenticationRequest,
+        for request: OAuth2AuthorizationRequest,
         authorizationToken: String
     ) -> Single<OAuth2BankServiceConnectionInformation> {
         guard let nextConnectionInformation = self.nextConnectionInformation else {

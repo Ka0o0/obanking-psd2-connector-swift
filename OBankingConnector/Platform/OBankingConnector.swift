@@ -36,23 +36,28 @@ public final class OBankingConnector {
         )
     }
 
-    public func makeBankServiceProviderAuthenticationProvider() -> BankServiceProviderAuthenticationProvider {
-        let oAuth2Processors = DefaultOAuth2BankServiceAuthenticationRequestProcessorFactory()
-            .makeProcessor(
-                externalWebBrowserLauncher: externalWebBrowserLauncher,
-                deepLinkProvider: deepLinkService,
-                webClient: webClient
-            )
+    public func makeBankServiceProviderAuthenticationProvider() -> AuthorizationModule {
+        let oAuth2AuthorizationRequestProcessor = DefaultOAuth2AuthorizationRequestProcessor(
+            externalWebBrowserLauncher: externalWebBrowserLauncher,
+            deepLinkProvider: deepLinkService,
+            authorizationRequestURLBuilder: DefaultOAuth2AuthorizationRequestURLBuilder(),
+            authorizationTokenExtractor: DefaultOAuth2AuthorizationTokenExtractor(),
+            accessTokenRequestor: DefaultOAuth2AccessTokenRequestor(webClient: webClient)
+        )
 
-        let authenticationRequestFactoryProvider = ConfigurationBankServiceProviderAuthenticationRequestFactoryProvider(
+        let oAuth2AuthorizationProviderFactory = DefaultOAuth2AuthorizationProviderFactory(
+            oAuth2AuthorizationRequestFactory: DefaultOAuth2AuthorizationRequestFactory(),
+            oAuth2AuthorizationRequestProcessor: oAuth2AuthorizationRequestProcessor
+        )
+        let authorizationProcessorFactory = DefaultAuthorizationProviderFactory(
+            oAuth2AuthorizationProviderFactory: oAuth2AuthorizationProviderFactory
+        )
+        let authorizationModule = DefaultAuthorizationModule(
+            authorizationProviderFactory: authorizationProcessorFactory,
             configurationParser: configurationParser
         )
-        return DefaultBankServiceProviderAuthenticationProvider(
-            authenticationRequestFactoryProvider: authenticationRequestFactoryProvider,
-            bankServiceProviderRequestProcessors: [
-                oAuth2Processors
-            ]
-        )
+
+        return authorizationModule
     }
 
     public func makeBankServiceProviderConnector() -> BankServiceProviderConnector {
