@@ -14,4 +14,11 @@ public struct BankAccountDetails {
     public let type: BankAccountType
     public let disposeableBalance: Amount?
     public let alias: String?
+
+    public init(balance: Amount, type: BankAccountType, disposeableBalance: Amount?, alias: String?) {
+        self.balance = balance
+        self.type = type
+        self.disposeableBalance = disposeableBalance
+        self.alias = alias
+    }
 }

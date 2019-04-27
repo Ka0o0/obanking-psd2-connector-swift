@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct OAuth2BankServiceConnectionInformation: BankServiceConnectionInformation, Codable {
+public struct OAuth2BankServiceConnectionInformation: BankServiceConnectionInformation, Codable {
 
     private enum CodingKeys: String, CodingKey {
         case bankServiceProviderId
@@ -20,7 +20,7 @@ struct OAuth2BankServiceConnectionInformation: BankServiceConnectionInformation,
         case scope
     }
 
-    let bankServiceProviderId: String
+    public let bankServiceProviderId: String
     let accessToken: String
     let tokenType: String
     let expiresIn: Double?
@@ -28,7 +28,7 @@ struct OAuth2BankServiceConnectionInformation: BankServiceConnectionInformation,
     let refreshToken: String?
     let scope: String?
 
-    init(
+    public init(
         bankServiceProviderId: String,
         accessToken: String,
         tokenType: String,
@@ -45,7 +45,7 @@ struct OAuth2BankServiceConnectionInformation: BankServiceConnectionInformation,
         self.scope = scope
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         bankServiceProviderId = try container.decodeIfPresent(String.self, forKey: .bankServiceProviderId) ?? "unknown"
